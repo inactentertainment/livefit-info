@@ -192,3 +192,19 @@ footer{background:#fff;color:#111;padding:55px clamp(20px,6vw,90px) 28px;display
 .explainer-grid article{border:1px solid var(--line);background:var(--black);border-radius:16px;padding:18px}.explainer-grid article>b{color:var(--orange);font-size:26px}.explainer-grid h3{margin:10px 0 6px}.explainer-grid p{color:var(--muted)}
 @media(max-width:850px){.calculator-layout{grid-template-columns:1fr}.results-card{position:static}.roadmap-grid{grid-template-columns:repeat(2,1fr)}.tool-page-head{display:block}.tool-page-head .btn{margin-top:15px}}
 @media(max-width:600px){.form-grid,.result-grid,.roadmap-grid,.explainer-grid{grid-template-columns:1fr}.tool-page-shell{width:min(100% - 20px,1180px);padding-top:30px}.tool-explainer{padding:24px 18px}}
+
+/* Build 6: Walking & Steps */
+.walking-quick-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.quick-step{border:1px solid var(--line);background:var(--black);color:var(--text);border-radius:999px;padding:10px 14px;font-weight:900;cursor:pointer;transition:.2s}
+.quick-step:hover{border-color:var(--orange);transform:translateY(-2px)}
+.walking-target-card{margin:18px 0;padding:18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(214,58,11,.10),var(--black))}
+.target-kicker{display:block;color:var(--orange2);font-size:10px;font-weight:900;letter-spacing:.12em;margin-bottom:6px}
+.walking-target-card>strong{display:block;font-size:30px}.walking-target-card>small{color:var(--muted)}
+.target-meter{height:9px;background:var(--line);border-radius:999px;overflow:hidden;margin:14px 0 10px}
+.target-meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--orange2));transition:width .4s ease}
+.walking-target-card p{color:var(--muted);font-size:13px;margin:0}
+.walking-insights{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0}
+.walking-insights article{border:1px solid var(--line);background:var(--card);border-radius:20px;padding:24px}
+.insight-number{display:inline-block;color:var(--orange);font-size:12px;font-weight:900;letter-spacing:.12em;margin-bottom:24px}
+.walking-insights h3{font-size:24px;margin-bottom:10px}.walking-insights p{color:var(--muted)}
+@media(max-width:800px){.walking-insights{grid-template-columns:1fr}}
