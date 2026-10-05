@@ -1,1 +1,261 @@
-<!doctype html><html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Walking & Steps | LiveFit.info</title><link rel="stylesheet" href="../css/style.css"></head><body><main><section class="hero" style="min-height:100vh"><div class="hero-copy"><p class="eyebrow">LIVEFIT TOOL</p><h1>Walking & Steps</h1><p class="hero-text">This tool is staged for the next build pass. It will convert steps, miles, time, and estimated energy use.</p><div class="hero-actions"><a class="btn btn-primary" href="../index.html#tools">← Back to tools</a></div></div></section></main></body></html>
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Convert steps, miles, time, and estimated walking calories with LiveFit.">
+  <title>Walking & Steps Calculator | LiveFit.info</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="assessment-page">
+  <div class="page-swoop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand page-link" href="../index.html">
+      <span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span>
+    </a>
+    <div class="personal-controls">
+      <button class="round-control" id="themeToggle" aria-label="Switch light and dark mode">◐</button>
+    </div>
+  </header>
+
+  <main class="tool-page-shell">
+    <div class="tool-page-head">
+      <div>
+        <p class="eyebrow">TOOL 03 — MOVE MORE</p>
+        <h1>Walking & Steps Calculator</h1>
+        <p>Turn steps into distance, walking time, and estimated calorie burn — then use your LiveFit assessment to set a realistic starting target.</p>
+      </div>
+      <a class="btn btn-secondary page-link" href="../index.html#tools">← All Tools</a>
+    </div>
+
+    <section class="calculator-layout">
+      <form class="calculator-card" id="walkingForm">
+        <div class="calculator-section">
+          <h2>Your walking inputs</h2>
+          <div class="form-grid">
+            <label>Steps
+              <input id="steps" type="number" min="100" max="100000" step="100" value="6000">
+            </label>
+
+            <label>Walking pace
+              <select id="pace">
+                <option value="2">Easy — 2.0 mph</option>
+                <option value="2.5">Comfortable — 2.5 mph</option>
+                <option value="3" selected>Moderate — 3.0 mph</option>
+                <option value="3.5">Brisk — 3.5 mph</option>
+                <option value="4">Fast — 4.0 mph</option>
+              </select>
+            </label>
+
+            <label>Height
+              <div class="dual-input">
+                <input id="feet" type="number" min="4" max="8" value="5"><span>ft</span>
+                <input id="inches" type="number" min="0" max="11" value="10"><span>in</span>
+              </div>
+            </label>
+
+            <label>Weight
+              <div class="dual-input">
+                <input id="weight" type="number" min="80" max="700" value="180"><span>lb</span>
+              </div>
+            </label>
+
+            <label>Sex used for stride estimate
+              <select id="sex">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </label>
+
+            <label>Current average steps/day
+              <input id="baselineSteps" type="number" min="0" max="50000" step="100" value="4000">
+            </label>
+          </div>
+        </div>
+
+        <div class="walking-quick-row">
+          <button type="button" class="quick-step" data-steps="3000">3,000</button>
+          <button type="button" class="quick-step" data-steps="5000">5,000</button>
+          <button type="button" class="quick-step" data-steps="7500">7,500</button>
+          <button type="button" class="quick-step" data-steps="10000">10,000</button>
+          <button type="button" class="quick-step" data-steps="12000">12,000</button>
+        </div>
+
+        <button class="btn btn-primary shimmer calculator-submit" type="submit">Calculate My Walk</button>
+        <p class="form-error" id="formError" role="alert"></p>
+      </form>
+
+      <aside class="results-card" aria-live="polite">
+        <p class="eyebrow">YOUR WALK</p>
+        <h2 id="distance">—</h2>
+        <p class="result-label">estimated miles</p>
+
+        <div class="result-grid">
+          <div><span>Steps</span><strong id="stepsResult">—</strong><small>entered walking total</small></div>
+          <div><span>Walking time</span><strong id="minutes">—</strong><small>estimated minutes</small></div>
+          <div><span>Calories</span><strong id="calories">—</strong><small>estimated walking energy</small></div>
+          <div><span>Stride estimate</span><strong id="stride">—</strong><small>inches per step</small></div>
+        </div>
+
+        <div class="walking-target-card">
+          <span class="target-kicker">LIVEFIT STARTING TARGET</span>
+          <strong id="dailyTarget">—</strong>
+          <small>suggested daily step target</small>
+          <div class="target-meter"><span id="targetMeter"></span></div>
+          <p id="targetNote">Calculate your walk to see a starting target.</p>
+        </div>
+
+        <a class="btn btn-secondary page-link result-next" href="workout.html">Next Tool: Workout Generator →</a>
+      </aside>
+    </section>
+
+    <section class="walking-insights">
+      <article>
+        <span class="insight-number">01</span>
+        <h3>Steps are only one measure.</h3>
+        <p>Walking pace, hills, duration, and how often you move during the day also matter. A smaller repeatable target can be more useful than chasing one universal number.</p>
+      </article>
+      <article>
+        <span class="insight-number">02</span>
+        <h3>Your stride changes the math.</h3>
+        <p>LiveFit estimates stride length from height and sex used for the calculation. Real stride varies, so distance is an estimate rather than a GPS measurement.</p>
+      </article>
+      <article>
+        <span class="insight-number">03</span>
+        <h3>Build gradually.</h3>
+        <p>If your current average is low, adding a modest amount first may be easier to sustain. Increase gradually as walking feels comfortable.</p>
+      </article>
+    </section>
+
+    <section class="tool-explainer">
+      <div>
+        <p class="eyebrow">HOW THE ESTIMATES WORK</p>
+        <h2>Simple math, personalized by your inputs.</h2>
+      </div>
+      <div class="explainer-grid">
+        <article><b>1</b><h3>Distance</h3><p>Steps are multiplied by an estimated stride length, then converted from inches to miles.</p></article>
+        <article><b>2</b><h3>Time</h3><p>Estimated distance is divided by your selected walking speed to estimate time.</p></article>
+        <article><b>3</b><h3>Calories</h3><p>Walking calories are estimated from body weight, time, and a standard activity-intensity value for the selected pace.</p></article>
+      </div>
+      <p class="microcopy">This is a general wellness tool, not a medical prescription. If you are new to exercise, have significant mobility limitations, cardiovascular symptoms, or pain that worsens with walking, get appropriate medical guidance before increasing activity substantially.</p>
+    </section>
+  </main>
+
+  <script src="../js/main.js"></script>
+  <script>
+    (() => {
+      const saved=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+      const feet=document.getElementById('feet');
+      const inches=document.getElementById('inches');
+      const weight=document.getElementById('weight');
+      const sex=document.getElementById('sex');
+      const baseline=document.getElementById('baselineSteps');
+
+      if(saved.calorieEstimate){
+        if(saved.calorieEstimate.feet) feet.value=saved.calorieEstimate.feet;
+        if(saved.calorieEstimate.inches>=0) inches.value=saved.calorieEstimate.inches;
+        if(saved.calorieEstimate.pounds) weight.value=saved.calorieEstimate.pounds;
+        if(saved.calorieEstimate.sex) sex.value=saved.calorieEstimate.sex;
+      } else if(saved.sex) {
+        sex.value=saved.sex;
+      }
+
+      const paceMets={
+        '2':2.8,
+        '2.5':3.0,
+        '3':3.3,
+        '3.5':4.3,
+        '4':5.0
+      };
+
+      const fmt1=n=>n.toLocaleString(undefined,{maximumFractionDigits:1});
+      const fmt0=n=>Math.round(n).toLocaleString();
+
+      function suggestTarget(base,activity,goal,barrier){
+        let add=1000;
+        if(activity==='sedentary') add=1000;
+        if(activity==='light') add=1200;
+        if(activity==='active') add=1500;
+        if(activity==='very-active') add=1000;
+
+        if(goal==='weight'||goal==='fitness'||goal==='energy') add+=500;
+        if(goal==='mobility') add=700;
+        if(barrier==='joints') add=Math.min(add,700);
+        if(barrier==='time') add=Math.min(add,1000);
+
+        const floor=activity==='sedentary'?3500:4500;
+        const target=Math.min(12000,Math.max(floor,base+add));
+        return Math.round(target/100)*100;
+      }
+
+      function calculate(){
+        const steps=Number(document.getElementById('steps').value);
+        const pace=Number(document.getElementById('pace').value);
+        const ft=Number(feet.value);
+        const inch=Number(inches.value);
+        const pounds=Number(weight.value);
+        const base=Math.max(0,Number(baseline.value)||0);
+        const s=sex.value;
+        const error=document.getElementById('formError');
+        error.textContent='';
+
+        if(steps<100||steps>100000||ft<4||ft>8||inch<0||inch>11||pounds<80||pounds>700){
+          error.textContent='Please check the steps, height, and weight values before calculating.';
+          return;
+        }
+
+        const heightIn=ft*12+inch;
+        const strideFactor=s==='female'?0.413:0.415;
+        const strideIn=heightIn*strideFactor;
+        const miles=steps*strideIn/63360;
+        const minutes=miles/pace*60;
+        const kg=pounds*0.45359237;
+        const met=paceMets[String(pace)]||3.3;
+        const calories=met*3.5*kg/200*minutes;
+
+        const target=suggestTarget(base,saved.activity,saved.goal,saved.barrier);
+        const percent=Math.min(100,(steps/target)*100);
+
+        document.getElementById('distance').textContent=fmt1(miles);
+        document.getElementById('stepsResult').textContent=fmt0(steps);
+        document.getElementById('minutes').textContent=fmt0(minutes);
+        document.getElementById('calories').textContent=fmt0(calories);
+        document.getElementById('stride').textContent=fmt1(strideIn);
+        document.getElementById('dailyTarget').textContent=fmt0(target)+' steps';
+        document.getElementById('targetMeter').style.width=percent+'%';
+
+        let note='This target is a modest step up from your current average, not a universal requirement.';
+        if(saved.barrier==='joints') note='Because you selected joint discomfort, LiveFit is keeping the suggested increase conservative. Comfortable, lower-impact walking comes first.';
+        if(saved.barrier==='time') note='Because time is your main barrier, this target is designed to be reachable in smaller walking blocks during the day.';
+        if(base===0) note='Because no baseline was entered, LiveFit is using a conservative starting target. Add your real average for a better suggestion.';
+        document.getElementById('targetNote').textContent=note;
+
+        saved.walkingEstimate={
+          steps:Math.round(steps),
+          miles:Number(miles.toFixed(2)),
+          minutes:Math.round(minutes),
+          calories:Math.round(calories),
+          strideIn:Number(strideIn.toFixed(1)),
+          targetSteps:target,
+          baselineSteps:Math.round(base),
+          pace
+        };
+        localStorage.setItem('livefit-plan',JSON.stringify(saved));
+      }
+
+      document.getElementById('walkingForm').addEventListener('submit',e=>{
+        e.preventDefault();
+        calculate();
+      });
+
+      document.querySelectorAll('.quick-step').forEach(btn=>btn.addEventListener('click',()=>{
+        document.getElementById('steps').value=btn.dataset.steps;
+        calculate();
+      }));
+
+      calculate();
+    })();
+  </script>
+</body>
+</html>
