@@ -1,1 +1,377 @@
-<!doctype html><html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Equipment Matcher | LiveFit.info</title><link rel="stylesheet" href="../css/style.css"></head><body><main><section class="hero" style="min-height:100vh"><div class="hero-copy"><p class="eyebrow">LIVEFIT TOOL</p><h1>Equipment Matcher</h1><p class="hero-text">This tool is staged for the next build pass. It will recommend home-gym gear by goals, space, and budget.</p><div class="hero-actions"><a class="btn btn-primary" href="../index.html#tools">← Back to tools</a></div></div></section></main></body></html>
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Match home gym equipment to your goals, space, budget, noise limits, and LiveFit plan.">
+  <title>Home Gym Equipment Matcher | LiveFit.info</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="assessment-page">
+  <div class="page-swoop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand page-link" href="../index.html">
+      <span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span>
+    </a>
+    <div class="personal-controls">
+      <button class="round-control" id="themeToggle" aria-label="Switch light and dark mode">◐</button>
+    </div>
+  </header>
+
+  <main class="tool-page-shell">
+    <div class="tool-page-head">
+      <div>
+        <p class="eyebrow">TOOL 05 — BUILD YOUR SPACE</p>
+        <h1>Home Gym Equipment Matcher</h1>
+        <p>Tell LiveFit what you want to accomplish, how much room you have, what you already own, and what you want to spend. The matcher builds Good, Better, and Best equipment setups around your reality.</p>
+      </div>
+      <a class="btn btn-secondary page-link" href="../index.html#tools">← All Tools</a>
+    </div>
+
+    <section class="equipment-builder">
+      <form class="calculator-card" id="equipmentForm">
+        <div class="calculator-section">
+          <h2>Your setup</h2>
+          <div class="form-grid">
+            <label>Main goal
+              <select id="goal">
+                <option value="weight">Lose weight</option>
+                <option value="muscle">Build muscle</option>
+                <option value="fitness" selected>Improve fitness</option>
+                <option value="mobility">Move better</option>
+                <option value="energy">More energy</option>
+                <option value="tone">Tone & shape</option>
+              </select>
+            </label>
+
+            <label>Available space
+              <select id="space">
+                <option value="tiny">Tiny — bedroom corner / closet storage</option>
+                <option value="small" selected>Small — apartment / spare-room corner</option>
+                <option value="medium">Medium — dedicated room section</option>
+                <option value="large">Large — garage / basement / gym room</option>
+              </select>
+            </label>
+
+            <label>Budget
+              <select id="budget">
+                <option value="100">Under $100</option>
+                <option value="250">$100–$250</option>
+                <option value="500" selected>$250–$500</option>
+                <option value="1000">$500–$1,000</option>
+                <option value="2000">$1,000–$2,000</option>
+                <option value="4000">$2,000+</option>
+              </select>
+            </label>
+
+            <label>Training style
+              <select id="style">
+                <option value="mixed" selected>Balanced / mixed</option>
+                <option value="strength">Strength focused</option>
+                <option value="cardio">Cardio focused</option>
+                <option value="mobility">Mobility / low impact</option>
+                <option value="compact">Minimal / compact</option>
+              </select>
+            </label>
+
+            <label>Noise tolerance
+              <select id="noise">
+                <option value="quiet">Must stay quiet</option>
+                <option value="normal" selected>Normal household noise is fine</option>
+                <option value="any">Noise is not a concern</option>
+              </select>
+            </label>
+
+            <label>Storage preference
+              <select id="storage">
+                <option value="hide">Must store away easily</option>
+                <option value="compact" selected>Prefer compact gear</option>
+                <option value="permanent">Permanent setup is fine</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="calculator-section">
+          <h2>What do you already own?</h2>
+          <div class="equipment-check-grid">
+            <label><input type="checkbox" value="mat"><span>Exercise mat</span></label>
+            <label><input type="checkbox" value="bands"><span>Resistance bands</span></label>
+            <label><input type="checkbox" value="dumbbells"><span>Dumbbells</span></label>
+            <label><input type="checkbox" value="bench"><span>Bench</span></label>
+            <label><input type="checkbox" value="cardio"><span>Cardio machine</span></label>
+            <label><input type="checkbox" value="rack"><span>Rack / barbell setup</span></label>
+          </div>
+        </div>
+
+        <div class="calculator-section">
+          <h2>Anything we should prioritize?</h2>
+          <div class="activity-options">
+            <label><input type="radio" name="priority" value="value" checked><span><b>Best value</b><small>Maximize useful training options per dollar.</small></span></label>
+            <label><input type="radio" name="priority" value="space"><span><b>Save space</b><small>Favor foldable, adjustable, and easy-to-store gear.</small></span></label>
+            <label><input type="radio" name="priority" value="comfort"><span><b>Joint-friendly</b><small>Favor lower-impact and supported training options.</small></span></label>
+            <label><input type="radio" name="priority" value="upgrade"><span><b>Build for the future</b><small>Favor equipment that can grow with your training.</small></span></label>
+          </div>
+        </div>
+
+        <button class="btn btn-primary shimmer calculator-submit" type="submit">Build My Home Gym</button>
+      </form>
+
+      <section class="equipment-output" aria-live="polite">
+        <div class="workout-output-head">
+          <div>
+            <p class="eyebrow">YOUR LIVEFIT MATCH</p>
+            <h2 id="matchTitle">Build around what you’ll actually use.</h2>
+            <p id="matchLead">Choose your setup and LiveFit will rank equipment by fit, not hype.</p>
+          </div>
+          <button class="btn btn-secondary" id="rebuild" type="button">↻ Rebuild</button>
+        </div>
+
+        <div class="equipment-score-strip" id="scoreStrip" hidden>
+          <div><span>Space fit</span><strong id="spaceScore">—</strong></div>
+          <div><span>Budget fit</span><strong id="budgetScore">—</strong></div>
+          <div><span>Goal fit</span><strong id="goalScore">—</strong></div>
+          <div><span>Versatility</span><strong id="versatilityScore">—</strong></div>
+        </div>
+
+        <div class="package-tabs" role="tablist" aria-label="Equipment package levels">
+          <button type="button" class="package-tab active" data-package="good">GOOD</button>
+          <button type="button" class="package-tab" data-package="better">BETTER</button>
+          <button type="button" class="package-tab" data-package="best">BEST</button>
+        </div>
+
+        <div class="package-panel" id="packagePanel">
+          <div class="package-price"><span>Estimated package</span><strong id="packagePrice">—</strong></div>
+          <div class="equipment-recommendations" id="equipmentRecommendations"></div>
+          <div class="results-note" id="packageNote">Complete the matcher to see your recommendations.</div>
+        </div>
+
+        <div class="affiliate-ready">
+          <span class="target-kicker">AFFILIATE-READY SECTION</span>
+          <p>When product partners are connected, each recommendation can show a Budget / Mid-Range / Premium product option without changing the matching logic.</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="equipment-rules">
+      <article><span class="insight-number">01</span><h3>No “must-buy everything” list.</h3><p>The matcher removes gear you already own and tries to fill capability gaps before adding extras.</p></article>
+      <article><span class="insight-number">02</span><h3>Space matters as much as budget.</h3><p>A large machine can be a bad recommendation even when someone can afford it. LiveFit scores footprint and storage alongside price.</p></article>
+      <article><span class="insight-number">03</span><h3>Good → Better → Best.</h3><p>Every user gets three levels so the site can serve someone spending $100 and someone building a full garage gym.</p></article>
+    </section>
+  </main>
+
+  <script src="../js/main.js"></script>
+  <script>
+  (() => {
+    const saved=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+    const form=document.getElementById('equipmentForm');
+    const goal=document.getElementById('goal');
+    const budget=document.getElementById('budget');
+    let activePackage='good';
+    let currentMatches={good:[],better:[],best:[]};
+
+    if(saved.goal) goal.value=saved.goal;
+
+    const catalog=[
+      {id:'mat',name:'High-density exercise mat',category:'mobility',price:35,space:1,noise:0,versatility:4,goals:['mobility','fitness','weight','tone','energy'],styles:['mixed','mobility','compact'],why:'Creates a comfortable floor-training base for mobility, core work, and bodyweight exercise.'},
+      {id:'bands',name:'Resistance band set',category:'strength',price:35,space:1,noise:0,versatility:5,goals:['muscle','fitness','mobility','tone','weight','energy'],styles:['mixed','strength','mobility','compact'],why:'Very high exercise variety for very little money or storage space.'},
+      {id:'loopbands',name:'Mini loop band set',category:'mobility',price:20,space:1,noise:0,versatility:3,goals:['mobility','tone','fitness'],styles:['mixed','mobility','compact'],why:'Useful for glute work, warm-ups, lateral movement, and travel.'},
+      {id:'adjustable-db',name:'Adjustable dumbbell pair',category:'strength',price:350,space:2,noise:1,versatility:5,goals:['muscle','fitness','tone','weight'],styles:['mixed','strength','compact'],why:'Replaces multiple fixed dumbbell pairs and supports progressive strength work.'},
+      {id:'fixed-db',name:'Starter dumbbell pair',category:'strength',price:60,space:2,noise:1,versatility:3,goals:['muscle','fitness','tone','weight'],styles:['mixed','strength'],why:'A low-cost way to add load without committing to a full rack of weights.'},
+      {id:'bench',name:'Foldable adjustable bench',category:'strength',price:160,space:3,noise:0,versatility:4,goals:['muscle','fitness','tone'],styles:['mixed','strength','compact'],why:'Expands pressing, rowing, split-squat, and seated exercise options while folding away.'},
+      {id:'kettlebell',name:'Adjustable kettlebell',category:'strength',price:140,space:1,noise:1,versatility:4,goals:['fitness','weight','muscle','tone'],styles:['mixed','strength','compact'],why:'Compact option for squats, hinges, carries, presses, and conditioning.'},
+      {id:'step',name:'Aerobic step platform',category:'cardio',price:70,space:2,noise:1,versatility:3,goals:['weight','fitness','energy','tone'],styles:['mixed','cardio','mobility'],why:'Supports low-impact conditioning, step-ups, and adjustable-height training.'},
+      {id:'bike',name:'Compact exercise bike',category:'cardio',price:350,space:4,noise:1,versatility:3,goals:['weight','fitness','energy','mobility'],styles:['mixed','cardio','mobility'],why:'Reliable low-impact cardio that works well for users who prefer supported training.'},
+      {id:'rower',name:'Folding rower',category:'cardio',price:550,space:5,noise:2,versatility:4,goals:['weight','fitness','energy','tone'],styles:['mixed','cardio'],why:'Combines cardio with substantial upper- and lower-body involvement and can often fold upright.'},
+      {id:'treadmill',name:'Folding treadmill',category:'cardio',price:800,space:5,noise:3,versatility:3,goals:['weight','fitness','energy'],styles:['cardio','mixed'],why:'Straightforward walking and running access regardless of weather.'},
+      {id:'walkingpad',name:'Walking pad',category:'cardio',price:250,space:3,noise:2,versatility:2,goals:['weight','energy','fitness'],styles:['cardio','compact','mixed'],why:'Space-efficient way to accumulate walking time indoors.'},
+      {id:'tower',name:'Compact functional trainer / cable tower',category:'strength',price:1200,space:5,noise:1,versatility:5,goals:['muscle','fitness','tone'],styles:['strength','mixed'],why:'Large exercise library with smooth resistance and less plate handling than free weights.'},
+      {id:'rack',name:'Power rack + barbell starter setup',category:'strength',price:1200,space:6,noise:3,versatility:5,goals:['muscle','fitness'],styles:['strength'],why:'Strong long-term platform for squats, presses, pulls, and progressive strength training.'},
+      {id:'plates',name:'Weight plates + barbell',category:'strength',price:500,space:4,noise:3,versatility:4,goals:['muscle','fitness'],styles:['strength'],why:'Progressive loading for major barbell movements.'},
+      {id:'flooring',name:'Rubber gym flooring',category:'support',price:180,space:0,noise:-1,versatility:2,goals:['muscle','fitness','weight','tone'],styles:['strength','mixed','cardio'],why:'Protects floors, reduces noise, and defines the training area.'},
+      {id:'storage',name:'Vertical equipment storage rack',category:'support',price:120,space:-1,noise:0,versatility:2,goals:['muscle','fitness','tone','weight'],styles:['mixed','strength','compact'],why:'Keeps a growing equipment collection organized without spreading across the room.'}
+    ];
+
+    const ownedMap={mat:'mat',bands:'bands',dumbbells:'adjustable-db',bench:'bench',cardio:'bike',rack:'rack'};
+
+    function getOwned(){
+      return [...document.querySelectorAll('.equipment-check-grid input:checked')].map(x=>x.value);
+    }
+
+    function settings(){
+      return {
+        goal:goal.value,
+        space:document.getElementById('space').value,
+        budget:Number(budget.value),
+        style:document.getElementById('style').value,
+        noise:document.getElementById('noise').value,
+        storage:document.getElementById('storage').value,
+        priority:document.querySelector('input[name="priority"]:checked')?.value||'value',
+        owned:getOwned()
+      };
+    }
+
+    function spaceLimit(space){
+      return {tiny:2,small:3,medium:5,large:7}[space]||3;
+    }
+
+    function scoreItem(item,s){
+      if(s.owned.some(o=>ownedMap[o]===item.id||o===item.id)) return -999;
+      let score=0;
+
+      if(item.goals.includes(s.goal)) score+=35;
+      if(item.styles.includes(s.style)) score+=18;
+      score+=item.versatility*5;
+
+      const maxSpace=spaceLimit(s.space);
+      if(item.space<=maxSpace) score+=18;
+      else score-=25*(item.space-maxSpace);
+
+      if(item.price<=s.budget*.45) score+=14;
+      else if(item.price<=s.budget*.75) score+=7;
+      else if(item.price>s.budget) score-=25;
+
+      if(s.noise==='quiet'){
+        score-=Math.max(0,item.noise)*12;
+        if(item.noise<=0) score+=8;
+      }else if(s.noise==='normal'){
+        score-=Math.max(0,item.noise-2)*6;
+      }
+
+      if(s.storage==='hide'){
+        if(item.space<=2) score+=12;
+        if(item.space>=5) score-=16;
+      }else if(s.storage==='compact'){
+        if(item.space<=3) score+=7;
+      }
+
+      if(s.priority==='value') score+=item.versatility*3-(item.price/150);
+      if(s.priority==='space') score+=(5-Math.max(0,item.space))*4;
+      if(s.priority==='comfort'){
+        if(['bike','mat','bands','step','tower'].includes(item.id)) score+=12;
+        if(['treadmill','rack','plates'].includes(item.id)) score-=5;
+      }
+      if(s.priority==='upgrade'){
+        if(['adjustable-db','bench','tower','rack','plates'].includes(item.id)) score+=13;
+      }
+
+      if(saved.barrier==='joints'){
+        if(['bike','mat','bands','step','tower'].includes(item.id)) score+=10;
+        if(item.noise>=3) score-=4;
+      }
+      if(saved.barrier==='equipment'&&item.versatility>=4) score+=8;
+
+      return score;
+    }
+
+    function buildPackage(s,level){
+      const multipliers={good:.35,better:.70,best:1.0};
+      const targetBudget=Math.max(60,s.budget*multipliers[level]);
+      const maxItems={good:3,better:5,best:7}[level];
+      const ranked=catalog
+        .map(item=>({...item,score:scoreItem(item,s)}))
+        .filter(x=>x.score>-100)
+        .sort((a,b)=>b.score-a.score);
+
+      const chosen=[];
+      let total=0;
+      const categories=new Set();
+
+      for(const item of ranked){
+        if(chosen.length>=maxItems) break;
+        const allowOver=level==='best'?1.08:1.0;
+        if(total+item.price>targetBudget*allowOver && chosen.length>=2) continue;
+
+        const categoryBonus=!categories.has(item.category);
+        if(level!=='good'||chosen.length<2||categoryBonus||item.score>70){
+          chosen.push(item);
+          total+=item.price;
+          categories.add(item.category);
+        }
+      }
+
+      if(!chosen.some(x=>x.category==='strength') && s.goal!=='mobility'){
+        const strength=ranked.find(x=>x.category==='strength'&&!chosen.some(y=>y.id===x.id)&&total+x.price<=targetBudget*1.1);
+        if(strength){chosen.push(strength);total+=strength.price;}
+      }
+      if((s.goal==='weight'||s.goal==='fitness'||s.goal==='energy')&&!chosen.some(x=>x.category==='cardio')){
+        const cardio=ranked.find(x=>x.category==='cardio'&&!chosen.some(y=>y.id===x.id)&&total+x.price<=targetBudget*1.1);
+        if(cardio){chosen.push(cardio);total+=cardio.price;}
+      }
+
+      return {items:chosen.slice(0,maxItems),total:Math.round(total),target:Math.round(targetBudget)};
+    }
+
+    function buildMatches(){
+      const s=settings();
+      currentMatches={
+        good:buildPackage(s,'good'),
+        better:buildPackage(s,'better'),
+        best:buildPackage(s,'best')
+      };
+      renderPackage();
+      renderScores(s);
+
+      const styleName={mixed:'balanced',strength:'strength-focused',cardio:'cardio-focused',mobility:'mobility-friendly',compact:'compact'}[s.style];
+      document.getElementById('matchTitle').textContent='Your '+styleName+' home gym';
+      document.getElementById('matchLead').textContent='Built around a '+s.space+' space and an overall budget up to $'+s.budget.toLocaleString()+'.';
+
+      saved.equipmentMatcher={settings:s,packages:currentMatches,generatedAt:new Date().toISOString()};
+      localStorage.setItem('livefit-plan',JSON.stringify(saved));
+    }
+
+    function renderScores(s){
+      document.getElementById('scoreStrip').hidden=false;
+      const maxSpace=spaceLimit(s.space);
+      const best=currentMatches.best.items;
+      const avgSpace=best.length?best.reduce((a,b)=>a+Math.max(0,b.space),0)/best.length:0;
+      const total=currentMatches.best.total;
+      const goalHit=best.length?best.filter(x=>x.goals.includes(s.goal)).length/best.length:0;
+      const versatility=best.length?best.reduce((a,b)=>a+b.versatility,0)/(best.length*5):0;
+
+      const spaceScore=Math.max(45,Math.min(100,100-(Math.max(0,avgSpace-maxSpace)*18)));
+      const budgetScore=Math.max(40,Math.min(100,100-Math.max(0,(total-s.budget)/Math.max(1,s.budget)*100)));
+      document.getElementById('spaceScore').textContent=Math.round(spaceScore)+'%';
+      document.getElementById('budgetScore').textContent=Math.round(budgetScore)+'%';
+      document.getElementById('goalScore').textContent=Math.round(goalHit*100)+'%';
+      document.getElementById('versatilityScore').textContent=Math.round(versatility*100)+'%';
+    }
+
+    function renderPackage(){
+      const pack=currentMatches[activePackage];
+      if(!pack) return;
+      document.getElementById('packagePrice').textContent='$'+pack.total.toLocaleString();
+
+      document.getElementById('equipmentRecommendations').innerHTML=pack.items.map((item,i)=>
+        '<article class="equipment-match-card">'+
+          '<div class="equipment-match-rank">'+String(i+1).padStart(2,'0')+'</div>'+
+          '<div class="equipment-match-copy"><h3>'+item.name+'</h3><p>'+item.why+'</p>'+
+            '<div class="equipment-tags"><span>$'+item.price.toLocaleString()+'</span><span>'+item.category+'</span><span>Versatility '+item.versatility+'/5</span></div>'+
+          '</div>'+
+          '<button type="button" class="match-shop-btn" disabled title="Affiliate products will be connected later">Shop options soon</button>'+
+        '</article>'
+      ).join('');
+
+      const note={
+        good:'GOOD keeps the spend low and prioritizes the highest-value pieces that unlock the most useful training options.',
+        better:'BETTER adds equipment that increases exercise variety and makes the setup more comfortable and repeatable.',
+        best:'BEST uses more of your stated budget to create a longer-term setup with room to progress.'
+      }[activePackage];
+      document.getElementById('packageNote').textContent=note+' Estimated package total: $'+pack.total.toLocaleString()+'.';
+    }
+
+    document.querySelectorAll('.package-tab').forEach(btn=>btn.addEventListener('click',()=>{
+      activePackage=btn.dataset.package;
+      document.querySelectorAll('.package-tab').forEach(b=>b.classList.toggle('active',b===btn));
+      renderPackage();
+    }));
+
+    form.addEventListener('submit',e=>{e.preventDefault();buildMatches();});
+    document.getElementById('rebuild').addEventListener('click',buildMatches);
+
+    buildMatches();
+  })();
+  </script>
+</body>
+</html>
