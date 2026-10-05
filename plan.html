@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Start your personalized LiveFit fitness roadmap.">
+  <title>My LiveFit Plan | LiveFit.info</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="assessment-page">
+  <div class="page-swoop" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand page-link" href="index.html">
+      <span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span>
+    </a>
+    <div class="personal-controls">
+      <button class="round-control" id="themeToggle" aria-label="Switch light and dark mode">◐</button>
+    </div>
+  </header>
+
+  <main class="assessment-shell">
+    <div class="assessment-top">
+      <a class="assessment-back page-link" href="index.html">← Back to LiveFit</a>
+      <div class="assessment-progress" aria-label="Assessment progress"><span id="progressBar"></span></div>
+      <strong id="stepCount">1 / 4</strong>
+    </div>
+
+    <section class="assessment-card">
+      <div class="assessment-step active" data-step="1">
+        <p class="step-kicker">STEP 1 — PROFILE</p>
+        <h1>Who are we building this plan for?</h1>
+        <p>Choose the body presentation that best matches how you want the visual profile displayed.</p>
+        <div class="choice-grid">
+          <button class="choice-card" data-group="sex" data-value="male"><strong>Male</strong><small>Show male body profiles.</small></button>
+          <button class="choice-card" data-group="sex" data-value="female"><strong>Female</strong><small>Show female body profiles.</small></button>
+        </div>
+      </div>
+
+      <div class="assessment-step" data-step="2">
+        <p class="step-kicker">STEP 2 — STARTING POINT</p>
+        <h1>Which body profile is closest?</h1>
+        <p>This is only a visual starting point. It is not a diagnosis or body-fat measurement.</p>
+        <div class="plan-body-grid" id="planBodyGrid">
+          <button class="plan-profile-card" data-group="profile" data-value="slim"><span class="body-sprite slim male"></span><b>Slim</b></button>
+          <button class="plan-profile-card" data-group="profile" data-value="fit"><span class="body-sprite fit male"></span><b>Fit</b></button>
+          <button class="plan-profile-card" data-group="profile" data-value="muscular"><span class="body-sprite muscular male"></span><b>Muscular</b></button>
+          <button class="plan-profile-card" data-group="profile" data-value="stocky"><span class="body-sprite stocky male"></span><b>Stocky</b></button>
+          <button class="plan-profile-card" data-group="profile" data-value="heavy"><span class="body-sprite heavy male"></span><b>Heavy</b></button>
+        </div>
+      </div>
+
+      <div class="assessment-step" data-step="3">
+        <p class="step-kicker">STEP 3 — PRIMARY GOAL</p>
+        <h1>What matters most right now?</h1>
+        <p>Pick the one goal you most want your starter roadmap to support.</p>
+        <div class="choice-grid">
+          <button class="choice-card" data-group="goal" data-value="weight"><strong>Lose Weight</strong><small>Build sustainable movement and nutrition habits.</small></button>
+          <button class="choice-card" data-group="goal" data-value="muscle"><strong>Build Muscle</strong><small>Focus on progressive resistance training.</small></button>
+          <button class="choice-card" data-group="goal" data-value="fitness"><strong>Improve Fitness</strong><small>Strength, stamina, and consistency.</small></button>
+          <button class="choice-card" data-group="goal" data-value="mobility"><strong>Move Better</strong><small>Mobility, flexibility, and easier movement.</small></button>
+          <button class="choice-card" data-group="goal" data-value="energy"><strong>More Energy</strong><small>Build a realistic active routine.</small></button>
+          <button class="choice-card" data-group="goal" data-value="tone"><strong>Tone & Shape</strong><small>Combine strength, cardio, and nutrition.</small></button>
+        </div>
+      </div>
+
+      <div class="assessment-step" data-step="4">
+        <p class="step-kicker">STEP 4 — CURRENT ACTIVITY</p>
+        <h1>How active are you now?</h1>
+        <p>Choose what describes a normal week — not your best week.</p>
+        <div class="choice-grid">
+          <button class="choice-card" data-group="activity" data-value="sedentary"><strong>Mostly Sedentary</strong><small>Little planned activity right now.</small></button>
+          <button class="choice-card" data-group="activity" data-value="light"><strong>Lightly Active</strong><small>Some walking or exercise 1–2 days.</small></button>
+          <button class="choice-card" data-group="activity" data-value="active"><strong>Active</strong><small>Exercise or sports around 3–4 days.</small></button>
+          <button class="choice-card" data-group="activity" data-value="very-active"><strong>Very Active</strong><small>Hard training or activity most days.</small></button>
+        </div>
+        <div class="assessment-summary" id="assessmentSummary" hidden>
+          <div><span>Profile</span><strong id="sumProfile"></strong></div>
+          <div><span>Goal</span><strong id="sumGoal"></strong></div>
+          <div><span>Activity</span><strong id="sumActivity"></strong></div>
+        </div>
+        <p class="microcopy">Next build adds schedule, equipment, nutrition, barriers, and the personalized recommendation engine.</p>
+      </div>
+
+      <div class="assessment-nav">
+        <button class="btn btn-secondary" id="prevStep" disabled>Back</button>
+        <button class="btn btn-primary shimmer" id="nextStep" disabled>Next</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+    (() => {
+      const steps=[...document.querySelectorAll('.assessment-step')];
+      const next=document.getElementById('nextStep');
+      const prev=document.getElementById('prevStep');
+      const bar=document.getElementById('progressBar');
+      const count=document.getElementById('stepCount');
+      const state=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+      let current=0;
+
+      const label=v=>({
+        male:'Male',female:'Female',slim:'Slim',fit:'Fit',muscular:'Muscular',stocky:'Stocky',heavy:'Heavy',
+        weight:'Lose Weight',muscle:'Build Muscle',fitness:'Improve Fitness',mobility:'Move Better',energy:'More Energy',tone:'Tone & Shape',
+        sedentary:'Mostly Sedentary',light:'Lightly Active',active:'Active','very-active':'Very Active'
+      }[v]||v||'—');
+
+      function requiredKey(){return ['sex','profile','goal','activity'][current]}
+      function syncBodySex(){
+        const sex=state.sex||'male';
+        document.querySelectorAll('#planBodyGrid .body-sprite').forEach(s=>{
+          s.classList.remove('male','female');s.classList.add(sex);
+        });
+      }
+      function render(){
+        steps.forEach((s,i)=>s.classList.toggle('active',i===current));
+        bar.style.width=((current+1)/steps.length*100)+'%';
+        count.textContent=(current+1)+' / '+steps.length;
+        prev.disabled=current===0;
+        const key=requiredKey();
+        next.disabled=!state[key];
+        next.textContent=current===steps.length-1?'Save My Starting Point':'Next';
+        document.querySelectorAll('[data-group]').forEach(btn=>{
+          btn.classList.toggle('selected',state[btn.dataset.group]===btn.dataset.value);
+        });
+        syncBodySex();
+        if(current===3&&state.activity){
+          document.getElementById('assessmentSummary').hidden=false;
+          document.getElementById('sumProfile').textContent=label(state.sex)+' • '+label(state.profile);
+          document.getElementById('sumGoal').textContent=label(state.goal);
+          document.getElementById('sumActivity').textContent=label(state.activity);
+        }
+      }
+      document.querySelectorAll('[data-group]').forEach(btn=>btn.addEventListener('click',()=>{
+        state[btn.dataset.group]=btn.dataset.value;
+        localStorage.setItem('livefit-plan',JSON.stringify(state));
+        render();
+      }));
+      next.addEventListener('click',()=>{
+        if(current<steps.length-1){current++;render()}
+        else{
+          localStorage.setItem('livefit-plan',JSON.stringify(state));
+          next.textContent='Saved ✓';
+          setTimeout(()=>{window.location.href='index.html#tools'},700);
+        }
+      });
+      prev.addEventListener('click',()=>{if(current>0){current--;render()}});
+      render();
+    })();
+  </script>
+</body>
+</html>
