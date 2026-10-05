@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Generated personalized LiveFit roadmap.">
   <title>My LiveFit Personal Roadmap</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">\n  <link rel="stylesheet" href="css/body-images.css">
 </head>
 <body class="report-page">
   <header class="report-toolbar">
@@ -37,7 +37,7 @@
     <section class="report-sheet">
       <div class="report-section-head"><span>01</span><div><p>STARTING POINT</p><h2>Your Profile</h2></div></div>
       <div class="report-profile-grid">
-        <div class="report-profile-visual"><div class="report-avatar" id="reportAvatar">L</div><h3 id="profileTitle">Your starting profile</h3><p id="profileDescription"></p></div>
+        <div class="report-profile-visual"><div class="report-body-image"><span class="body-sprite male fit" id="reportBodyImage" aria-hidden="true"></span></div><h3 id="profileTitle">Your starting profile</h3><p id="profileDescription"></p></div>
         <div class="report-stat-grid">
           <div><span>Primary goal</span><strong id="rGoal">—</strong></div>
           <div><span>Current activity</span><strong id="rActivity">—</strong></div>
@@ -185,7 +185,7 @@
     document.getElementById('generatedDate').textContent=new Date().toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
     document.getElementById('coverGoal').textContent=state.goal?label(state.goal).toUpperCase():'PERSONALIZED FOR YOU';
     document.getElementById('coverTitle').textContent=state.goal?label(state.goal)+': Your LiveFit Roadmap':'Build Your Fit. Live Better.';
-    document.getElementById('reportAvatar').textContent=state.sex==='female'?'F':state.sex==='male'?'M':'L';
+    const reportBody=document.getElementById('reportBodyImage');\n    reportBody.className='body-sprite '+(state.sex||'male')+' '+(state.profile||'fit');
     document.getElementById('profileTitle').textContent=(state.profile?label(state.profile)+' starting profile':'Your starting profile');
     document.getElementById('profileDescription').textContent='This is a planning profile, not a diagnosis or body-fat measurement.';
     document.getElementById('rGoal').textContent=label(state.goal);
