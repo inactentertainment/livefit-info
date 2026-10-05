@@ -1,1 +1,146 @@
-<!doctype html><html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Calorie & TDEE | LiveFit.info</title><link rel="stylesheet" href="../css/style.css"></head><body><main><section class="hero" style="min-height:100vh"><div class="hero-copy"><p class="eyebrow">LIVEFIT TOOL</p><h1>Calorie & TDEE</h1><p class="hero-text">This tool is staged for the next build pass. It will estimate maintenance calories and practical goal ranges.</p><div class="hero-actions"><a class="btn btn-primary" href="../index.html#tools">← Back to tools</a></div></div></section></main></body></html>
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Estimate your daily calorie needs and maintenance calories with LiveFit's TDEE calculator.">
+  <title>Calorie & TDEE Calculator | LiveFit.info</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="assessment-page">
+  <div class="page-swoop" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand page-link" href="../index.html"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></a>
+    <div class="personal-controls"><button class="round-control" id="themeToggle" aria-label="Switch light and dark mode">◐</button></div>
+  </header>
+
+  <main class="tool-page-shell">
+    <div class="tool-page-head">
+      <div>
+        <p class="eyebrow">TOOL 01 — KNOW YOUR NUMBERS</p>
+        <h1>Calorie & TDEE Calculator</h1>
+        <p>Estimate your basal metabolic rate and approximate daily energy needs, then compare maintenance with a conservative goal range.</p>
+      </div>
+      <a class="btn btn-secondary page-link" href="../index.html#tools">← All Tools</a>
+    </div>
+
+    <section class="calculator-layout">
+      <form class="calculator-card" id="tdeeForm">
+        <div class="calculator-section">
+          <h2>Your details</h2>
+          <div class="form-grid">
+            <label>Age
+              <input id="age" type="number" min="18" max="100" value="40" required>
+            </label>
+            <label>Sex used for formula
+              <select id="sex">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </label>
+            <label>Height
+              <div class="dual-input"><input id="feet" type="number" min="4" max="8" value="5"><span>ft</span><input id="inches" type="number" min="0" max="11" value="10"><span>in</span></div>
+            </label>
+            <label>Weight
+              <div class="dual-input"><input id="weight" type="number" min="80" max="700" value="180"><span>lb</span></div>
+            </label>
+          </div>
+        </div>
+
+        <div class="calculator-section">
+          <h2>Activity level</h2>
+          <div class="activity-options">
+            <label><input type="radio" name="activity" value="1.2" checked><span><b>Sedentary</b><small>Little planned exercise</small></span></label>
+            <label><input type="radio" name="activity" value="1.375"><span><b>Lightly active</b><small>1–3 exercise days/week</small></span></label>
+            <label><input type="radio" name="activity" value="1.55"><span><b>Moderately active</b><small>3–5 exercise days/week</small></span></label>
+            <label><input type="radio" name="activity" value="1.725"><span><b>Very active</b><small>6–7 hard exercise days/week</small></span></label>
+            <label><input type="radio" name="activity" value="1.9"><span><b>Extra active</b><small>Very hard training / physical job</small></span></label>
+          </div>
+        </div>
+
+        <button class="btn btn-primary shimmer calculator-submit" type="submit">Calculate My Numbers</button>
+        <p class="form-error" id="formError" role="alert"></p>
+      </form>
+
+      <aside class="results-card" id="resultsCard" aria-live="polite">
+        <p class="eyebrow">YOUR ESTIMATE</p>
+        <h2 id="maintenance">—</h2>
+        <p class="result-label">estimated maintenance calories / day</p>
+        <div class="result-grid">
+          <div><span>BMR</span><strong id="bmr">—</strong><small>estimated calories at rest</small></div>
+          <div><span>Weight-loss range</span><strong id="loss">—</strong><small>approx. 10–20% below maintenance</small></div>
+          <div><span>Muscle-gain range</span><strong id="gain">—</strong><small>approx. 5–10% above maintenance</small></div>
+          <div><span>Protein tool</span><strong>Next</strong><small>use your weight to estimate a practical target</small></div>
+        </div>
+        <div class="results-note" id="planNote">Complete the calculator to see your estimates.</div>
+        <a class="btn btn-secondary page-link result-next" href="protein.html">Next Tool: Protein Target →</a>
+      </aside>
+    </section>
+
+    <section class="tool-explainer">
+      <div><p class="eyebrow">HOW IT WORKS</p><h2>Useful estimate, not a perfect measurement.</h2></div>
+      <div class="explainer-grid">
+        <article><b>1</b><h3>BMR</h3><p>We estimate basal metabolic rate using the Mifflin–St Jeor equation.</p></article>
+        <article><b>2</b><h3>Activity</h3><p>Your BMR is multiplied by an activity factor to estimate total daily energy expenditure.</p></article>
+        <article><b>3</b><h3>Adjust</h3><p>Real calorie needs vary. Track weight, hunger, energy, and performance and adjust gradually.</p></article>
+      </div>
+      <p class="microcopy">This tool is for general educational use. Calorie needs can differ substantially with pregnancy, medical conditions, medications, aging, athletic training, or a history of disordered eating. For individualized nutrition advice, consult a qualified health professional.</p>
+    </section>
+  </main>
+
+  <script src="../js/main.js"></script>
+  <script>
+    (() => {
+      const saved=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+      const sex=document.getElementById('sex');
+      if(saved.sex==='male'||saved.sex==='female') sex.value=saved.sex;
+      const activityMap={sedentary:'1.2',light:'1.375',active:'1.55','very-active':'1.725'};
+      if(saved.activity && activityMap[saved.activity]){
+        const r=document.querySelector('input[name="activity"][value="'+activityMap[saved.activity]+'"]');
+        if(r) r.checked=true;
+      }
+
+      const fmt=n=>Math.round(n).toLocaleString();
+      const form=document.getElementById('tdeeForm');
+      const error=document.getElementById('formError');
+
+      form.addEventListener('submit',e=>{
+        e.preventDefault();
+        error.textContent='';
+        const age=Number(document.getElementById('age').value);
+        const feet=Number(document.getElementById('feet').value);
+        const inches=Number(document.getElementById('inches').value);
+        const pounds=Number(document.getElementById('weight').value);
+        const activity=Number(document.querySelector('input[name="activity"]:checked')?.value||1.2);
+        const s=sex.value;
+
+        if(age<18||age>100||feet<4||feet>8||inches<0||inches>11||pounds<80||pounds>700){
+          error.textContent='Please check the values entered before calculating.';
+          return;
+        }
+
+        const kg=pounds*0.45359237;
+        const cm=(feet*12+inches)*2.54;
+        const bmr=10*kg + 6.25*cm - 5*age + (s==='male'?5:-161);
+        const maintenance=bmr*activity;
+        const lossLow=maintenance*0.80, lossHigh=maintenance*0.90;
+        const gainLow=maintenance*1.05, gainHigh=maintenance*1.10;
+
+        document.getElementById('maintenance').textContent=fmt(maintenance);
+        document.getElementById('bmr').textContent=fmt(bmr);
+        document.getElementById('loss').textContent=fmt(lossLow)+'–'+fmt(lossHigh);
+        document.getElementById('gain').textContent=fmt(gainLow)+'–'+fmt(gainHigh);
+
+        let note='Treat these as estimates and watch your real-world trend for 2–3 weeks before making small adjustments.';
+        if(saved.goal==='weight') note='Your assessment goal is weight loss. Start conservatively rather than chasing the lowest number.';
+        if(saved.goal==='muscle') note='Your assessment goal is muscle gain. A small surplus plus progressive strength training is usually more practical than a large surplus.';
+        if(saved.goal==='mobility'||saved.goal==='energy') note='Your assessment emphasizes movement and energy. Maintenance calories may be a better starting point while you build activity consistency.';
+        document.getElementById('planNote').textContent=note;
+
+        saved.calorieEstimate={bmr:Math.round(bmr),maintenance:Math.round(maintenance),loss:[Math.round(lossLow),Math.round(lossHigh)],gain:[Math.round(gainLow),Math.round(gainHigh)],age,feet,inches,pounds,sex:s,activity};
+        localStorage.setItem('livefit-plan',JSON.stringify(saved));
+      });
+    })();
+  </script>
+</body>
+</html>
