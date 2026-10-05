@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Preview your personalized LiveFit Roadmap before checkout.">
+  <title>My LiveFit Roadmap Preview | LiveFit.info</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="assessment-page">
+  <div class="page-swoop" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand page-link" href="index.html"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></a>
+    <div class="personal-controls"><button class="round-control" id="themeToggle" aria-label="Switch light and dark mode">◐</button></div>
+  </header>
+
+  <main class="roadmap-funnel-shell">
+    <div class="funnel-progress">
+      <button class="funnel-step active" data-screen="preview"><span>1</span>Preview</button>
+      <i></i>
+      <button class="funnel-step" data-screen="included"><span>2</span>What's Included</button>
+      <i></i>
+      <button class="funnel-step" data-screen="checkout"><span>3</span>Checkout Review</button>
+    </div>
+
+    <section class="funnel-screen active" id="screen-preview">
+      <div class="roadmap-hero-card">
+        <div>
+          <p class="eyebrow">YOUR PERSONALIZED LIVEFIT ROADMAP</p>
+          <h1 id="previewTitle">Your plan is taking shape.</h1>
+          <p id="previewLead">LiveFit combines your assessment and tool results into one practical starter roadmap.</p>
+          <div class="roadmap-completeness">
+            <div class="completeness-head"><span>Roadmap data completed</span><strong id="completeText">0 / 5</strong></div>
+            <div class="completeness-meter"><span id="completeMeter"></span></div>
+          </div>
+        </div>
+        <div class="roadmap-price-card">
+          <span>INTRODUCTORY PRICE</span>
+          <strong>$7</strong>
+          <small>one-time • no subscription</small>
+        </div>
+      </div>
+
+      <div class="roadmap-preview-layout">
+        <section class="roadmap-preview-document">
+          <div class="roadmap-doc-header">
+            <div><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></div>
+            <small>PERSONAL ROADMAP PREVIEW</small>
+          </div>
+
+          <div class="preview-profile">
+            <div class="preview-avatar"><span id="previewInitial">L</span></div>
+            <div>
+              <span class="target-kicker">YOUR STARTING PROFILE</span>
+              <h2 id="profileHeading">Complete the assessment to personalize this section.</h2>
+              <p id="profileSub"></p>
+            </div>
+          </div>
+
+          <div class="roadmap-preview-grid">
+            <article><span>Primary goal</span><strong id="pGoal">—</strong></article>
+            <article><span>Calorie target</span><strong id="pCalories">Not added</strong></article>
+            <article><span>Protein target</span><strong id="pProtein">Not added</strong></article>
+            <article><span>Walking target</span><strong id="pWalking">Not added</strong></article>
+            <article><span>Workout plan</span><strong id="pWorkout">Not added</strong></article>
+            <article><span>Equipment direction</span><strong id="pEquipment">Not added</strong></article>
+          </div>
+
+          <div class="preview-week">
+            <span class="target-kicker">WEEK 1 SNAPSHOT</span>
+            <div class="week-strip">
+              <div><b>MON</b><span>Move</span></div><div><b>TUE</b><span>Train</span></div><div><b>WED</b><span>Recover</span></div><div><b>THU</b><span>Train</span></div><div><b>FRI</b><span>Move</span></div><div><b>SAT</b><span>Train</span></div><div><b>SUN</b><span>Reset</span></div>
+            </div>
+          </div>
+
+          <div class="preview-locked">
+            <div class="locked-blur">
+              <h3>Your 4-Week Starter Calendar</h3>
+              <p>Week-by-week training, walking, nutrition focus, progress checkpoints, and your next-step recommendations.</p>
+            </div>
+            <div class="locked-overlay"><span>🔒</span><strong>Full roadmap unlocks after checkout</strong></div>
+          </div>
+        </section>
+
+        <aside class="roadmap-sidebar">
+          <div class="roadmap-side-card">
+            <p class="eyebrow">MAKE IT MORE PERSONAL</p>
+            <h3>Complete the missing pieces.</h3>
+            <p>The roadmap works with what you have already entered. Completing more tools makes the final report more specific.</p>
+            <div id="moduleChecklist" class="module-checklist"></div>
+          </div>
+
+          <div class="roadmap-side-card trust-card">
+            <strong>What you are buying</strong>
+            <ul>
+              <li>One personalized PDF roadmap</li>
+              <li>4-week starter schedule</li>
+              <li>Your saved calorie, protein, walking, workout, and equipment results</li>
+              <li>Progress checklist and next-step guidance</li>
+              <li>No recurring membership required</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <div class="funnel-actions">
+        <a class="btn btn-secondary" href="index.html#tools">Keep Using Free Tools</a>
+        <button class="btn btn-primary shimmer" data-next="included">See Everything I Get →</button>
+      </div>
+    </section>
+
+    <section class="funnel-screen" id="screen-included">
+      <div class="included-hero">
+        <p class="eyebrow">YOUR FULL ROADMAP</p>
+        <h1>Everything in one place.</h1>
+        <p>The paid roadmap does not replace the free tools. It organizes the results into a guided plan you can save, print, and follow.</p>
+      </div>
+
+      <div class="included-grid">
+        <article><span>01</span><h3>Your Starting Profile</h3><p>Goal, activity, body profile, barriers, available time, training location, and equipment.</p></article>
+        <article><span>02</span><h3>Know Your Numbers</h3><p>Calorie range, protein target, walking target, and the assumptions behind each estimate.</p></article>
+        <article><span>03</span><h3>Your Training Plan</h3><p>Your generated workout structure, warm-up guidance, weekly rhythm, and progression notes.</p></article>
+        <article><span>04</span><h3>4-Week Starter Calendar</h3><p>A simple four-week sequence that turns your recommendations into specific actions.</p></article>
+        <article><span>05</span><h3>Equipment Recommendations</h3><p>What you already own, what fills the biggest gaps, and Good / Better / Best upgrade paths.</p></article>
+        <article><span>06</span><h3>Progress Tracker</h3><p>Weekly check-ins for workouts, steps, consistency, energy, and measurements you choose to track.</p></article>
+        <article><span>07</span><h3>Nutrition Action Page</h3><p>Protein distribution, calorie context, simple food-planning prompts, and your stated nutrition focus.</p></article>
+        <article><span>08</span><h3>What To Do Next</h3><p>Clear next steps based on your biggest barrier and the progress data you provided.</p></article>
+      </div>
+
+      <div class="roadmap-value-band">
+        <div><span>INTRODUCTORY PRICE</span><strong>$7</strong><small>one-time</small></div>
+        <p>Designed to be inexpensive enough to try, but substantial enough to print and actually use.</p>
+      </div>
+
+      <div class="funnel-actions">
+        <button class="btn btn-secondary" data-next="preview">← Back to Preview</button>
+        <button class="btn btn-primary shimmer" data-next="checkout">Review My Order →</button>
+      </div>
+    </section>
+
+    <section class="funnel-screen" id="screen-checkout">
+      <div class="checkout-review">
+        <section class="checkout-summary-card">
+          <p class="eyebrow">ORDER REVIEW</p>
+          <h1>Your LiveFit Personal Roadmap</h1>
+          <div class="order-line"><span>Personalized Roadmap PDF</span><strong>$7.00</strong></div>
+          <div class="order-line muted"><span>Membership</span><strong>None required</strong></div>
+          <div class="order-line muted"><span>Recurring charges</span><strong>$0</strong></div>
+          <div class="order-total"><span>Today's total</span><strong>$7.00</strong></div>
+
+          <label class="checkout-email">Email for your roadmap
+            <input id="roadmapEmail" type="email" placeholder="you@example.com">
+          </label>
+          <label class="checkout-check"><input id="roadmapConsent" type="checkbox"><span>I understand payment is not connected yet. This preview will only save my checkout preferences on this device.</span></label>
+
+          <button class="btn btn-primary shimmer checkout-demo-btn" id="demoCheckout" disabled>Continue to Secure Checkout</button>
+          <p class="checkout-status" id="checkoutStatus">Payment is intentionally disabled in this build.</p>
+        </section>
+
+        <aside class="checkout-side">
+          <div class="checkout-mini-preview">
+            <span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span>
+            <h3>Personal Roadmap</h3>
+            <p id="checkoutGoal">Your goal</p>
+            <div class="mini-roadmap-lines"><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="roadmap-side-card trust-card">
+            <strong>Before payment goes live</strong>
+            <p>This build lets us test the offer, wording, flow, price presentation, and what information is included. Stripe/PayPal and automatic PDF delivery come next.</p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="funnel-actions">
+        <button class="btn btn-secondary" data-next="included">← Back</button>
+        <a class="btn btn-secondary" href="index.html">Return to LiveFit</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+  (() => {
+    const state=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+    const labels={
+      weight:'Lose Weight',muscle:'Build Muscle',fitness:'Improve Fitness',mobility:'Move Better',energy:'More Energy',tone:'Tone & Shape',
+      slim:'Slim',fit:'Fit',muscular:'Muscular',stocky:'Stocky',heavy:'Heavy',
+      sedentary:'Mostly Sedentary',light:'Lightly Active',active:'Active','very-active':'Very Active',
+      home:'Home',gym:'Gym',outdoors:'Outdoors',mixed:'Mixed'
+    };
+    const label=v=>labels[v]||v||'—';
+
+    const modules=[
+      {key:'assessment',name:'Personal Assessment',done:!!state.goal,url:'plan.html'},
+      {key:'calorie',name:'Calorie & TDEE',done:!!state.calorieEstimate,url:'tools/calorie.html'},
+      {key:'protein',name:'Protein Target',done:!!state.proteinEstimate,url:'tools/protein.html'},
+      {key:'walking',name:'Walking & Steps',done:!!state.walkingEstimate,url:'tools/walking.html'},
+      {key:'workout',name:'Workout Plan',done:!!state.workoutPlan,url:'tools/workout.html'}
+    ];
+    const complete=modules.filter(x=>x.done).length;
+    document.getElementById('completeText').textContent=complete+' / '+modules.length;
+    document.getElementById('completeMeter').style.width=(complete/modules.length*100)+'%';
+
+    const goal=label(state.goal);
+    document.getElementById('previewTitle').textContent=state.goal?goal+' roadmap preview':'Your plan is taking shape.';
+    document.getElementById('previewInitial').textContent=(state.sex==='female'?'F':state.sex==='male'?'M':'L');
+    document.getElementById('profileHeading').textContent=state.goal?label(state.profile)+' profile • '+goal:'Complete the assessment to personalize this section.';
+    document.getElementById('profileSub').textContent=state.activity?'Current activity: '+label(state.activity)+' • Training setting: '+label(state.location):'';
+    document.getElementById('pGoal').textContent=state.goal?goal:'Not added';
+
+    if(state.calorieEstimate){
+      const c=state.goal==='weight'&&state.calorieEstimate.loss
+        ? Math.round((state.calorieEstimate.loss[0]+state.calorieEstimate.loss[1])/2)
+        : state.goal==='muscle'&&state.calorieEstimate.gain
+        ? Math.round((state.calorieEstimate.gain[0]+state.calorieEstimate.gain[1])/2)
+        : state.calorieEstimate.maintenance;
+      document.getElementById('pCalories').textContent=Number(c).toLocaleString()+' kcal/day';
+    }
+    if(state.proteinEstimate) document.getElementById('pProtein').textContent=state.proteinEstimate.low+'–'+state.proteinEstimate.high+' g/day';
+    if(state.walkingEstimate) document.getElementById('pWalking').textContent=Number(state.walkingEstimate.targetSteps).toLocaleString()+' steps/day';
+    if(state.workoutPlan){
+      const w=state.workoutPlan;
+      document.getElementById('pWorkout').textContent=w.mode==='week'?(w.settings?.days||w.days?.length||3)+'-day weekly plan':'Personalized workout';
+    }
+    if(state.equipmentMatcher){
+      const p=state.equipmentMatcher.packages?.better;
+      document.getElementById('pEquipment').textContent=p?.items?.length?p.items.length+' matched items':'Equipment plan saved';
+    }
+
+    document.getElementById('moduleChecklist').innerHTML=modules.map(m =>
+      '<a class="module-row '+(m.done?'done':'missing')+'" href="'+m.url+'">'+
+      '<span>'+(m.done?'✓':'＋')+'</span><b>'+m.name+'</b><small>'+(m.done?'Added':'Complete')+'</small></a>'
+    ).join('');
+
+    document.getElementById('checkoutGoal').textContent=state.goal?goal+' Roadmap':'Personal Roadmap';
+
+    function show(screen){
+      document.querySelectorAll('.funnel-screen').forEach(s=>s.classList.toggle('active',s.id==='screen-'+screen));
+      document.querySelectorAll('.funnel-step').forEach(s=>s.classList.toggle('active',s.dataset.screen===screen));
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    document.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.next)));
+    document.querySelectorAll('.funnel-step').forEach(b=>b.addEventListener('click',()=>show(b.dataset.screen)));
+
+    const email=document.getElementById('roadmapEmail');
+    const consent=document.getElementById('roadmapConsent');
+    const button=document.getElementById('demoCheckout');
+    function validate(){
+      const ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)&&consent.checked;
+      button.disabled=!ok;
+      button.textContent=ok?'Save Checkout Preference':'Continue to Secure Checkout';
+    }
+    email.addEventListener('input',validate);
+    consent.addEventListener('change',validate);
+    button.addEventListener('click',()=>{
+      localStorage.setItem('livefit-roadmap-checkout',JSON.stringify({email:email.value,price:7,selectedAt:new Date().toISOString()}));
+      document.getElementById('checkoutStatus').textContent='Saved for testing ✓ Payment is still disabled until the next build.';
+      button.textContent='Saved ✓';
+      button.disabled=true;
+    });
+  })();
+  </script>
+</body>
+</html>
