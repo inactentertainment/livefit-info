@@ -3,33 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Start your personalized LiveFit fitness roadmap.">
+  <meta name="description" content="Build your personalized LiveFit starter roadmap.">
   <title>My LiveFit Plan | LiveFit.info</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="assessment-page">
   <div class="page-swoop" aria-hidden="true"></div>
   <header class="site-header">
-    <a class="brand page-link" href="index.html">
-      <span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span>
-    </a>
-    <div class="personal-controls">
-      <button class="round-control" id="themeToggle" aria-label="Switch light and dark mode">◐</button>
-    </div>
+    <a class="brand page-link" href="index.html"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></a>
+    <div class="personal-controls"><button class="round-control" id="themeToggle" aria-label="Switch light and dark mode">◐</button></div>
   </header>
 
   <main class="assessment-shell">
     <div class="assessment-top">
       <a class="assessment-back page-link" href="index.html">← Back to LiveFit</a>
       <div class="assessment-progress" aria-label="Assessment progress"><span id="progressBar"></span></div>
-      <strong id="stepCount">1 / 4</strong>
+      <strong id="stepCount">1 / 10</strong>
     </div>
 
     <section class="assessment-card">
       <div class="assessment-step active" data-step="1">
         <p class="step-kicker">STEP 1 — PROFILE</p>
         <h1>Who are we building this plan for?</h1>
-        <p>Choose the body presentation that best matches how you want the visual profile displayed.</p>
+        <p>Choose the body presentation you want LiveFit to use for your visual profile.</p>
         <div class="choice-grid">
           <button class="choice-card" data-group="sex" data-value="male"><strong>Male</strong><small>Show male body profiles.</small></button>
           <button class="choice-card" data-group="sex" data-value="female"><strong>Female</strong><small>Show female body profiles.</small></button>
@@ -39,7 +35,7 @@
       <div class="assessment-step" data-step="2">
         <p class="step-kicker">STEP 2 — STARTING POINT</p>
         <h1>Which body profile is closest?</h1>
-        <p>This is only a visual starting point. It is not a diagnosis or body-fat measurement.</p>
+        <p>This is only a visual starting point. It is not a medical diagnosis or body-fat measurement.</p>
         <div class="plan-body-grid" id="planBodyGrid">
           <button class="plan-profile-card" data-group="profile" data-value="slim"><span class="body-sprite slim male"></span><b>Slim</b></button>
           <button class="plan-profile-card" data-group="profile" data-value="fit"><span class="body-sprite fit male"></span><b>Fit</b></button>
@@ -52,33 +48,113 @@
       <div class="assessment-step" data-step="3">
         <p class="step-kicker">STEP 3 — PRIMARY GOAL</p>
         <h1>What matters most right now?</h1>
-        <p>Pick the one goal you most want your starter roadmap to support.</p>
         <div class="choice-grid">
-          <button class="choice-card" data-group="goal" data-value="weight"><strong>Lose Weight</strong><small>Build sustainable movement and nutrition habits.</small></button>
-          <button class="choice-card" data-group="goal" data-value="muscle"><strong>Build Muscle</strong><small>Focus on progressive resistance training.</small></button>
-          <button class="choice-card" data-group="goal" data-value="fitness"><strong>Improve Fitness</strong><small>Strength, stamina, and consistency.</small></button>
+          <button class="choice-card" data-group="goal" data-value="weight"><strong>Lose Weight</strong><small>Support steady progress with movement and nutrition.</small></button>
+          <button class="choice-card" data-group="goal" data-value="muscle"><strong>Build Muscle</strong><small>Prioritize progressive resistance training.</small></button>
+          <button class="choice-card" data-group="goal" data-value="fitness"><strong>Improve Fitness</strong><small>Build strength, stamina, and consistency.</small></button>
           <button class="choice-card" data-group="goal" data-value="mobility"><strong>Move Better</strong><small>Mobility, flexibility, and easier movement.</small></button>
-          <button class="choice-card" data-group="goal" data-value="energy"><strong>More Energy</strong><small>Build a realistic active routine.</small></button>
-          <button class="choice-card" data-group="goal" data-value="tone"><strong>Tone & Shape</strong><small>Combine strength, cardio, and nutrition.</small></button>
+          <button class="choice-card" data-group="goal" data-value="energy"><strong>More Energy</strong><small>Create a realistic active routine.</small></button>
+          <button class="choice-card" data-group="goal" data-value="tone"><strong>Tone & Shape</strong><small>Blend strength, cardio, and nutrition.</small></button>
         </div>
       </div>
 
       <div class="assessment-step" data-step="4">
         <p class="step-kicker">STEP 4 — CURRENT ACTIVITY</p>
         <h1>How active are you now?</h1>
-        <p>Choose what describes a normal week — not your best week.</p>
         <div class="choice-grid">
           <button class="choice-card" data-group="activity" data-value="sedentary"><strong>Mostly Sedentary</strong><small>Little planned activity right now.</small></button>
-          <button class="choice-card" data-group="activity" data-value="light"><strong>Lightly Active</strong><small>Some walking or exercise 1–2 days.</small></button>
+          <button class="choice-card" data-group="activity" data-value="light"><strong>Lightly Active</strong><small>Walking or exercise 1–2 days weekly.</small></button>
           <button class="choice-card" data-group="activity" data-value="active"><strong>Active</strong><small>Exercise or sports around 3–4 days.</small></button>
           <button class="choice-card" data-group="activity" data-value="very-active"><strong>Very Active</strong><small>Hard training or activity most days.</small></button>
         </div>
-        <div class="assessment-summary" id="assessmentSummary" hidden>
-          <div><span>Profile</span><strong id="sumProfile"></strong></div>
-          <div><span>Goal</span><strong id="sumGoal"></strong></div>
-          <div><span>Activity</span><strong id="sumActivity"></strong></div>
+      </div>
+
+      <div class="assessment-step" data-step="5">
+        <p class="step-kicker">STEP 5 — WHERE YOU TRAIN</p>
+        <h1>Where do you want to work out?</h1>
+        <div class="choice-grid">
+          <button class="choice-card" data-group="location" data-value="home"><strong>Home</strong><small>Build around the space you already have.</small></button>
+          <button class="choice-card" data-group="location" data-value="gym"><strong>Gym</strong><small>Use machines, weights, and gym equipment.</small></button>
+          <button class="choice-card" data-group="location" data-value="outdoors"><strong>Outdoors</strong><small>Walking, running, parks, and open space.</small></button>
+          <button class="choice-card" data-group="location" data-value="mixed"><strong>Mix It Up</strong><small>Use home, gym, and outdoor options.</small></button>
         </div>
-        <p class="microcopy">Next build adds schedule, equipment, nutrition, barriers, and the personalized recommendation engine.</p>
+      </div>
+
+      <div class="assessment-step" data-step="6">
+        <p class="step-kicker">STEP 6 — EQUIPMENT</p>
+        <h1>What equipment can you use?</h1>
+        <div class="choice-grid">
+          <button class="choice-card" data-group="equipment" data-value="none"><strong>None</strong><small>Bodyweight and walking-based plan.</small></button>
+          <button class="choice-card" data-group="equipment" data-value="bands"><strong>Resistance Bands</strong><small>Portable resistance training.</small></button>
+          <button class="choice-card" data-group="equipment" data-value="dumbbells"><strong>Dumbbells</strong><small>Simple strength training at home.</small></button>
+          <button class="choice-card" data-group="equipment" data-value="bench"><strong>Dumbbells + Bench</strong><small>More complete home strength setup.</small></button>
+          <button class="choice-card" data-group="equipment" data-value="full-gym"><strong>Full Gym</strong><small>Machines, free weights, and cardio gear.</small></button>
+          <button class="choice-card" data-group="equipment" data-value="mixed"><strong>Mixed Equipment</strong><small>A little bit of everything.</small></button>
+        </div>
+      </div>
+
+      <div class="assessment-step" data-step="7">
+        <p class="step-kicker">STEP 7 — TIME</p>
+        <h1>How much time can you realistically commit?</h1>
+        <div class="choice-grid">
+          <button class="choice-card" data-group="time" data-value="15"><strong>10–15 Minutes</strong><small>Quick sessions that are easy to repeat.</small></button>
+          <button class="choice-card" data-group="time" data-value="30"><strong>20–30 Minutes</strong><small>A practical everyday workout window.</small></button>
+          <button class="choice-card" data-group="time" data-value="45"><strong>35–45 Minutes</strong><small>Enough time for balanced sessions.</small></button>
+          <button class="choice-card" data-group="time" data-value="60"><strong>60+ Minutes</strong><small>Longer structured training sessions.</small></button>
+        </div>
+      </div>
+
+      <div class="assessment-step" data-step="8">
+        <p class="step-kicker">STEP 8 — NUTRITION</p>
+        <h1>Where do you need the most help?</h1>
+        <div class="choice-grid">
+          <button class="choice-card" data-group="nutrition" data-value="portions"><strong>Portion Control</strong><small>Build more consistent serving habits.</small></button>
+          <button class="choice-card" data-group="nutrition" data-value="protein"><strong>Protein</strong><small>Hit a useful daily protein target.</small></button>
+          <button class="choice-card" data-group="nutrition" data-value="meals"><strong>Meal Planning</strong><small>Make healthy choices easier to repeat.</small></button>
+          <button class="choice-card" data-group="nutrition" data-value="budget"><strong>Healthy on a Budget</strong><small>Keep the plan realistic and affordable.</small></button>
+          <button class="choice-card" data-group="nutrition" data-value="snacks"><strong>Better Snacks</strong><small>Replace high-calorie convenience choices.</small></button>
+          <button class="choice-card" data-group="nutrition" data-value="all"><strong>All of It</strong><small>Give me a broad starting strategy.</small></button>
+        </div>
+      </div>
+
+      <div class="assessment-step" data-step="9">
+        <p class="step-kicker">STEP 9 — BIGGEST BARRIER</p>
+        <h1>What usually gets in the way?</h1>
+        <div class="choice-grid">
+          <button class="choice-card" data-group="barrier" data-value="time"><strong>Not Enough Time</strong><small>Keep sessions short and efficient.</small></button>
+          <button class="choice-card" data-group="barrier" data-value="motivation"><strong>Motivation</strong><small>Build momentum with small wins.</small></button>
+          <button class="choice-card" data-group="barrier" data-value="joints"><strong>Joint Discomfort</strong><small>Favor lower-impact options and pacing.</small></button>
+          <button class="choice-card" data-group="barrier" data-value="beginner"><strong>I’m Not Sure What to Do</strong><small>Keep instructions simple and structured.</small></button>
+          <button class="choice-card" data-group="barrier" data-value="consistency"><strong>Consistency</strong><small>Build a routine that is easier to maintain.</small></button>
+          <button class="choice-card" data-group="barrier" data-value="equipment"><strong>Limited Equipment</strong><small>Use what you have before buying more.</small></button>
+        </div>
+      </div>
+
+      <div class="assessment-step" data-step="10">
+        <p class="step-kicker">STEP 10 — YOUR ROADMAP</p>
+        <h1>Your LiveFit starting point is ready.</h1>
+        <p>This preview is built from your answers. Your calorie target can be added next using the Calorie & TDEE tool.</p>
+        <div class="roadmap-card">
+          <div class="roadmap-badge">LIVEFIT STARTER ROADMAP</div>
+          <h2 id="roadmapTitle">Your starter plan</h2>
+          <p id="roadmapLead"></p>
+          <div class="roadmap-grid">
+            <div><span>Training style</span><strong id="roadmapTraining"></strong></div>
+            <div><span>Weekly rhythm</span><strong id="roadmapWeekly"></strong></div>
+            <div><span>Session length</span><strong id="roadmapTime"></strong></div>
+            <div><span>Nutrition focus</span><strong id="roadmapNutrition"></strong></div>
+            <div><span>Equipment</span><strong id="roadmapEquipment"></strong></div>
+            <div><span>Biggest barrier</span><strong id="roadmapBarrier"></strong></div>
+          </div>
+          <div class="roadmap-tip" id="roadmapTip"></div>
+        </div>
+        <div class="assessment-summary">
+          <div><span>Profile</span><strong id="sumProfile"></strong></div>
+          <div><span>Main goal</span><strong id="sumGoal"></strong></div>
+          <div><span>Current activity</span><strong id="sumActivity"></strong></div>
+          <div><span>Workout setting</span><strong id="sumLocation"></strong></div>
+        </div>
+        <p class="microcopy">LiveFit provides general wellness guidance and is not a substitute for medical care. If pain, dizziness, chest discomfort, or other concerning symptoms occur, stop and seek appropriate medical advice.</p>
       </div>
 
       <div class="assessment-nav">
@@ -97,54 +173,91 @@
       const bar=document.getElementById('progressBar');
       const count=document.getElementById('stepCount');
       const state=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+      const keys=['sex','profile','goal','activity','location','equipment','time','nutrition','barrier'];
       let current=0;
 
-      const label=v=>({
+      const labels={
         male:'Male',female:'Female',slim:'Slim',fit:'Fit',muscular:'Muscular',stocky:'Stocky',heavy:'Heavy',
         weight:'Lose Weight',muscle:'Build Muscle',fitness:'Improve Fitness',mobility:'Move Better',energy:'More Energy',tone:'Tone & Shape',
-        sedentary:'Mostly Sedentary',light:'Lightly Active',active:'Active','very-active':'Very Active'
-      }[v]||v||'—');
+        sedentary:'Mostly Sedentary',light:'Lightly Active',active:'Active','very-active':'Very Active',
+        home:'Home',gym:'Gym',outdoors:'Outdoors',mixed:'Mixed',
+        none:'No equipment',bands:'Resistance bands',dumbbells:'Dumbbells',bench:'Dumbbells + bench','full-gym':'Full gym',
+        '15':'10–15 min','30':'20–30 min','45':'35–45 min','60':'60+ min',
+        portions:'Portion control',protein:'Protein',meals:'Meal planning',budget:'Healthy on a budget',snacks:'Better snacks',all:'Broad nutrition support',
+        time:'Not enough time',motivation:'Motivation',joints:'Joint discomfort',beginner:'Not sure what to do',consistency:'Consistency',equipment:'Limited equipment'
+      };
+      const label=v=>labels[v]||v||'—';
 
-      function requiredKey(){return ['sex','profile','goal','activity'][current]}
       function syncBodySex(){
         const sex=state.sex||'male';
         document.querySelectorAll('#planBodyGrid .body-sprite').forEach(s=>{
-          s.classList.remove('male','female');s.classList.add(sex);
+          s.classList.remove('male','female'); s.classList.add(sex);
         });
       }
+
+      function buildRoadmap(){
+        const goalMap={
+          weight:['Full-body strength + steady cardio','3–5 active days','Prioritize consistency over intensity. Pair strength work with walking or other low-impact cardio.'],
+          muscle:['Progressive strength training','3–5 strength days','Use controlled resistance work and gradually increase reps, load, or difficulty.'],
+          fitness:['Balanced strength + cardio','4–5 active days','Alternate strength, cardio, and recovery so you build both capacity and consistency.'],
+          mobility:['Mobility + low-impact strength','Most days, short sessions','Keep sessions comfortable and repeatable. Favor range of motion, walking, and basic strength.'],
+          energy:['Moderate movement + strength','4–6 active days','Avoid going too hard too soon. Frequent moderate movement usually beats occasional all-out sessions.'],
+          tone:['Full-body resistance + cardio','4–5 active days','Build muscle while supporting overall activity and nutrition consistency.']
+        };
+        const row=goalMap[state.goal]||['Balanced movement','3–4 active days','Start conservatively and build consistency first.'];
+        document.getElementById('roadmapTitle').textContent=label(state.goal)+' • '+label(state.profile)+' starting profile';
+        document.getElementById('roadmapLead').textContent='Built for a '+label(state.activity).toLowerCase()+' starting point, primarily training '+label(state.location).toLowerCase()+'.';
+        document.getElementById('roadmapTraining').textContent=row[0];
+        document.getElementById('roadmapWeekly').textContent=row[1];
+        document.getElementById('roadmapTime').textContent=label(state.time);
+        document.getElementById('roadmapNutrition').textContent=label(state.nutrition);
+        document.getElementById('roadmapEquipment').textContent=label(state.equipment);
+        document.getElementById('roadmapBarrier').textContent=label(state.barrier);
+        const barrierNote={
+          time:'Keep a minimum-session option. Even 10–15 minutes counts.',
+          motivation:'Use a very small first goal and track completed sessions, not perfect sessions.',
+          joints:'Favor low-impact movement and stop any exercise that causes sharp or worsening pain.',
+          beginner:'Use simple repeatable workouts before adding complexity.',
+          consistency:'Choose fixed days and times so exercise becomes a routine rather than a daily decision.',
+          equipment:'Build around bodyweight and the equipment you already own before buying more.'
+        }[state.barrier]||'Build consistency first, then increase difficulty gradually.';
+        document.getElementById('roadmapTip').textContent='LiveFit focus: '+row[2]+' '+barrierNote;
+        document.getElementById('sumProfile').textContent=label(state.sex)+' • '+label(state.profile);
+        document.getElementById('sumGoal').textContent=label(state.goal);
+        document.getElementById('sumActivity').textContent=label(state.activity);
+        document.getElementById('sumLocation').textContent=label(state.location);
+      }
+
       function render(){
         steps.forEach((s,i)=>s.classList.toggle('active',i===current));
         bar.style.width=((current+1)/steps.length*100)+'%';
         count.textContent=(current+1)+' / '+steps.length;
         prev.disabled=current===0;
-        const key=requiredKey();
-        next.disabled=!state[key];
-        next.textContent=current===steps.length-1?'Save My Starting Point':'Next';
+        next.textContent=current===steps.length-1?'Continue to Calorie Tool →':'Next';
+        next.disabled=current<keys.length ? !state[keys[current]] : false;
         document.querySelectorAll('[data-group]').forEach(btn=>{
           btn.classList.toggle('selected',state[btn.dataset.group]===btn.dataset.value);
         });
         syncBodySex();
-        if(current===3&&state.activity){
-          document.getElementById('assessmentSummary').hidden=false;
-          document.getElementById('sumProfile').textContent=label(state.sex)+' • '+label(state.profile);
-          document.getElementById('sumGoal').textContent=label(state.goal);
-          document.getElementById('sumActivity').textContent=label(state.activity);
-        }
+        if(current===steps.length-1) buildRoadmap();
+        window.scrollTo({top:0,behavior:'smooth'});
       }
+
       document.querySelectorAll('[data-group]').forEach(btn=>btn.addEventListener('click',()=>{
         state[btn.dataset.group]=btn.dataset.value;
         localStorage.setItem('livefit-plan',JSON.stringify(state));
         render();
       }));
+
       next.addEventListener('click',()=>{
-        if(current<steps.length-1){current++;render()}
+        if(current<steps.length-1){current++;render();}
         else{
           localStorage.setItem('livefit-plan',JSON.stringify(state));
-          next.textContent='Saved ✓';
-          setTimeout(()=>{window.location.href='index.html#tools'},700);
+          document.body.classList.add('page-leaving');
+          setTimeout(()=>{window.location.href='tools/calorie.html'},330);
         }
       });
-      prev.addEventListener('click',()=>{if(current>0){current--;render()}});
+      prev.addEventListener('click',()=>{if(current>0){current--;render();}});
       render();
     })();
   </script>
