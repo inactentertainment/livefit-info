@@ -357,3 +357,8 @@ footer{background:#fff;color:#111;padding:55px clamp(20px,6vw,90px) 28px;display
   .calendar-grid>div{min-height:1.25in}
   a{text-decoration:none}
 }
+
+/* Body profile image in generated roadmap */
+.report-body-image{height:250px;border-radius:18px;background:#242424;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;margin-bottom:22px}
+.report-body-image .body-sprite{width:170px;max-width:170px;height:240px;aspect-ratio:auto;margin:0;background-color:transparent!important}
+@media print{.report-body-image{height:2.35in}.report-body-image .body-sprite{height:2.25in;width:1.6in;max-width:1.6in}}
