@@ -44,6 +44,16 @@
             <label>Weight
               <div class="dual-input"><input id="weight" type="number" min="80" max="700" value="180"><span>lb</span></div>
             </label>
+            <label>BMR formula
+              <select id="formula">
+                <option value="mifflin" selected>Mifflin–St Jeor</option>
+                <option value="harris">Revised Harris–Benedict</option>
+                <option value="katch">Katch–McArdle (needs body fat)</option>
+              </select>
+            </label>
+            <label>Body fat % <small class="field-hint">optional unless using Katch–McArdle</small>
+              <input id="bodyFat" type="number" min="3" max="60" step="0.1" placeholder="e.g. 25">
+            </label>
           </div>
         </div>
 
@@ -70,7 +80,13 @@
           <div><span>BMR</span><strong id="bmr">—</strong><small>estimated calories at rest</small></div>
           <div><span>Weight-loss range</span><strong id="loss">—</strong><small>approx. 10–20% below maintenance</small></div>
           <div><span>Muscle-gain range</span><strong id="gain">—</strong><small>approx. 5–10% above maintenance</small></div>
-          <div><span>Protein tool</span><strong>Next</strong><small>use your weight to estimate a practical target</small></div>
+          <div><span>Formula used</span><strong id="formulaUsed">—</strong><small>your selected BMR method</small></div>
+        </div>
+        <div class="goal-calorie-grid">
+          <div><span>Mild loss</span><strong id="mildLoss">—</strong><small>~10% deficit</small></div>
+          <div><span>Moderate loss</span><strong id="moderateLoss">—</strong><small>~20% deficit</small></div>
+          <div><span>Mild gain</span><strong id="mildGain">—</strong><small>~5% surplus</small></div>
+          <div><span>Moderate gain</span><strong id="moderateGain">—</strong><small>~10% surplus</small></div>
         </div>
         <div class="results-note" id="planNote">Complete the calculator to see your estimates.</div>
         <a class="btn btn-secondary page-link result-next" href="protein.html">Next Tool: Protein Target →</a>
@@ -121,15 +137,43 @@
 
         const kg=pounds*0.45359237;
         const cm=(feet*12+inches)*2.54;
-        const bmr=10*kg + 6.25*cm - 5*age + (s==='male'?5:-161);
+        const formula=document.getElementById('formula').value;
+        const bodyFat=Number(document.getElementById('bodyFat').value);
+        let bmr;
+        let formulaLabel='Mifflin–St Jeor';
+
+        if(formula==='harris'){
+          formulaLabel='Revised Harris–Benedict';
+          bmr=s==='male'
+            ? 13.397*kg + 4.799*cm - 5.677*age + 88.362
+            : 9.247*kg + 3.098*cm - 4.330*age + 447.593;
+        }else if(formula==='katch'){
+          if(!bodyFat || bodyFat<3 || bodyFat>60){
+            error.textContent='Katch–McArdle requires a body-fat estimate between 3% and 60%.';
+            return;
+          }
+          formulaLabel='Katch–McArdle';
+          const leanKg=kg*(1-bodyFat/100);
+          bmr=370 + 21.6*leanKg;
+        }else{
+          bmr=10*kg + 6.25*cm - 5*age + (s==='male'?5:-161);
+        }
+
         const maintenance=bmr*activity;
         const lossLow=maintenance*0.80, lossHigh=maintenance*0.90;
         const gainLow=maintenance*1.05, gainHigh=maintenance*1.10;
+        const mildLoss=maintenance*0.90, moderateLoss=maintenance*0.80;
+        const mildGain=maintenance*1.05, moderateGain=maintenance*1.10;
 
         document.getElementById('maintenance').textContent=fmt(maintenance);
         document.getElementById('bmr').textContent=fmt(bmr);
         document.getElementById('loss').textContent=fmt(lossLow)+'–'+fmt(lossHigh);
         document.getElementById('gain').textContent=fmt(gainLow)+'–'+fmt(gainHigh);
+        document.getElementById('formulaUsed').textContent=formulaLabel;
+        document.getElementById('mildLoss').textContent=fmt(mildLoss);
+        document.getElementById('moderateLoss').textContent=fmt(moderateLoss);
+        document.getElementById('mildGain').textContent=fmt(mildGain);
+        document.getElementById('moderateGain').textContent=fmt(moderateGain);
 
         let note='Treat these as estimates and watch your real-world trend for 2–3 weeks before making small adjustments.';
         if(saved.goal==='weight') note='Your assessment goal is weight loss. Start conservatively rather than chasing the lowest number.';
@@ -137,7 +181,7 @@
         if(saved.goal==='mobility'||saved.goal==='energy') note='Your assessment emphasizes movement and energy. Maintenance calories may be a better starting point while you build activity consistency.';
         document.getElementById('planNote').textContent=note;
 
-        saved.calorieEstimate={bmr:Math.round(bmr),maintenance:Math.round(maintenance),loss:[Math.round(lossLow),Math.round(lossHigh)],gain:[Math.round(gainLow),Math.round(gainHigh)],age,feet,inches,pounds,sex:s,activity};
+        saved.calorieEstimate={bmr:Math.round(bmr),maintenance:Math.round(maintenance),loss:[Math.round(lossLow),Math.round(lossHigh)],gain:[Math.round(gainLow),Math.round(gainHigh)],age,feet,inches,pounds,sex:s,activity,formula,bodyFat:bodyFat||null};
         localStorage.setItem('livefit-plan',JSON.stringify(saved));
       });
     })();
