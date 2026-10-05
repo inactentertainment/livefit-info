@@ -83,7 +83,7 @@ html[data-theme="light"] .tool-roadmap{background:#0b0b0b;color:#fff}
 .profile-card{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:18px;padding:10px 7px 12px;cursor:pointer;transition:.25s;min-width:0}
 .profile-card:hover,.profile-card.selected{transform:translateY(-6px);border-color:var(--orange);box-shadow:0 14px 28px rgba(214,58,11,.17)}
 .profile-card b,.profile-card small{display:block}.profile-card small{color:var(--muted);font-size:10px;margin-top:4px}
-.body-sprite{display:block;width:100%;max-width:118px;aspect-ratio:36/42;margin:0 auto 10px;background-image:url("../assets/images/body-types-sprite.webp");background-repeat:no-repeat;background-size:500% 200%;filter:contrast(1.05)}
+.body-sprite{display:block;width:100%;max-width:118px;aspect-ratio:240/338;margin:0 auto 10px;background-image:url("../assets/images/body-types-sprite.jpg");background-repeat:no-repeat;background-size:500% 200%;filter:contrast(1.05)}
 .body-sprite.slim{background-position-x:0%}.body-sprite.fit{background-position-x:25%}.body-sprite.muscular{background-position-x:50%}.body-sprite.stocky{background-position-x:75%}.body-sprite.heavy{background-position-x:100%}
 .body-sprite.male{background-position-y:0%}.body-sprite.female{background-position-y:100%}
 .profile-note{color:var(--muted);font-size:11px;text-align:center;margin:14px 0 0}
