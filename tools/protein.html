@@ -1,1 +1,161 @@
-<!doctype html><html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Protein Target | LiveFit.info</title><link rel="stylesheet" href="../css/style.css"></head><body><main><section class="hero" style="min-height:100vh"><div class="hero-copy"><p class="eyebrow">LIVEFIT TOOL</p><h1>Protein Target</h1><p class="hero-text">This tool is staged for the next build pass. It will provide a practical protein target range based on body weight and goal.</p><div class="hero-actions"><a class="btn btn-primary" href="../index.html#tools">← Back to tools</a></div></div></section></main></body></html>
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Estimate a practical daily protein target with LiveFit.">
+  <title>Protein Target Calculator | LiveFit.info</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="assessment-page">
+  <div class="page-swoop" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand page-link" href="../index.html"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></a>
+    <div class="personal-controls"><button class="round-control" id="themeToggle" aria-label="Switch light and dark mode">◐</button></div>
+  </header>
+
+  <main class="tool-page-shell">
+    <div class="tool-page-head">
+      <div>
+        <p class="eyebrow">TOOL 02 — BUILD YOUR TARGET</p>
+        <h1>Protein Target Calculator</h1>
+        <p>Use your body weight and goal to estimate a practical daily protein range, then break it into realistic meal targets.</p>
+      </div>
+      <a class="btn btn-secondary page-link" href="../index.html#tools">← All Tools</a>
+    </div>
+
+    <section class="calculator-layout">
+      <form class="calculator-card" id="proteinForm">
+        <div class="calculator-section">
+          <h2>Your inputs</h2>
+          <div class="form-grid">
+            <label>Body weight
+              <div class="dual-input"><input id="weight" type="number" min="80" max="700" value="180"><span>lb</span></div>
+            </label>
+            <label>Main goal
+              <select id="goal">
+                <option value="general">General wellness</option>
+                <option value="weight">Lose weight</option>
+                <option value="muscle">Build muscle</option>
+                <option value="fitness">Improve fitness</option>
+                <option value="mobility">Move better</option>
+                <option value="energy">More energy</option>
+                <option value="tone">Tone & shape</option>
+              </select>
+            </label>
+            <label>Meals / protein feedings per day
+              <select id="meals">
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="calculator-section">
+          <h2>How hard are you training?</h2>
+          <div class="activity-options">
+            <label><input type="radio" name="training" value="light" checked><span><b>Light / beginner</b><small>Mostly walking, mobility, or light resistance work.</small></span></label>
+            <label><input type="radio" name="training" value="moderate"><span><b>Moderate</b><small>Regular workouts several days per week.</small></span></label>
+            <label><input type="radio" name="training" value="hard"><span><b>Hard resistance training</b><small>Progressive lifting or demanding athletic training.</small></span></label>
+          </div>
+        </div>
+
+        <button class="btn btn-primary shimmer calculator-submit" type="submit">Calculate My Protein Target</button>
+        <p class="form-error" id="formError" role="alert"></p>
+      </form>
+
+      <aside class="results-card" aria-live="polite">
+        <p class="eyebrow">YOUR ESTIMATE</p>
+        <h2 id="proteinRange">—</h2>
+        <p class="result-label">grams of protein / day</p>
+        <div class="result-grid">
+          <div><span>Lower target</span><strong id="low">—</strong><small>grams / day</small></div>
+          <div><span>Upper target</span><strong id="high">—</strong><small>grams / day</small></div>
+          <div><span>Per meal</span><strong id="perMeal">—</strong><small>approximate grams per feeding</small></div>
+          <div><span>Body weight</span><strong id="weightResult">—</strong><small>used for this estimate</small></div>
+        </div>
+        <div class="results-note" id="proteinNote">Complete the calculator to see your range.</div>
+        <a class="btn btn-secondary page-link result-next" href="walking.html">Next Tool: Walking & Steps →</a>
+      </aside>
+    </section>
+
+    <section class="tool-explainer">
+      <div><p class="eyebrow">HOW IT WORKS</p><h2>A practical range, not one magic number.</h2></div>
+      <div class="explainer-grid">
+        <article><b>1</b><h3>Start with body weight</h3><p>Protein needs are often estimated relative to body weight, then adjusted for training and goals.</p></article>
+        <article><b>2</b><h3>Match the goal</h3><p>Resistance training and muscle-building goals generally support a higher target than basic wellness.</p></article>
+        <article><b>3</b><h3>Spread it out</h3><p>Dividing protein across several meals can make the daily target easier to reach.</p></article>
+      </div>
+      <p class="microcopy">This calculator gives general educational estimates for adults. People with kidney disease, pregnancy, certain medical conditions, or clinician-directed diets should get individualized advice before making major protein changes.</p>
+    </section>
+  </main>
+
+  <script src="../js/main.js"></script>
+  <script>
+    (() => {
+      const saved=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+      const weightInput=document.getElementById('weight');
+      const goalSelect=document.getElementById('goal');
+
+      if(saved.calorieEstimate?.pounds) weightInput.value=saved.calorieEstimate.pounds;
+      if(saved.goal) goalSelect.value=saved.goal;
+
+      const form=document.getElementById('proteinForm');
+      const error=document.getElementById('formError');
+      const round=n=>Math.round(n);
+
+      form.addEventListener('submit',e=>{
+        e.preventDefault();
+        error.textContent='';
+        const pounds=Number(weightInput.value);
+        const kg=pounds*0.45359237;
+        const goal=goalSelect.value;
+        const training=document.querySelector('input[name="training"]:checked')?.value||'light';
+        const meals=Number(document.getElementById('meals').value);
+
+        if(pounds<80||pounds>700){
+          error.textContent='Please enter a body weight between 80 and 700 lb.';
+          return;
+        }
+
+        let lowFactor=1.0, highFactor=1.2;
+        if(goal==='weight'){lowFactor=1.2;highFactor=1.6;}
+        if(goal==='fitness'||goal==='tone'){lowFactor=1.2;highFactor=1.6;}
+        if(goal==='muscle'){lowFactor=1.6;highFactor=2.2;}
+        if(goal==='mobility'||goal==='energy'||goal==='general'){lowFactor=1.0;highFactor=1.4;}
+
+        if(training==='moderate'){
+          lowFactor=Math.max(lowFactor,1.2);
+          highFactor=Math.max(highFactor,1.6);
+        }
+        if(training==='hard'){
+          lowFactor=Math.max(lowFactor,1.6);
+          highFactor=Math.max(highFactor,2.0);
+        }
+
+        const low=kg*lowFactor;
+        const high=kg*highFactor;
+        const mealLow=low/meals;
+        const mealHigh=high/meals;
+
+        document.getElementById('proteinRange').textContent=round(low)+'–'+round(high);
+        document.getElementById('low').textContent=round(low);
+        document.getElementById('high').textContent=round(high);
+        document.getElementById('perMeal').textContent=round(mealLow)+'–'+round(mealHigh);
+        document.getElementById('weightResult').textContent=round(pounds)+' lb';
+
+        let note='This is a practical starting range. You do not need to hit the exact same number every day.';
+        if(goal==='muscle') note='Your goal is muscle gain, so the tool is using a higher protein range to support resistance training.';
+        if(goal==='weight') note='For weight loss, adequate protein can help support fullness and preserve lean mass while dieting.';
+        if(training==='light') note+=' Start near the lower end unless your training volume increases.';
+        document.getElementById('proteinNote').textContent=note;
+
+        saved.proteinEstimate={low:round(low),high:round(high),perMeal:[round(mealLow),round(mealHigh)],pounds:round(pounds),goal,training,meals};
+        localStorage.setItem('livefit-plan',JSON.stringify(saved));
+      });
+    })();
+  </script>
+</body>
+</html>
