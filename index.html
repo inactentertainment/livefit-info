@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="LiveFit.info — free fitness tools, workouts, gear guidance, and personalized fitness roadmaps.">
+  <title>LiveFit.info | Tools. Workouts. Gear. Better Everyday Fitness.</title>
+  <link rel="preconnect" href="https://www.youtube.com">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="LiveFit.info home">
+      <span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span>
+    </a>
+
+    <div class="personal-controls" aria-label="Personalization controls">
+      <button class="round-control" id="themeToggle" aria-label="Switch light and dark mode" title="Light / dark mode">◐</button>
+      <button class="round-control music-control" id="musicToggle" aria-label="Music control" title="Music">
+        <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </button>
+    </div>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#plan" data-label="My Plan">◎</a>
+      <a href="#tools" data-label="Tools">＋</a>
+      <a href="#workouts" data-label="Workouts">↗</a>
+      <a href="#nutrition" data-label="Nutrition">◇</a>
+      <a href="#gear" data-label="Gear">▣</a>
+      <a href="#videos" data-label="Videos">▶</a>
+    </nav>
+
+    <button class="menu-button" id="menuButton" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <a href="#plan">My Plan</a>
+    <a href="#tools">Free Tools</a>
+    <a href="#workouts">Workouts</a>
+    <a href="#nutrition">Nutrition</a>
+    <a href="#gear">Gear</a>
+    <a href="#videos">Videos</a>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">TOOLS • WORKOUTS • GEAR • YOUR PLAN</p>
+        <h1>Build Your Fit.<br><span>Live Better.</span></h1>
+        <p class="hero-text">Use free tools, discover workouts, and build a personalized fitness roadmap around your goals, routine, equipment, and lifestyle.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary shimmer" href="#plan">Build My Plan</a>
+          <a class="btn btn-secondary" href="#tools">Explore Free Tools</a>
+        </div>
+        <div class="trust-strip">
+          <span>No membership required</span>
+          <span>Free tools</span>
+          <span>Personal plan optional</span>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/flZWpMdDTh8?rel=0&modestbranding=1" title="Welcome to LiveFit.info" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <p class="video-caption">Welcome to LiveFit.info — start where you are.</p>
+      </div>
+    </section>
+
+    <section class="tool-roadmap" id="tools">
+      <div class="section-heading">
+        <p class="eyebrow">START WITH YOUR NUMBERS</p>
+        <h2>Use the tools in the order that makes sense.</h2>
+        <p>Each tool answers one piece of the bigger question: what does your body need, what can you realistically do, and what should you do next?</p>
+      </div>
+
+      <div class="tool-grid">
+        <a class="tool-card" href="tools/calorie.html">
+          <span class="tool-number">01</span><span class="tool-icon">⌁</span>
+          <h3>Calorie & TDEE</h3><p>Estimate your daily energy needs and starting target.</p><span class="tool-link">Open tool →</span>
+        </a>
+        <a class="tool-card" href="tools/protein.html">
+          <span class="tool-number">02</span><span class="tool-icon">P</span>
+          <h3>Protein Target</h3><p>Get a practical daily protein range based on your goal.</p><span class="tool-link">Open tool →</span>
+        </a>
+        <a class="tool-card" href="tools/walking.html">
+          <span class="tool-number">03</span><span class="tool-icon">↟</span>
+          <h3>Walking & Steps</h3><p>Convert steps, miles, time, and estimated calorie burn.</p><span class="tool-link">Open tool →</span>
+        </a>
+        <a class="tool-card" href="tools/workout.html">
+          <span class="tool-number">04</span><span class="tool-icon">⚡</span>
+          <h3>Workout Generator</h3><p>Build a workout around your time, level, goal, and equipment.</p><span class="tool-link">Open tool →</span>
+        </a>
+        <a class="tool-card" href="tools/equipment.html">
+          <span class="tool-number">05</span><span class="tool-icon">▣</span>
+          <h3>Equipment Matcher</h3><p>Find the best home-gym setup for your space and budget.</p><span class="tool-link">Open tool →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="plan-section" id="plan">
+      <div class="plan-copy">
+        <p class="eyebrow">PERSONALIZED EXPERIENCE</p>
+        <h2>Your body. Your reality. Your roadmap.</h2>
+        <p>Answer a short set of visual questions. LiveFit will use your goals, schedule, activity, equipment, nutrition needs, and preferred body profile to shape your starter roadmap.</p>
+        <ul class="plan-list">
+          <li>Visual body-profile selection</li>
+          <li>Goal + activity assessment</li>
+          <li>Workout and nutrition direction</li>
+          <li>Optional low-cost personalized PDF</li>
+        </ul>
+        <button class="btn btn-primary shimmer" id="startPlan">Preview My Plan</button>
+      </div>
+
+      <div class="body-selector-preview" aria-label="Neutral body profile preview">
+        <button class="body-card" data-profile="lean"><span class="mannequin slim"></span><b>Lean</b><small>Build / tone</small></button>
+        <button class="body-card" data-profile="average"><span class="mannequin average"></span><b>Average</b><small>Balance</small></button>
+        <button class="body-card" data-profile="broad"><span class="mannequin broad"></span><b>Broad</b><small>Strength</small></button>
+        <button class="body-card" data-profile="curvy"><span class="mannequin curvy"></span><b>Curvy</b><small>Shape / mobility</small></button>
+      </div>
+    </section>
+
+    <section class="split-section" id="workouts">
+      <div>
+        <p class="eyebrow">FEATURED CHALLENGE</p>
+        <h2>Start moving today.</h2>
+        <p>Short, repeatable workouts can be easier to stick with than complicated routines. LiveFit keeps the first step simple.</p>
+        <a class="btn btn-secondary" href="#videos">Watch workouts</a>
+      </div>
+      <div class="video-frame compact">
+        <iframe src="https://www.youtube.com/embed/KG4eybHxjUc?rel=0&modestbranding=1" title="100 Push-Up Challenge: 5 Minutes a Day" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section class="category-strip" id="nutrition">
+      <article><span>◇</span><h3>Nutrition</h3><p>Simple targets, meal guidance, and practical tools without overcomplication.</p></article>
+      <article id="gear"><span>▣</span><h3>Gear</h3><p>Useful equipment matched to goals, space, and budget — with affiliate recommendations clearly disclosed.</p></article>
+      <article id="videos"><span>▶</span><h3>Videos</h3><p>Challenges, movement, demonstrations, and LiveFit motivation from the YouTube channel.</p></article>
+    </section>
+
+    <section class="cta-band">
+      <p class="eyebrow">YOUR NEXT STEP</p>
+      <h2>Not ready for a personal plan?</h2>
+      <p>That’s okay. The free tools stay free. Start with one number and build from there.</p>
+      <a class="btn btn-light" href="#tools">Use the Free Tools</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span>
+      <p>Tools. Workouts. Gear. Better everyday fitness.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#tools">Tools</a><a href="#plan">My Plan</a><a href="#videos">Videos</a>
+      <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Disclaimer</a><a href="#">Affiliate Disclosure</a>
+    </div>
+    <p class="umbrella">LiveFit.info is a project of InAct Entertainment LLC.</p>
+  </footer>
+
+  <div class="music-panel" id="musicPanel" hidden>
+    <strong>LiveFit Sound</strong>
+    <p>Music control is ready. We’ll connect the rotating LiveFit / InAct track or radio stream in the next audio pass.</p>
+  </div>
+
+  <div class="plan-modal" id="planModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" id="closePlan" aria-label="Close">×</button>
+      <p class="eyebrow">LIVEFIT PERSONAL ROADMAP</p>
+      <h2>Let’s build around you.</h2>
+      <p>First build preview: the full branching assessment comes next. It will cover body profile, goals, activity, time, equipment, nutrition, barriers, and preferred support.</p>
+      <a class="btn btn-primary" href="#tools" id="modalTools">Use Free Tools For Now</a>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
