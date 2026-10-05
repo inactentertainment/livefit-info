@@ -1,1 +1,395 @@
-<!doctype html><html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Workout Generator | LiveFit.info</title><link rel="stylesheet" href="../css/style.css"></head><body><main><section class="hero" style="min-height:100vh"><div class="hero-copy"><p class="eyebrow">LIVEFIT TOOL</p><h1>Workout Generator</h1><p class="hero-text">This tool is staged for the next build pass. It will build routines around goal, time, level, and equipment.</p><div class="hero-actions"><a class="btn btn-primary" href="../index.html#tools">← Back to tools</a></div></div></section></main></body></html>
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Generate a personalized workout or weekly training plan with LiveFit.">
+  <title>Workout Generator | LiveFit.info</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="assessment-page">
+  <div class="page-swoop" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand page-link" href="../index.html"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></a>
+    <div class="personal-controls"><button class="round-control" id="themeToggle" aria-label="Switch light and dark mode">◐</button></div>
+  </header>
+
+  <main class="tool-page-shell">
+    <div class="tool-page-head">
+      <div>
+        <p class="eyebrow">TOOL 04 — TRAIN SMARTER</p>
+        <h1>Workout Generator</h1>
+        <p>Generate one workout or a full weekly plan using the information LiveFit already knows about your goal, available time, equipment, and barriers.</p>
+      </div>
+      <a class="btn btn-secondary page-link" href="../index.html#tools">← All Tools</a>
+    </div>
+
+    <section class="workout-builder">
+      <form class="calculator-card" id="workoutForm">
+        <div class="calculator-section">
+          <h2>What do you want built?</h2>
+          <div class="mode-toggle" role="group" aria-label="Workout plan type">
+            <button type="button" class="mode-btn active" data-planmode="today">Today’s workout</button>
+            <button type="button" class="mode-btn" data-planmode="week">Weekly plan</button>
+          </div>
+        </div>
+
+        <div class="calculator-section">
+          <h2>Training setup</h2>
+          <div class="form-grid">
+            <label>Main goal
+              <select id="goal">
+                <option value="weight">Lose weight</option>
+                <option value="muscle">Build muscle</option>
+                <option value="fitness" selected>Improve fitness</option>
+                <option value="mobility">Move better</option>
+                <option value="energy">More energy</option>
+                <option value="tone">Tone & shape</option>
+              </select>
+            </label>
+            <label>Experience level
+              <select id="level">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate" selected>Intermediate</option>
+                <option value="advanced">Advanced</option>
+              </select>
+            </label>
+            <label>Equipment
+              <select id="equipment">
+                <option value="none">No equipment</option>
+                <option value="bands">Resistance bands</option>
+                <option value="dumbbells">Dumbbells</option>
+                <option value="bench">Dumbbells + bench</option>
+                <option value="full-gym">Full gym</option>
+                <option value="mixed">Mixed equipment</option>
+              </select>
+            </label>
+            <label>Session length
+              <select id="time">
+                <option value="15">10–15 minutes</option>
+                <option value="30" selected>20–30 minutes</option>
+                <option value="45">35–45 minutes</option>
+                <option value="60">60+ minutes</option>
+              </select>
+            </label>
+            <label id="daysWrap" hidden>Training days/week
+              <select id="days">
+                <option value="2">2 days</option>
+                <option value="3" selected>3 days</option>
+                <option value="4">4 days</option>
+                <option value="5">5 days</option>
+              </select>
+            </label>
+            <label>Biggest barrier
+              <select id="barrier">
+                <option value="none">No major barrier</option>
+                <option value="time">Not enough time</option>
+                <option value="motivation">Motivation</option>
+                <option value="joints">Joint discomfort</option>
+                <option value="beginner">Not sure what to do</option>
+                <option value="consistency">Consistency</option>
+                <option value="equipment">Limited equipment</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="calculator-section">
+          <h2>Workout emphasis</h2>
+          <div class="activity-options">
+            <label><input type="radio" name="focus" value="full" checked><span><b>Full body</b><small>Balanced training across major movement patterns.</small></span></label>
+            <label><input type="radio" name="focus" value="upper"><span><b>Upper body</b><small>Chest, back, shoulders, and arms.</small></span></label>
+            <label><input type="radio" name="focus" value="lower"><span><b>Lower body</b><small>Legs, hips, glutes, and lower-body strength.</small></span></label>
+            <label><input type="radio" name="focus" value="core"><span><b>Core + movement</b><small>Trunk control, mobility, and conditioning.</small></span></label>
+          </div>
+        </div>
+
+        <button class="btn btn-primary shimmer calculator-submit" type="submit">Generate My Workout</button>
+      </form>
+
+      <section class="workout-output" aria-live="polite">
+        <div class="workout-output-head">
+          <div>
+            <p class="eyebrow" id="outputKicker">YOUR LIVEFIT WORKOUT</p>
+            <h2 id="outputTitle">Ready when you are.</h2>
+            <p id="outputLead">Choose your settings and generate a workout.</p>
+          </div>
+          <button class="btn btn-secondary" id="regenerate" type="button">↻ Regenerate</button>
+        </div>
+
+        <div class="workout-summary" id="workoutSummary" hidden>
+          <div><span>Exercises</span><strong id="exerciseCount">0</strong></div>
+          <div><span>Est. time</span><strong id="summaryTime">—</strong></div>
+          <div><span>Equipment</span><strong id="summaryEquipment">—</strong></div>
+          <div><span>Goal</span><strong id="summaryGoal">—</strong></div>
+        </div>
+
+        <div id="warmupBlock" class="warmup-block" hidden></div>
+        <div id="workoutList" class="exercise-stack"></div>
+        <div id="weeklyPlan" class="weekly-plan" hidden></div>
+        <div id="progressionNote" class="results-note" hidden></div>
+
+        <p class="microcopy">Exercise selections are general fitness suggestions, not medical rehabilitation. Stop any movement that causes sharp, worsening, or unusual pain. If you have a significant injury or medical limitation, get individualized professional guidance.</p>
+      </section>
+    </section>
+
+    <section class="workout-feature-grid">
+      <article><span class="insight-number">01</span><h3>Uses your existing LiveFit data.</h3><p>If you completed the assessment, your goal, equipment, session length, and barrier automatically carry into the generator.</p></article>
+      <article><span class="insight-number">02</span><h3>Today or the whole week.</h3><p>Generate a focused single session, or switch to a weekly plan with balanced training days and recovery between them.</p></article>
+      <article><span class="insight-number">03</span><h3>Regenerate without starting over.</h3><p>Keep your settings and reshuffle suitable exercises when you want variety.</p></article>
+    </section>
+  </main>
+
+  <script src="../js/main.js"></script>
+  <script>
+  (() => {
+    const saved=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+    const form=document.getElementById('workoutForm');
+    const goal=document.getElementById('goal');
+    const level=document.getElementById('level');
+    const equipment=document.getElementById('equipment');
+    const time=document.getElementById('time');
+    const barrier=document.getElementById('barrier');
+    const days=document.getElementById('days');
+    let planMode='today';
+    let generation=0;
+
+    if(saved.goal) goal.value=saved.goal;
+    if(saved.equipment) equipment.value=saved.equipment;
+    if(saved.time) time.value=saved.time;
+    if(saved.barrier) barrier.value=saved.barrier;
+    if(saved.barrier==='beginner') level.value='beginner';
+
+    const labels={
+      weight:'Lose weight',muscle:'Build muscle',fitness:'Improve fitness',mobility:'Move better',energy:'More energy',tone:'Tone & shape',
+      none:'Bodyweight',bands:'Resistance bands',dumbbells:'Dumbbells',bench:'Dumbbells + bench','full-gym':'Full gym',mixed:'Mixed equipment',
+      beginner:'Beginner',intermediate:'Intermediate',advanced:'Advanced'
+    };
+
+    const exercises=[
+      {name:'Chair Squat',group:'lower',pattern:'squat',eq:['none','bands','mixed'],impact:'low',levels:['beginner','intermediate'],notes:'Sit back under control, lightly touch the chair, then stand tall.'},
+      {name:'Bodyweight Squat',group:'lower',pattern:'squat',eq:['none','bands','mixed'],impact:'medium',levels:['beginner','intermediate','advanced'],notes:'Keep the whole foot grounded and move through a comfortable depth.'},
+      {name:'Goblet Squat',group:'lower',pattern:'squat',eq:['dumbbells','bench','mixed','full-gym'],impact:'medium',levels:['beginner','intermediate','advanced'],notes:'Hold one dumbbell close to the chest and keep the torso tall.'},
+      {name:'Leg Press',group:'lower',pattern:'squat',eq:['full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Use a comfortable range and avoid locking the knees hard.'},
+      {name:'Glute Bridge',group:'lower',pattern:'hinge',eq:['none','bands','dumbbells','bench','mixed'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Drive through the feet and squeeze the glutes at the top.'},
+      {name:'Dumbbell Romanian Deadlift',group:'lower',pattern:'hinge',eq:['dumbbells','bench','mixed','full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Push the hips back while keeping the weights close to the legs.'},
+      {name:'Band Good Morning',group:'lower',pattern:'hinge',eq:['bands','mixed'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Hinge from the hips with a long neutral spine.'},
+      {name:'Reverse Lunge',group:'lower',pattern:'single',eq:['none','dumbbells','bench','mixed','full-gym'],impact:'medium',levels:['intermediate','advanced'],notes:'Step back far enough to keep the front foot stable.'},
+      {name:'Supported Split Squat',group:'lower',pattern:'single',eq:['none','dumbbells','bench','mixed'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Use a wall or bench for balance and work in a pain-free range.'},
+      {name:'Step-Up',group:'lower',pattern:'single',eq:['bench','mixed','full-gym'],impact:'medium',levels:['beginner','intermediate','advanced'],notes:'Use a stable low platform and control the descent.'},
+      {name:'Standing Calf Raise',group:'lower',pattern:'calf',eq:['none','dumbbells','mixed','full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Pause briefly at the top and lower under control.'},
+
+      {name:'Wall Push-Up',group:'upper',pattern:'push',eq:['none','bands','mixed'],impact:'low',levels:['beginner'],notes:'Keep the body straight and bring the chest toward the wall.'},
+      {name:'Incline Push-Up',group:'upper',pattern:'push',eq:['none','bench','mixed'],impact:'low',levels:['beginner','intermediate'],notes:'Use a stable elevated surface and keep the body in one line.'},
+      {name:'Push-Up',group:'upper',pattern:'push',eq:['none','mixed'],impact:'medium',levels:['intermediate','advanced'],notes:'Keep ribs controlled and elbows at a comfortable angle.'},
+      {name:'Dumbbell Floor Press',group:'upper',pattern:'push',eq:['dumbbells','mixed','full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Pause lightly with the upper arms on the floor before pressing.'},
+      {name:'Incline Dumbbell Press',group:'upper',pattern:'push',eq:['bench','mixed','full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Keep shoulder blades supported against the bench.'},
+      {name:'Machine Chest Press',group:'upper',pattern:'push',eq:['full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Set the seat so handles begin around mid-chest.'},
+
+      {name:'Band Row',group:'upper',pattern:'pull',eq:['bands','mixed'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Pull elbows back and squeeze the shoulder blades gently.'},
+      {name:'One-Arm Dumbbell Row',group:'upper',pattern:'pull',eq:['dumbbells','bench','mixed','full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Brace the torso and pull toward the hip.'},
+      {name:'Lat Pulldown',group:'upper',pattern:'pull',eq:['full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Pull the bar toward the upper chest without leaning far back.'},
+      {name:'Seated Cable Row',group:'upper',pattern:'pull',eq:['full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Stay tall and finish with elbows near the sides.'},
+      {name:'Band Pull-Apart',group:'upper',pattern:'pull',eq:['bands','mixed'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Keep ribs down and pull the band apart at chest height.'},
+
+      {name:'Dumbbell Shoulder Press',group:'upper',pattern:'shoulder',eq:['dumbbells','bench','mixed','full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Press overhead without aggressively arching the low back.'},
+      {name:'Band Shoulder Press',group:'upper',pattern:'shoulder',eq:['bands','mixed'],impact:'low',levels:['beginner','intermediate'],notes:'Stand on the band securely and press smoothly overhead.'},
+      {name:'Dumbbell Curl',group:'upper',pattern:'arms',eq:['dumbbells','bench','mixed','full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Keep elbows near the sides and avoid swinging.'},
+      {name:'Band Curl',group:'upper',pattern:'arms',eq:['bands','mixed'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Keep constant tension and control the lowering phase.'},
+      {name:'Dumbbell Triceps Extension',group:'upper',pattern:'arms',eq:['dumbbells','bench','mixed','full-gym'],impact:'low',levels:['intermediate','advanced'],notes:'Keep the upper arms stable and move through a comfortable range.'},
+
+      {name:'Dead Bug',group:'core',pattern:'core',eq:['none','bands','mixed'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Keep the low back gently supported as opposite limbs extend.'},
+      {name:'Bird Dog',group:'core',pattern:'core',eq:['none','bands','mixed'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Reach long without rotating the hips.'},
+      {name:'Front Plank',group:'core',pattern:'core',eq:['none','mixed'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Brace the trunk and stop before form breaks down.'},
+      {name:'Pallof Press',group:'core',pattern:'core',eq:['bands','full-gym','mixed'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Press away from the chest while resisting rotation.'},
+      {name:'Farmer Carry',group:'core',pattern:'carry',eq:['dumbbells','mixed','full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Walk tall with controlled steps and steady breathing.'},
+
+      {name:'March in Place',group:'conditioning',pattern:'cardio',eq:['none','bands','dumbbells','bench','mixed','full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Use an easy rhythm and gradually increase arm swing.'},
+      {name:'Brisk Walk Intervals',group:'conditioning',pattern:'cardio',eq:['none','bands','dumbbells','bench','mixed','full-gym'],impact:'low',levels:['beginner','intermediate','advanced'],notes:'Alternate comfortable and brisk walking intervals.'},
+      {name:'Low-Impact Step Touch',group:'conditioning',pattern:'cardio',eq:['none','bands','mixed'],impact:'low',levels:['beginner','intermediate'],notes:'Step side to side continuously while staying light on the feet.'},
+      {name:'Mountain Climber',group:'conditioning',pattern:'cardio',eq:['none','bench','mixed'],impact:'medium',levels:['intermediate','advanced'],notes:'Keep the torso stable and move at a pace you can control.'},
+      {name:'Dumbbell Thruster',group:'conditioning',pattern:'cardio',eq:['dumbbells','mixed','full-gym'],impact:'medium',levels:['intermediate','advanced'],notes:'Combine a squat and press using a controlled rhythm.'}
+    ];
+
+    function shuffle(arr){
+      const a=[...arr];
+      for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+      return a;
+    }
+
+    function allowedExercise(ex,settings){
+      const eq=settings.equipment;
+      const equipmentOk=eq==='mixed' ? true : ex.eq.includes(eq) || (eq==='bench'&&ex.eq.includes('dumbbells'));
+      const levelOk=ex.levels.includes(settings.level);
+      const jointOk=settings.barrier!=='joints'||ex.impact==='low';
+      return equipmentOk&&levelOk&&jointOk;
+    }
+
+    function repScheme(settings,ex){
+      if(ex.pattern==='cardio'){
+        if(settings.time<=15) return {sets:3,reps:'30–45 sec',rest:'30 sec'};
+        return {sets:4,reps:'45–60 sec',rest:'30–45 sec'};
+      }
+      if(ex.pattern==='carry') return {sets:3,reps:'30–45 sec',rest:'45 sec'};
+      if(settings.goal==='muscle'){
+        return settings.level==='beginner'
+          ? {sets:3,reps:'8–12',rest:'60–90 sec'}
+          : {sets:4,reps:'6–12',rest:'75–120 sec'};
+      }
+      if(settings.goal==='mobility') return {sets:2,reps:'8–10 controlled',rest:'45 sec'};
+      if(settings.goal==='weight'||settings.goal==='fitness'||settings.goal==='tone'){
+        return {sets:3,reps:'10–15',rest:'45–75 sec'};
+      }
+      return {sets:3,reps:'8–12',rest:'60 sec'};
+    }
+
+    function chooseByPattern(pool,pattern,count=1){
+      return shuffle(pool.filter(x=>x.pattern===pattern)).slice(0,count);
+    }
+
+    function buildSession(settings,focusOverride){
+      const focus=focusOverride||settings.focus;
+      const pool=exercises.filter(ex=>allowedExercise(ex,settings));
+      let selected=[];
+
+      if(focus==='upper'){
+        selected.push(...chooseByPattern(pool,'push',2),...chooseByPattern(pool,'pull',2),...chooseByPattern(pool,'shoulder',1),...chooseByPattern(pool,'arms',1));
+      }else if(focus==='lower'){
+        selected.push(...chooseByPattern(pool,'squat',2),...chooseByPattern(pool,'hinge',1),...chooseByPattern(pool,'single',1),...chooseByPattern(pool,'calf',1),...chooseByPattern(pool,'core',1));
+      }else if(focus==='core'){
+        selected.push(...shuffle(pool.filter(x=>x.group==='core')).slice(0,3),...shuffle(pool.filter(x=>x.group==='conditioning')).slice(0,2),...chooseByPattern(pool,'hinge',1));
+      }else{
+        selected.push(...chooseByPattern(pool,'squat',1),...chooseByPattern(pool,'hinge',1),...chooseByPattern(pool,'push',1),...chooseByPattern(pool,'pull',1),...chooseByPattern(pool,'core',1));
+        if(settings.goal==='weight'||settings.goal==='fitness'||settings.goal==='energy'||settings.goal==='tone'){
+          selected.push(...shuffle(pool.filter(x=>x.group==='conditioning')).slice(0,1));
+        }else{
+          selected.push(...chooseByPattern(pool,'shoulder',1));
+        }
+      }
+
+      const seen=new Set();
+      selected=selected.filter(x=>{if(!x||seen.has(x.name))return false;seen.add(x.name);return true;});
+
+      const maxByTime=settings.time<=15?4:settings.time<=30?6:settings.time<=45?7:8;
+      if(selected.length<maxByTime){
+        for(const ex of shuffle(pool)){
+          if(selected.length>=maxByTime) break;
+          if(!seen.has(ex.name)){selected.push(ex);seen.add(ex.name);}
+        }
+      }
+      return selected.slice(0,maxByTime);
+    }
+
+    function settings(){
+      return {
+        goal:goal.value,
+        level:level.value,
+        equipment:equipment.value,
+        time:Number(time.value),
+        barrier:barrier.value,
+        days:Number(days.value),
+        focus:document.querySelector('input[name="focus"]:checked')?.value||'full'
+      };
+    }
+
+    function warmupText(s){
+      if(s.barrier==='joints') return '5–7 min: easy walk or march, shoulder circles, supported sit-to-stand, gentle hip hinges, and comfortable range-of-motion work.';
+      if(s.goal==='mobility') return '5–8 min: easy walk, cat-cow, hip hinge practice, shoulder circles, ankle rocks, and controlled bodyweight squats.';
+      return s.time<=15
+        ? '2–3 min: brisk march, arm circles, hip hinges, and 5 controlled squats.'
+        : '5 min: easy cardio followed by arm circles, hip hinges, squats, and one light practice set of the first strength movement.';
+    }
+
+    function renderExercise(ex,index,s){
+      const scheme=repScheme(s,ex);
+      return '<article class="exercise-row">'+
+        '<span class="exercise-order">'+String(index+1).padStart(2,'0')+'</span>'+
+        '<div class="exercise-main"><h3>'+ex.name+'</h3><p>'+ex.notes+'</p></div>'+
+        '<div class="exercise-dose"><b>'+scheme.sets+' sets</b><span>'+scheme.reps+'</span><small>Rest '+scheme.rest+'</small></div>'+
+      '</article>';
+    }
+
+    function renderToday(){
+      const s=settings();
+      const list=buildSession(s);
+      document.getElementById('weeklyPlan').hidden=true;
+      document.getElementById('workoutList').hidden=false;
+      document.getElementById('outputKicker').textContent='YOUR LIVEFIT WORKOUT';
+      document.getElementById('outputTitle').textContent=(labels[s.goal]||s.goal)+' • '+(s.focus==='full'?'Full Body':s.focus.charAt(0).toUpperCase()+s.focus.slice(1));
+      document.getElementById('outputLead').textContent=(labels[s.level]||s.level)+' session using '+(labels[s.equipment]||s.equipment)+'.';
+      document.getElementById('workoutList').innerHTML=list.map((ex,i)=>renderExercise(ex,i,s)).join('');
+      document.getElementById('warmupBlock').hidden=false;
+      document.getElementById('warmupBlock').innerHTML='<span class="target-kicker">WARM-UP</span><p>'+warmupText(s)+'</p>';
+      document.getElementById('workoutSummary').hidden=false;
+      document.getElementById('exerciseCount').textContent=list.length;
+      document.getElementById('summaryTime').textContent=s.time<=15?'10–15 min':s.time<=30?'20–30 min':s.time<=45?'35–45 min':'60+ min';
+      document.getElementById('summaryEquipment').textContent=labels[s.equipment]||s.equipment;
+      document.getElementById('summaryGoal').textContent=labels[s.goal]||s.goal;
+      document.getElementById('progressionNote').hidden=false;
+      document.getElementById('progressionNote').textContent=progressionText(s);
+      saved.workoutPlan={mode:'today',settings:s,exercises:list.map(x=>x.name),generatedAt:new Date().toISOString()};
+      localStorage.setItem('livefit-plan',JSON.stringify(saved));
+    }
+
+    function dayFocuses(n,goalValue){
+      if(n===2) return ['full','full'];
+      if(n===3) return goalValue==='muscle'?['upper','lower','full']:['full','lower','upper'];
+      if(n===4) return ['upper','lower','upper','lower'];
+      return ['upper','lower','full','upper','lower'];
+    }
+
+    function renderWeek(){
+      const s=settings();
+      const focuses=dayFocuses(s.days,s.goal);
+      document.getElementById('workoutList').hidden=true;
+      document.getElementById('weeklyPlan').hidden=false;
+      document.getElementById('outputKicker').textContent='YOUR LIVEFIT WEEK';
+      document.getElementById('outputTitle').textContent=s.days+'-Day '+(labels[s.goal]||s.goal)+' Plan';
+      document.getElementById('outputLead').textContent='Balanced across the week with recovery between demanding sessions.';
+      const weeks=[];
+      document.getElementById('weeklyPlan').innerHTML=focuses.map((focus,i)=>{
+        const list=buildSession(s,focus);
+        weeks.push({day:i+1,focus,exercises:list.map(x=>x.name)});
+        const title=focus==='full'?'Full Body':focus.charAt(0).toUpperCase()+focus.slice(1);
+        return '<article class="training-day"><div class="training-day-head"><span>DAY '+(i+1)+'</span><h3>'+title+'</h3><small>'+list.length+' exercises</small></div>'+
+          '<ol>'+list.map(ex=>'<li><b>'+ex.name+'</b><span>'+repScheme(s,ex).sets+' × '+repScheme(s,ex).reps+'</span></li>').join('')+'</ol></article>';
+      }).join('');
+      document.getElementById('warmupBlock').hidden=false;
+      document.getElementById('warmupBlock').innerHTML='<span class="target-kicker">EACH TRAINING DAY</span><p>'+warmupText(s)+'</p>';
+      document.getElementById('workoutSummary').hidden=false;
+      document.getElementById('exerciseCount').textContent=s.days+' days';
+      document.getElementById('summaryTime').textContent=s.time<=15?'10–15 min':s.time<=30?'20–30 min':s.time<=45?'35–45 min':'60+ min';
+      document.getElementById('summaryEquipment').textContent=labels[s.equipment]||s.equipment;
+      document.getElementById('summaryGoal').textContent=labels[s.goal]||s.goal;
+      document.getElementById('progressionNote').hidden=false;
+      document.getElementById('progressionNote').textContent=progressionText(s);
+      saved.workoutPlan={mode:'week',settings:s,days:weeks,generatedAt:new Date().toISOString()};
+      localStorage.setItem('livefit-plan',JSON.stringify(saved));
+    }
+
+    function progressionText(s){
+      if(s.level==='beginner') return 'Progression: repeat this structure for 2–3 weeks. First add clean reps, then a little resistance or an extra set. You do not need to change everything at once.';
+      if(s.goal==='muscle') return 'Progression: when you can complete the top of the rep range with solid form, increase resistance slightly or add one rep per set.';
+      if(s.barrier==='joints') return 'Progression: keep every movement in a comfortable range. Increase total time or reps before adding impact or heavy resistance.';
+      return 'Progression: keep the workout repeatable. Add a rep, a small amount of resistance, or a few minutes only when the current version feels controlled.';
+    }
+
+    function generate(){
+      generation++;
+      planMode==='week'?renderWeek():renderToday();
+    }
+
+    document.querySelectorAll('.mode-btn[data-planmode]').forEach(btn=>btn.addEventListener('click',()=>{
+      planMode=btn.dataset.planmode;
+      document.querySelectorAll('.mode-btn[data-planmode]').forEach(b=>b.classList.toggle('active',b===btn));
+      document.getElementById('daysWrap').hidden=planMode!=='week';
+    }));
+
+    form.addEventListener('submit',e=>{e.preventDefault();generate();});
+    document.getElementById('regenerate').addEventListener('click',generate);
+
+    generate();
+  })();
+  </script>
+</body>
+</html>
