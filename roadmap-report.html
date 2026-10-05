@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Generated personalized LiveFit roadmap.">
+  <title>My LiveFit Personal Roadmap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="report-page">
+  <header class="report-toolbar">
+    <a class="brand page-link" href="roadmap.html"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></a>
+    <div class="report-toolbar-actions">
+      <a class="btn btn-secondary" href="roadmap.html">← Back to Funnel</a>
+      <button class="btn btn-primary shimmer" id="printRoadmap">Print / Save as PDF</button>
+    </div>
+  </header>
+
+  <main id="roadmapReport" class="roadmap-report">
+    <section class="report-sheet report-cover">
+      <div class="report-cover-top">
+        <div><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></div>
+        <span class="report-edition">PERSONAL ROADMAP</span>
+      </div>
+      <div class="report-cover-body">
+        <p class="eyebrow">YOUR 4-WEEK STARTER ROADMAP</p>
+        <h1 id="coverTitle">Build Your Fit. Live Better.</h1>
+        <p id="coverSubtitle">A personalized starter guide built from your LiveFit assessment and tools.</p>
+        <div class="cover-goal-chip" id="coverGoal">PERSONALIZED FOR YOU</div>
+      </div>
+      <div class="report-cover-footer">
+        <span>Prepared by LiveFit.info</span>
+        <span id="generatedDate"></span>
+      </div>
+    </section>
+
+    <section class="report-sheet">
+      <div class="report-section-head"><span>01</span><div><p>STARTING POINT</p><h2>Your Profile</h2></div></div>
+      <div class="report-profile-grid">
+        <div class="report-profile-visual"><div class="report-avatar" id="reportAvatar">L</div><h3 id="profileTitle">Your starting profile</h3><p id="profileDescription"></p></div>
+        <div class="report-stat-grid">
+          <div><span>Primary goal</span><strong id="rGoal">—</strong></div>
+          <div><span>Current activity</span><strong id="rActivity">—</strong></div>
+          <div><span>Workout setting</span><strong id="rLocation">—</strong></div>
+          <div><span>Available time</span><strong id="rTime">—</strong></div>
+          <div><span>Equipment</span><strong id="rEquipment">—</strong></div>
+          <div><span>Main barrier</span><strong id="rBarrier">—</strong></div>
+        </div>
+      </div>
+      <div class="report-callout"><strong>Your first priority</strong><p id="priorityText"></p></div>
+    </section>
+
+    <section class="report-sheet">
+      <div class="report-section-head"><span>02</span><div><p>KNOW YOUR NUMBERS</p><h2>Calories & Energy</h2></div></div>
+      <div class="report-big-number"><strong id="rMaintenance">—</strong><span>estimated maintenance calories / day</span></div>
+      <div class="report-stat-grid four">
+        <div><span>BMR</span><strong id="rBmr">—</strong></div>
+        <div><span>Weight-loss range</span><strong id="rLoss">—</strong></div>
+        <div><span>Muscle-gain range</span><strong id="rGain">—</strong></div>
+        <div><span>Formula</span><strong id="rFormula">—</strong></div>
+      </div>
+      <div class="report-explainer"><h3>How to use this page</h3><p id="calorieGuidance"></p></div>
+      <p class="report-disclaimer">These values are estimates for general wellness planning. Real energy needs vary and may require adjustment based on progress, hunger, energy, training, health conditions, medications, and professional guidance.</p>
+    </section>
+
+    <section class="report-sheet">
+      <div class="report-section-head"><span>03</span><div><p>NUTRITION</p><h2>Protein & Daily Focus</h2></div></div>
+      <div class="report-big-number"><strong id="rProtein">—</strong><span>grams of protein / day</span></div>
+      <div class="report-stat-grid three">
+        <div><span>Per meal</span><strong id="rPerMeal">—</strong></div>
+        <div><span>Nutrition focus</span><strong id="rNutrition">—</strong></div>
+        <div><span>Feedings/day</span><strong id="rMeals">—</strong></div>
+      </div>
+      <div class="report-action-list" id="nutritionActions"></div>
+      <p class="report-disclaimer">If you have kidney disease, pregnancy, a clinician-directed diet, or another condition that affects protein or calorie needs, use individualized professional guidance.</p>
+    </section>
+
+    <section class="report-sheet">
+      <div class="report-section-head"><span>04</span><div><p>DAILY MOVEMENT</p><h2>Walking Target</h2></div></div>
+      <div class="report-big-number"><strong id="rSteps">—</strong><span>suggested daily steps</span></div>
+      <div class="report-stat-grid three">
+        <div><span>Baseline</span><strong id="rBaseline">—</strong></div>
+        <div><span>Example distance</span><strong id="rMiles">—</strong></div>
+        <div><span>Example time</span><strong id="rWalkMinutes">—</strong></div>
+      </div>
+      <div class="report-callout"><strong>Walking strategy</strong><p id="walkingStrategy"></p></div>
+      <div class="report-action-list">
+        <div><span>1</span><p>Break the target into smaller walks if one long walk is unrealistic.</p></div>
+        <div><span>2</span><p>Use the same route or time block often enough to make walking automatic.</p></div>
+        <div><span>3</span><p>Increase gradually when the current target feels comfortable and repeatable.</p></div>
+      </div>
+    </section>
+
+    <section class="report-sheet">
+      <div class="report-section-head"><span>05</span><div><p>TRAINING</p><h2>Your Workout Structure</h2></div></div>
+      <div class="report-stat-grid four">
+        <div><span>Plan type</span><strong id="rPlanType">—</strong></div>
+        <div><span>Training days</span><strong id="rTrainingDays">—</strong></div>
+        <div><span>Session time</span><strong id="rSessionTime">—</strong></div>
+        <div><span>Training goal</span><strong id="rTrainingGoal">—</strong></div>
+      </div>
+      <div id="reportWorkoutList" class="report-workout-list"></div>
+      <div class="report-callout"><strong>Progression rule</strong><p id="progressionRule"></p></div>
+    </section>
+
+    <section class="report-sheet">
+      <div class="report-section-head"><span>06</span><div><p>HOME GYM</p><h2>Equipment Recommendations</h2></div></div>
+      <div class="report-package-summary">
+        <div><span>Good</span><strong id="goodPrice">—</strong></div>
+        <div><span>Better</span><strong id="betterPrice">—</strong></div>
+        <div><span>Best</span><strong id="bestPrice">—</strong></div>
+      </div>
+      <div id="reportEquipmentList" class="report-equipment-list"></div>
+      <div class="report-callout"><strong>Buying rule</strong><p>Buy equipment to solve an actual training limitation. Do not buy gear simply because it is popular. Versatility, storage, noise, and your real workout habits matter more.</p></div>
+    </section>
+
+    <section class="report-sheet">
+      <div class="report-section-head"><span>07</span><div><p>4-WEEK STARTER PLAN</p><h2>Week 1 — Establish the Routine</h2></div></div>
+      <div class="calendar-grid" id="week1"></div>
+      <div class="report-week-focus"><strong>Week 1 focus:</strong><span>Learn the routine, keep intensity manageable, and prove that the schedule fits real life.</span></div>
+      <div class="week-checklist"><label><input type="checkbox"> Completed planned workouts</label><label><input type="checkbox"> Hit walking target most days</label><label><input type="checkbox"> Practiced nutrition focus</label><label><input type="checkbox"> Wrote one adjustment for next week</label></div>
+    </section>
+
+    <section class="report-sheet">
+      <div class="report-section-head"><span>08</span><div><p>4-WEEK STARTER PLAN</p><h2>Week 2 — Build Consistency</h2></div></div>
+      <div class="calendar-grid" id="week2"></div>
+      <div class="report-week-focus"><strong>Week 2 focus:</strong><span>Repeat before adding complexity. Improve form, routine, and follow-through.</span></div>
+      <div class="week-checklist"><label><input type="checkbox"> Repeated core workout structure</label><label><input type="checkbox"> Added a small amount of volume if ready</label><label><input type="checkbox"> Kept movement on busy days</label><label><input type="checkbox"> Reviewed energy and soreness</label></div>
+    </section>
+
+    <section class="report-sheet">
+      <div class="report-section-head"><span>09</span><div><p>4-WEEK STARTER PLAN</p><h2>Week 3 — Progress Carefully</h2></div></div>
+      <div class="calendar-grid" id="week3"></div>
+      <div class="report-week-focus"><strong>Week 3 focus:</strong><span>Add a rep, small resistance increase, or a little time only where the current version feels controlled.</span></div>
+      <div class="week-checklist"><label><input type="checkbox"> Progressed at least one exercise appropriately</label><label><input type="checkbox"> Kept recovery days easier</label><label><input type="checkbox"> Stayed near calorie/protein targets</label><label><input type="checkbox"> Tracked one meaningful progress marker</label></div>
+    </section>
+
+    <section class="report-sheet">
+      <div class="report-section-head"><span>10</span><div><p>4-WEEK STARTER PLAN</p><h2>Week 4 — Review & Reset</h2></div></div>
+      <div class="calendar-grid" id="week4"></div>
+      <div class="report-week-focus"><strong>Week 4 focus:</strong><span>Finish the month without forcing intensity, then decide what should stay, change, or progress next.</span></div>
+      <div class="week-checklist"><label><input type="checkbox"> Completed month review</label><label><input type="checkbox"> Identified the easiest habit to maintain</label><label><input type="checkbox"> Identified the biggest ongoing barrier</label><label><input type="checkbox"> Chose one next-month progression</label></div>
+    </section>
+
+    <section class="report-sheet">
+      <div class="report-section-head"><span>11</span><div><p>PROGRESS</p><h2>4-Week Tracker</h2></div></div>
+      <table class="progress-table">
+        <thead><tr><th>Week</th><th>Workouts</th><th>Avg. Steps</th><th>Energy 1–5</th><th>Consistency 1–5</th><th>Notes</th></tr></thead>
+        <tbody><tr><td>1</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>3</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>4</td><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+      </table>
+      <div class="report-writing-box"><strong>What improved?</strong></div>
+      <div class="report-writing-box"><strong>What got in the way?</strong></div>
+      <div class="report-writing-box"><strong>What should I repeat next month?</strong></div>
+    </section>
+
+    <section class="report-sheet">
+      <div class="report-section-head"><span>12</span><div><p>NEXT STEPS</p><h2>Your Next 30 Days</h2></div></div>
+      <div class="report-next-steps" id="nextSteps"></div>
+      <div class="report-callout"><strong>Your LiveFit rule</strong><p id="livefitRule"></p></div>
+      <div class="report-final-note">
+        <span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span>
+        <h3>Stay organized. Keep moving. Build what works for you.</h3>
+        <p>This roadmap is for general education and wellness planning. It is not medical care, diagnosis, physical therapy, or individualized treatment.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+  (() => {
+    const state=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+    const labels={
+      male:'Male',female:'Female',slim:'Slim',fit:'Fit',muscular:'Muscular',stocky:'Stocky',heavy:'Heavy',
+      weight:'Lose Weight',muscle:'Build Muscle',fitness:'Improve Fitness',mobility:'Move Better',energy:'More Energy',tone:'Tone & Shape',
+      sedentary:'Mostly Sedentary',light:'Lightly Active',active:'Active','very-active':'Very Active',
+      home:'Home',gym:'Gym',outdoors:'Outdoors',mixed:'Mixed',none:'No equipment',bands:'Resistance bands',dumbbells:'Dumbbells',bench:'Dumbbells + bench','full-gym':'Full gym',
+      '15':'10–15 min','30':'20–30 min','45':'35–45 min','60':'60+ min',
+      portions:'Portion control',protein:'Protein',meals:'Meal planning',budget:'Healthy on a budget',snacks:'Better snacks',all:'Broad nutrition support',
+      time:'Not enough time',motivation:'Motivation',joints:'Joint discomfort',beginner:'Not sure what to do',consistency:'Consistency',equipment:'Limited equipment'
+    };
+    const label=v=>labels[v]||v||'—';
+    const number=n=>Number(n||0).toLocaleString();
+    const goal=state.goal||'fitness';
+
+    document.getElementById('generatedDate').textContent=new Date().toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
+    document.getElementById('coverGoal').textContent=state.goal?label(state.goal).toUpperCase():'PERSONALIZED FOR YOU';
+    document.getElementById('coverTitle').textContent=state.goal?label(state.goal)+': Your LiveFit Roadmap':'Build Your Fit. Live Better.';
+    document.getElementById('reportAvatar').textContent=state.sex==='female'?'F':state.sex==='male'?'M':'L';
+    document.getElementById('profileTitle').textContent=(state.profile?label(state.profile)+' starting profile':'Your starting profile');
+    document.getElementById('profileDescription').textContent='This is a planning profile, not a diagnosis or body-fat measurement.';
+    document.getElementById('rGoal').textContent=label(state.goal);
+    document.getElementById('rActivity').textContent=label(state.activity);
+    document.getElementById('rLocation').textContent=label(state.location);
+    document.getElementById('rTime').textContent=label(state.time);
+    document.getElementById('rEquipment').textContent=label(state.equipment);
+    document.getElementById('rBarrier').textContent=label(state.barrier);
+
+    const priorities={
+      time:'Protect a short minimum workout so busy days do not become zero-movement days.',
+      motivation:'Measure completed actions instead of waiting to feel motivated.',
+      joints:'Favor comfortable, lower-impact movement and progress only when symptoms stay controlled.',
+      beginner:'Repeat a simple routine long enough to learn it before adding complexity.',
+      consistency:'Use fixed days and times whenever possible so training becomes a routine.',
+      equipment:'Use versatile bodyweight or compact equipment before buying more gear.'
+    };
+    document.getElementById('priorityText').textContent=priorities[state.barrier]||'Build consistency first, then increase difficulty gradually.';
+
+    const c=state.calorieEstimate;
+    if(c){
+      document.getElementById('rMaintenance').textContent=number(c.maintenance);
+      document.getElementById('rBmr').textContent=number(c.bmr);
+      document.getElementById('rLoss').textContent=c.loss?number(c.loss[0])+'–'+number(c.loss[1]):'—';
+      document.getElementById('rGain').textContent=c.gain?number(c.gain[0])+'–'+number(c.gain[1]):'—';
+      const formulas={mifflin:'Mifflin–St Jeor',harris:'Revised Harris–Benedict',katch:'Katch–McArdle'};
+      document.getElementById('rFormula').textContent=formulas[c.formula]||'Mifflin–St Jeor';
+    }
+    document.getElementById('calorieGuidance').textContent=
+      goal==='weight'?'Use the deficit range as a starting estimate, not a challenge to eat as little as possible. Track your real trend and adjust gradually.':
+      goal==='muscle'?'Start with a small surplus rather than a large one, and pair it with progressive resistance training.':
+      'Maintenance is a useful starting point while you establish consistent activity and monitor how your body responds.';
+
+    const p=state.proteinEstimate;
+    if(p){
+      document.getElementById('rProtein').textContent=p.low+'–'+p.high;
+      document.getElementById('rPerMeal').textContent=p.perMeal?p.perMeal[0]+'–'+p.perMeal[1]+' g':'—';
+      document.getElementById('rMeals').textContent=p.meals||'—';
+    }
+    document.getElementById('rNutrition').textContent=label(state.nutrition);
+    const nutritionTips={
+      portions:['Build meals around a clear protein source first.','Use a consistent plate or bowl size when possible.','Pause before seconds and check whether you are still physically hungry.'],
+      protein:['Choose a protein source at each main meal.','Spread protein across 3–5 feedings rather than saving it all for dinner.','Keep two easy protein options available for busy days.'],
+      meals:['Choose 2–3 repeatable breakfasts/lunches.','Plan dinner before the day becomes busy.','Keep a backup meal for nights when cooking falls apart.'],
+      budget:['Use eggs, beans, lentils, yogurt, canned fish, frozen vegetables, and bulk staples strategically.','Build meals from repeatable low-cost ingredients.','Compare price per serving rather than package price alone.'],
+      snacks:['Pair protein or fiber with snacks when possible.','Pre-portion calorie-dense snack foods.','Keep one easy lower-calorie option visible and ready.'],
+      all:['Start with protein consistency.','Plan one repeatable breakfast and lunch.','Improve portions before chasing perfect foods.']
+    };
+    document.getElementById('nutritionActions').innerHTML=(nutritionTips[state.nutrition]||nutritionTips.all).map((t,i)=>'<div><span>'+(i+1)+'</span><p>'+t+'</p></div>').join('');
+
+    const w=state.walkingEstimate;
+    if(w){
+      document.getElementById('rSteps').textContent=number(w.targetSteps);
+      document.getElementById('rBaseline').textContent=number(w.baselineSteps||0)+' / day';
+      document.getElementById('rMiles').textContent=w.miles?Number(w.miles).toFixed(1)+' mi':'—';
+      document.getElementById('rWalkMinutes').textContent=w.minutes?number(w.minutes)+' min':'—';
+    }
+    document.getElementById('walkingStrategy').textContent=
+      state.barrier==='time'?'Use short walking blocks during the day. Three 10-minute walks can be easier to protect than one 30-minute block.':
+      state.barrier==='joints'?'Keep the pace comfortable and prioritize symptom response over speed or step count.':
+      'Treat the target as a repeatable baseline. Once it feels easy for a full week, increase modestly rather than jumping suddenly.';
+
+    const wp=state.workoutPlan;
+    if(wp){
+      const s=wp.settings||{};
+      document.getElementById('rPlanType').textContent=wp.mode==='week'?'Weekly plan':'Single workout';
+      document.getElementById('rTrainingDays').textContent=wp.mode==='week'?(s.days||wp.days?.length||3)+' days/week':'1 session';
+      document.getElementById('rSessionTime').textContent=label(String(s.time||state.time||30));
+      document.getElementById('rTrainingGoal').textContent=label(s.goal||state.goal);
+      let names=[];
+      if(wp.mode==='week'&&wp.days?.length) names=wp.days[0].exercises||[];
+      else names=wp.exercises||[];
+      document.getElementById('reportWorkoutList').innerHTML=names.slice(0,8).map((n,i)=>'<div><span>'+String(i+1).padStart(2,'0')+'</span><strong>'+n+'</strong><small>Use the generator for current sets, reps, and alternatives.</small></div>').join('');
+    }else{
+      document.getElementById('reportWorkoutList').innerHTML='<div class="report-missing">Complete the Workout Generator to add your exercise list here.</div>';
+    }
+    document.getElementById('progressionRule').textContent=
+      state.barrier==='joints'?'Increase comfortable range, reps, or time before adding impact or heavy resistance.':
+      goal==='muscle'?'When the top of the rep range feels controlled with good form, add a small amount of resistance or one rep per set.':
+      'Progress one variable at a time: reps, resistance, total time, or difficulty. Do not increase everything at once.';
+
+    const em=state.equipmentMatcher;
+    if(em?.packages){
+      document.getElementById('goodPrice').textContent='$'+number(em.packages.good?.total);
+      document.getElementById('betterPrice').textContent='$'+number(em.packages.better?.total);
+      document.getElementById('bestPrice').textContent='$'+number(em.packages.best?.total);
+      const items=em.packages.better?.items||em.packages.good?.items||[];
+      document.getElementById('reportEquipmentList').innerHTML=items.slice(0,6).map((x,i)=>'<div><span>'+String(i+1).padStart(2,'0')+'</span><div><strong>'+x.name+'</strong><p>'+x.why+'</p></div><b>$'+number(x.price)+'</b></div>').join('');
+    }else{
+      document.getElementById('reportEquipmentList').innerHTML='<div class="report-missing">Complete the Home Gym Equipment Matcher to add recommendations here.</div>';
+    }
+
+    const trainDays=wp?.mode==='week'?(wp.settings?.days||wp.days?.length||3):3;
+    const walkingText=w?.targetSteps?number(w.targetSteps)+' steps':'Walk';
+    function weekPattern(week){
+      const patterns={
+        2:['Train','Move','Recover','Train','Move','Recover','Reset'],
+        3:['Train','Move','Train','Recover','Train','Move','Reset'],
+        4:['Train','Train','Move','Train','Train','Recover','Reset'],
+        5:['Train','Train','Move','Train','Train','Train','Reset']
+      };
+      const base=patterns[Math.min(5,Math.max(2,trainDays))]||patterns[3];
+      return base.map((x,i)=>({day:['MON','TUE','WED','THU','FRI','SAT','SUN'][i],action:x==='Move'?walkingText:x,week}));
+    }
+    [1,2,3,4].forEach(n=>{
+      document.getElementById('week'+n).innerHTML=weekPattern(n).map(x=>'<div><b>'+x.day+'</b><span>'+x.action+'</span><small>'+(x.action==='Train'?'Follow generated workout':x.action===walkingText?'Hit movement target':x.action==='Recover'?'Easy movement + mobility':'Review & prepare')+'</small></div>').join('');
+    });
+
+    const nextByGoal={
+      weight:['Complete most planned workouts before adding more training days.','Use your calorie range as an estimate and review your trend after 2–3 weeks.','Keep protein and daily movement consistent before making aggressive changes.'],
+      muscle:['Prioritize progressive resistance training and adequate recovery.','Stay near the middle of your protein range consistently.','Increase load or reps gradually when technique remains strong.'],
+      fitness:['Balance strength, walking/cardio, and recovery across the week.','Progress duration or difficulty slowly enough that consistency stays high.','Use energy and performance as progress measures, not only body weight.'],
+      mobility:['Use frequent comfortable movement rather than occasional hard sessions.','Track which movements feel easier after four weeks.','Increase range and control before adding load or speed.'],
+      energy:['Protect sleep, meals, and moderate movement before adding intense training.','Use short sessions on low-energy days rather than skipping automatically.','Look for improved daily energy and consistency as primary markers.'],
+      tone:['Keep resistance training consistent while supporting it with daily movement and nutrition structure.','Use gradual progression rather than chasing soreness.','Track strength, measurements, clothing fit, or photos if useful to you.']
+    };
+    document.getElementById('nextSteps').innerHTML=(nextByGoal[goal]||nextByGoal.fitness).map((t,i)=>'<article><span>'+String(i+1).padStart(2,'0')+'</span><p>'+t+'</p></article>').join('');
+    document.getElementById('livefitRule').textContent=priorities[state.barrier]||'Choose the version of the plan you can repeat. Consistency beats a perfect plan you cannot sustain.';
+
+    document.getElementById('printRoadmap').addEventListener('click',()=>window.print());
+  })();
+  </script>
+</body>
+</html>
