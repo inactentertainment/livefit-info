@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Generated personalized LiveFit roadmap.">
+  <meta name="description" content="Generated personalized LiveFit roadmap."><meta name="robots" content="noindex,nofollow">
   <title>My LiveFit Personal Roadmap</title>
-  <link rel="stylesheet" href="css/style.css">\n  <link rel="stylesheet" href="css/body-images.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/body-images.css">
 </head>
 <body class="report-page">
   <header class="report-toolbar">
@@ -167,8 +168,17 @@
 
   <script src="js/main.js"></script>
   <script>
+    if(!window.LiveFit.hasRoadmapAccess()){
+      document.getElementById('roadmapReport').setAttribute('aria-hidden','true');
+      const lock=document.createElement('div');
+      lock.className='qa-lock';
+      lock.innerHTML='<div class="qa-lock-card"><p class="eyebrow">ROADMAP LOCKED</p><h1>Complete the checkout review first.</h1><p>Payment is not live yet. During QA, the funnel grants a temporary local preview permission so we can test the same locked flow safely.</p><a class="btn btn-primary" href="roadmap.html">Go to Roadmap Funnel</a></div>';
+      document.body.appendChild(lock);
+    }
+  </script>
+  <script>
   (() => {
-    const state=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+    const state=window.LiveFit?.safePlan?.()||{};
     const labels={
       male:'Male',female:'Female',slim:'Slim',fit:'Fit',muscular:'Muscular',stocky:'Stocky',heavy:'Heavy',
       weight:'Lose Weight',muscle:'Build Muscle',fitness:'Improve Fitness',mobility:'Move Better',energy:'More Energy',tone:'Tone & Shape',
@@ -185,7 +195,8 @@
     document.getElementById('generatedDate').textContent=new Date().toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
     document.getElementById('coverGoal').textContent=state.goal?label(state.goal).toUpperCase():'PERSONALIZED FOR YOU';
     document.getElementById('coverTitle').textContent=state.goal?label(state.goal)+': Your LiveFit Roadmap':'Build Your Fit. Live Better.';
-    const reportBody=document.getElementById('reportBodyImage');\n    reportBody.className='body-sprite '+(state.sex||'male')+' '+(state.profile||'fit');
+    const reportBody=document.getElementById('reportBodyImage');
+    reportBody.className='body-sprite '+(state.sex||'male')+' '+(state.profile||'fit');
     document.getElementById('profileTitle').textContent=(state.profile?label(state.profile)+' starting profile':'Your starting profile');
     document.getElementById('profileDescription').textContent='This is a planning profile, not a diagnosis or body-fat measurement.';
     document.getElementById('rGoal').textContent=label(state.goal);
