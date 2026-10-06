@@ -115,7 +115,7 @@
   <script src="../js/main.js"></script>
   <script>
     (() => {
-      const saved=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+      const saved=window.LiveFit?.safePlan?.()||{};
       const weightInput=document.getElementById('weight');
       const goalSelect=document.getElementById('goal');
       const caloriesInput=document.getElementById('calories');
