@@ -145,7 +145,7 @@
   <script src="../js/main.js"></script>
   <script>
     (() => {
-      const saved=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+      const saved=window.LiveFit?.safePlan?.()||{};
       const feet=document.getElementById('feet');
       const inches=document.getElementById('inches');
       const weight=document.getElementById('weight');
