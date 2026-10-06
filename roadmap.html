@@ -156,7 +156,7 @@
 
           <button class="btn btn-primary shimmer checkout-demo-btn" id="demoCheckout" disabled>Continue to Secure Checkout</button>
           <p class="checkout-status" id="checkoutStatus">Payment is intentionally disabled in this build.</p>
-          <a class="btn btn-secondary roadmap-test-link page-link" href="roadmap-report.html">Open Generated Roadmap for Testing</a>
+          <a class="btn btn-secondary roadmap-test-link page-link" href="roadmap-report.html">Open Generated Roadmap (unlock required)</a>
         </section>
 
         <aside class="checkout-side">
@@ -183,7 +183,7 @@
   <script src="js/main.js"></script>
   <script>
   (() => {
-    const state=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+    const state=window.LiveFit?.safePlan?.()||{};
     const labels={
       weight:'Lose Weight',muscle:'Build Muscle',fitness:'Improve Fitness',mobility:'Move Better',energy:'More Energy',tone:'Tone & Shape',
       slim:'Slim',fit:'Fit',muscular:'Muscular',stocky:'Stocky',heavy:'Heavy',
@@ -255,10 +255,12 @@
     email.addEventListener('input',validate);
     consent.addEventListener('change',validate);
     button.addEventListener('click',()=>{
-      localStorage.setItem('livefit-roadmap-checkout',JSON.stringify({email:email.value,price:7,selectedAt:new Date().toISOString()}));
-      document.getElementById('checkoutStatus').textContent='Saved for testing ✓ Payment is still disabled until the next build.';
-      button.textContent='Saved ✓';
+      localStorage.setItem('livefit-roadmap-checkout',JSON.stringify({email:email.value,price:7,selectedAt:new Date().toISOString(),mode:'qa-preview'}));
+      window.LiveFit.grantQAPreview(email.value);
+      document.getElementById('checkoutStatus').textContent='QA access granted ✓ No payment was charged.';
+      button.textContent='Opening Roadmap…';
       button.disabled=true;
+      setTimeout(()=>{location.href='success.html'},350);
     });
   })();
   </script>
