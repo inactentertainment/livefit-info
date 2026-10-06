@@ -96,12 +96,14 @@
     lastFocused=document.activeElement;
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
     (closePlan||modal.querySelector('a,button'))?.focus();
   };
   const closeModal=()=>{
     if(!modal) return;
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
     lastFocused?.focus?.();
   };
   if(closePlan) closePlan.addEventListener('click',closeModal);
@@ -168,8 +170,23 @@
     if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
     const href=link.getAttribute('href');
     if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto:')) return;
+
+    // Mobile browsers were occasionally preserving the transformed page-transition
+    // layer during scroll/navigation, which could visually shrink or offset the page.
+    // Navigate directly on mobile/coarse-pointer devices; keep the swoop on desktop only.
+    const mobileLike=window.matchMedia('(max-width: 820px), (pointer: coarse)').matches;
+    if(mobileLike){
+      e.preventDefault();
+      window.location.assign(href);
+      return;
+    }
+
     e.preventDefault();
     document.body.classList.add('page-leaving');
-    setTimeout(()=>{window.location.href=href},330);
+    const safetyTimer=setTimeout(()=>{window.location.assign(href)},330);
+    window.addEventListener('pageshow',()=>{
+      clearTimeout(safetyTimer);
+      document.body.classList.remove('page-leaving');
+    },{once:true});
   }));
 })();
