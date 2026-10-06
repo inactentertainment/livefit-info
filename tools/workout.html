@@ -143,7 +143,7 @@
   <script src="../js/main.js"></script>
   <script>
   (() => {
-    const saved=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+    const saved=window.LiveFit?.safePlan?.()||{};
     const form=document.getElementById('workoutForm');
     const goal=document.getElementById('goal');
     const level=document.getElementById('level');
