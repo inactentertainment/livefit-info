@@ -107,7 +107,7 @@
   <script src="../js/main.js"></script>
   <script>
     (() => {
-      const saved=JSON.parse(localStorage.getItem('livefit-plan')||'{}');
+      const saved=window.LiveFit?.safePlan?.()||{};
       const sex=document.getElementById('sex');
       if(saved.sex==='male'||saved.sex==='female') sex.value=saved.sex;
       const activityMap={sedentary:'1.2',light:'1.375',active:'1.55','very-active':'1.725'};
