@@ -1,5 +1,12 @@
 (() => {
   const root=document.documentElement;
+  if(!document.querySelector('link[rel="icon"]')){
+    const icon=document.createElement('link');
+    icon.rel='icon';
+    icon.type='image/svg+xml';
+    icon.href=(location.pathname.includes('/tools/')?'../':'')+'assets/favicon.svg';
+    document.head.appendChild(icon);
+  }
 
   // Centralized safe local data helpers. A malformed browser value should never break a LiveFit page.
   window.LiveFit={
