@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="LiveFit long-form fitness articles for adults 40+, 50+, 60+, and beyond.">
+  <title>Articles | LiveFit.info</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/livefit-enhancements.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand page-link" href="index.html"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></a>
+    <div class="personal-controls"><button class="round-control" id="themeToggle" aria-label="Switch light and dark mode">◐</button></div>
+    <nav class="desktop-nav" aria-label="Article navigation">
+      <a href="index.html#tools" data-label="Tools" aria-label="Tools"><svg class="nav-svg" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"></path></svg></a>
+      <a href="plan.html" data-label="My Plan" aria-label="My Plan"><svg class="nav-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2"></circle></svg></a>
+      <a href="articles.html" data-label="Articles" aria-label="Articles"><svg class="nav-svg" viewBox="0 0 24 24"><path d="M5 4h14v16H5z"></path><path d="M8 8h8M8 12h8M8 16h5"></path></svg></a>
+    </nav>
+  </header>
+
+  <main class="articles-shell">
+    <div class="section-heading">
+      <p class="eyebrow">LIVEFIT LONG-FORM GUIDES</p>
+      <h1>Fitness after 40 deserves its own playbook.</h1>
+      <p>Twenty practical guides covering strength, cardio, mobility, nutrition, recovery, men’s fitness, women’s fitness, home training, and active aging.</p>
+    </div>
+
+    <div class="article-filters" aria-label="Filter articles">
+      <button class="article-filter active" data-filter="all">All 20</button>
+      <button class="article-filter" data-filter="strength">Strength</button>
+      <button class="article-filter" data-filter="cardio">Cardio</button>
+      <button class="article-filter" data-filter="mobility">Mobility</button>
+      <button class="article-filter" data-filter="nutrition">Nutrition</button>
+      <button class="article-filter" data-filter="women">Women</button>
+      <button class="article-filter" data-filter="men">Men</button>
+      <button class="article-filter" data-filter="60+">60+</button>
+      <button class="article-filter" data-filter="70+">70+</button>
+    </div>
+
+    <div class="article-grid" id="articleGrid"></div>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/articles.js"></script>
+  <script src="js/livefit-enhancements.js"></script>
+  <script>
+    (() => {
+      const grid=document.getElementById('articleGrid');
+      const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      grid.innerHTML=window.LiveFitArticles.map((a,i)=>`
+        <a class="article-card reveal is-visible" href="article.html?id=${encodeURIComponent(a.id)}" data-category="${esc(a.category)}" data-audience="${esc(a.audience)}">
+          <span class="article-tag">${esc(a.category)} • ${esc(a.audience)}</span>
+          <h3>${esc(a.title)}</h3>
+          <p>${esc(a.deck)}</p>
+          <span class="article-meta">Guide ${String(i+1).padStart(2,'0')} • interactive reading tools</span>
+          <span class="article-arrow">→</span>
+        </a>`).join('');
+    })();
+  </script>
+</body>
+</html>
