@@ -56,3 +56,29 @@
 .body-sprite.female.very-heavy{
   background-position-y:96%!important;
 }
+
+
+/* Final isolated body-profile assets: one file per figure to eliminate sprite bleed/crop drift. */
+.body-sprite{
+  background-size:100% 100%!important;
+  background-position:center!important;
+}
+.body-sprite.male.slim{background-image:url("../assets/body-profiles/male-slim.svg")!important}
+.body-sprite.male.average{background-image:url("../assets/body-profiles/male-average.svg")!important}
+.body-sprite.male.fit{background-image:url("../assets/body-profiles/male-fit.svg")!important}
+.body-sprite.male.soft-build{background-image:url("../assets/body-profiles/male-soft-build.svg")!important}
+.body-sprite.male.muscular{background-image:url("../assets/body-profiles/male-muscular.svg")!important}
+.body-sprite.male.stocky{background-image:url("../assets/body-profiles/male-stocky.svg")!important}
+.body-sprite.male.heavy{background-image:url("../assets/body-profiles/male-heavy.svg")!important}
+.body-sprite.male.very-heavy{background-image:url("../assets/body-profiles/male-very-heavy.svg")!important}
+.body-sprite.male.large{background-image:url("../assets/body-profiles/male-heavy.svg")!important}
+
+.body-sprite.female.slim{background-image:url("../assets/body-profiles/female-slim.svg")!important}
+.body-sprite.female.average{background-image:url("../assets/body-profiles/female-average.svg")!important}
+.body-sprite.female.fit{background-image:url("../assets/body-profiles/female-fit.svg")!important}
+.body-sprite.female.soft-build{background-image:url("../assets/body-profiles/female-soft-build.svg")!important}
+.body-sprite.female.muscular{background-image:url("../assets/body-profiles/female-muscular.svg")!important}
+.body-sprite.female.stocky{background-image:url("../assets/body-profiles/female-stocky.svg")!important}
+.body-sprite.female.heavy{background-image:url("../assets/body-profiles/female-heavy.svg")!important}
+.body-sprite.female.very-heavy{background-image:url("../assets/body-profiles/female-very-heavy.svg")!important}
+.body-sprite.female.large{background-image:url("../assets/body-profiles/female-heavy.svg")!important}
