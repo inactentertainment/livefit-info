@@ -92,3 +92,66 @@
 @media(max-width:960px){.article-preview-grid,.article-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.article-preview-grid,.article-grid{grid-template-columns:1fr}.article-preview-section,.articles-shell{padding:60px 16px}}
 @media(prefers-reduced-motion:reduce){.tool-icon svg,.category-motion-icon svg,.ad-art-marker span{animation:none!important}}
+
+
+/* Refinement: locked navigation, IE Music branding, stronger subtle motion, article SVG banners */
+@media(min-width:821px){
+  .desktop-nav{gap:7px}
+  .desktop-nav a{width:40px!important;height:40px!important}
+  .desktop-nav a:before{font-size:10px!important;bottom:47px!important}
+}
+.ie-music-logo{
+  width:48px;height:48px;border-radius:50%;background:#050505;
+  overflow:hidden;padding:0;border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 0 0 1px rgba(214,58,11,.2),0 8px 20px rgba(0,0,0,.35)
+}
+.ie-music-logo img{width:100%;height:100%;object-fit:contain;display:block}
+.ie-music-mark strong{font-size:17px;letter-spacing:.01em}
+.music-ai-note{margin:10px 0 0;color:var(--muted);font-size:11px;line-height:1.45}
+.music-ai-note b{color:var(--orange2)}
+.category-motion-icon{position:relative;overflow:visible}
+.category-motion-icon:after{
+  content:"";position:absolute;inset:-5px;border-radius:20px;
+  border:1px solid rgba(214,58,11,.22);opacity:.35;
+  animation:lfIconHalo 4.8s ease-in-out infinite
+}
+.category-strip article:nth-child(1) .category-motion-icon{animation:lfFloat 4.8s ease-in-out infinite}
+.category-strip article:nth-child(2) .category-motion-icon{animation:lfGearNudge 5.2s ease-in-out infinite}
+.category-strip article:nth-child(3) .category-motion-icon{animation:lfVideoNudge 4.6s ease-in-out infinite}
+@keyframes lfIconHalo{0%,100%{transform:scale(.94);opacity:.18}50%{transform:scale(1.08);opacity:.48}}
+@keyframes lfGearNudge{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(4deg) translateY(-3px)}}
+@keyframes lfVideoNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+
+.article-visual{
+  height:118px;margin:-24px -24px 20px;border-bottom:1px solid var(--line);
+  background:linear-gradient(135deg,#080808,#17100d);
+  display:grid;place-items:center;overflow:hidden;position:relative
+}
+.article-visual:before{
+  content:"";position:absolute;width:170px;height:170px;border-radius:50%;
+  border:1px solid rgba(214,58,11,.18);right:-55px;top:-85px
+}
+.article-visual svg{
+  width:min(170px,72%);height:78px;stroke:var(--orange2);fill:none;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;overflow:visible
+}
+.article-visual .lift{animation:lfLift 4.8s ease-in-out infinite;transform-origin:center}
+.article-visual .walk-leg-a{animation:lfLegA 3.8s ease-in-out infinite;transform-origin:50% 20%}
+.article-visual .walk-leg-b{animation:lfLegB 3.8s ease-in-out infinite;transform-origin:50% 20%}
+.article-visual .pulse-ring{animation:lfPulseRing 4.6s ease-in-out infinite;transform-origin:center}
+.article-visual .balance{animation:lfBalance 5s ease-in-out infinite;transform-origin:50% 90%}
+.article-visual .plate{animation:lfPlate 5.2s ease-in-out infinite;transform-origin:center}
+.article-visual .breath{animation:lfBreath 5.6s ease-in-out infinite;transform-origin:center}
+@keyframes lfLift{0%,100%{transform:translateY(7px)}50%{transform:translateY(-7px)}}
+@keyframes lfLegA{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(9deg)}}
+@keyframes lfLegB{0%,100%{transform:rotate(9deg)}50%{transform:rotate(-8deg)}}
+@keyframes lfPulseRing{0%,100%{transform:scale(.9);opacity:.45}50%{transform:scale(1.08);opacity:1}}
+@keyframes lfBalance{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+@keyframes lfPlate{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes lfBreath{0%,100%{transform:scale(.92)}50%{transform:scale(1.05)}}
+.reader-visual{height:160px;margin:-1px -1px 24px;border-radius:26px 26px 0 0}
+.reader-visual svg{height:100px;width:min(240px,75%)}
+@media(prefers-reduced-motion:reduce){
+  .category-motion-icon,.category-motion-icon:after,
+  .article-visual *{animation:none!important}
+}
