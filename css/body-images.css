@@ -1,24 +1,29 @@
-/* LiveFit body profiles — seven neutral visual starting points per sex. */
+/* LiveFit body profiles — eight neutral visual starting points per sex.
+   Final artwork is stored as separate 4x2 male/female sheets and cropped in CSS. */
 .body-sprite{
   display:block;
   width:100%;
-  max-width:118px;
-  aspect-ratio:140/204;
+  max-width:190px;
+  aspect-ratio:2/3;
   margin:0 auto 10px;
-  background-image:url("../assets/images/body-types-7.webp")!important;
   background-repeat:no-repeat!important;
-  background-size:700% 200%!important;
-  background-color:#111!important;
-  border-radius:10px;
+  background-size:400% 200%!important;
+  background-color:#101010!important;
+  border-radius:14px;
   filter:none!important;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+  box-shadow:0 8px 22px rgba(0,0,0,.28),inset 0 0 0 1px rgba(255,255,255,.05);
 }
-.body-sprite.slim{background-position-x:0%!important}
-.body-sprite.average{background-position-x:16.6667%!important}
-.body-sprite.fit{background-position-x:33.3333%!important}
-.body-sprite.muscular{background-position-x:50%!important}
-.body-sprite.stocky{background-position-x:66.6667%!important}
-.body-sprite.large{background-position-x:83.3333%!important}
-.body-sprite.heavy{background-position-x:100%!important}
-.body-sprite.male{background-position-y:0%!important}
-.body-sprite.female{background-position-y:100%!important}
+.body-sprite.male{background-image:url("../assets/images/body-types-male-8.webp")!important}
+.body-sprite.female{background-image:url("../assets/images/body-types-female-8.webp")!important}
+
+.body-sprite.slim{background-position:0% 0%!important}
+.body-sprite.average{background-position:33.3333% 0%!important}
+.body-sprite.fit{background-position:66.6667% 0%!important}
+.body-sprite.soft-build{background-position:100% 0%!important}
+.body-sprite.muscular{background-position:0% 100%!important}
+.body-sprite.stocky{background-position:33.3333% 100%!important}
+.body-sprite.heavy{background-position:66.6667% 100%!important}
+.body-sprite.very-heavy{background-position:100% 100%!important}
+
+/* Legacy saved profile fallback from the earlier seven-profile build. */
+.body-sprite.large{background-position:66.6667% 100%!important}
