@@ -1,13 +1,12 @@
 @import url("livefit-enhancements.css");
 
 /* LiveFit body profiles — eight neutral visual starting points per sex.
-   Artwork is stored as separate 4x2 male/female sheets. Each cell is 3:4,
-   so the selector must preserve that ratio to avoid edge bleed or clipped heads. */
+   Artwork is stored as separate 4x2 male/female sheets. Each source sheet is a true 4×2 grid with 2:3 cells. The selector preserves that exact ratio so neighboring cards never bleed in and heads/feet remain fully visible. */
 .body-sprite{
   display:block;
   width:100%;
   max-width:220px;
-  aspect-ratio:3/4;
+  aspect-ratio:2/3;
   margin:0 auto 12px;
   background-repeat:no-repeat!important;
   background-size:400% 200%!important;
