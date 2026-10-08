@@ -167,3 +167,47 @@ window.LiveFitWireArticlePlan=function(a,root){
     if(status)status.textContent='✓ Saved on this device.';
   });
 };
+
+window.LiveFitArticles.push(
+{id:"creatine-after-60",title:"Creatine After 60: What the New Research Actually Says",category:"strength nutrition trending",audience:"all 60+",deck:"Creatine is everywhere again. Here is what recent research suggests for older adults who also strength train.",focus:"creatine, resistance training, muscle strength, lean tissue, safety questions, and realistic expectations",starter:["Strength train 2–3 days","Track one strength marker","Review medications and health history","Prioritize hydration","Discuss supplements with a clinician when appropriate"]},
+{id:"glp1-muscle-preservation",title:"GLP-1 Weight Loss and Muscle: How to Protect Strength While Losing Weight",category:"strength nutrition trending",audience:"all 40+",deck:"Rapid weight loss can include lean tissue loss. Learn why resistance training and adequate nutrition matter.",focus:"GLP-1 medications, lean mass, resistance training, protein, body composition, and functional strength",starter:["Keep resistance training in the week","Prioritize protein-containing meals","Track strength, not only scale weight","Avoid crash-level training volume","Discuss nutrition concerns with your care team"]},
+{id:"weighted-vest-after-60",title:"Weighted Vests After 60: Useful Tool, Social-Media Trend, or Both?",category:"walking strength trending",audience:"all 60+",deck:"Weighted walking is popular, but older adults need a conservative approach to loading, balance, and progression.",focus:"weighted vests, walking, progressive loading, balance, bone-loading potential, and safety screening",starter:["Master unloaded walking first","Start very light if appropriate","Use short sessions","Watch balance and joint response","Progress slowly"]},
+{id:"power-training-after-50",title:"Power Training After 50: Why Moving a Little Faster Can Matter",category:"strength performance",audience:"all 50+",deck:"Strength is important, but the ability to produce force quickly also supports stairs, balance, and everyday reactions.",focus:"muscle power, safe intent to move quickly, strength foundations, function, and progression",starter:["Build a strength base","Use light-to-moderate loads","Move the lifting phase with intent","Keep technique controlled","Stop well before form breaks"]},
+{id:"vo2max-after-50",title:"VO₂ Max After 50: The Fitness Number Worth Understanding",category:"cardio longevity trending",audience:"all 50+",deck:"Cardiorespiratory fitness can tell you more than a step count alone. Learn what VO₂ max means and how to improve it.",focus:"cardiorespiratory fitness, aerobic base, intervals, walking, cycling, recovery, and wearable estimates",starter:["Build easy aerobic time","Add one controlled interval day","Track pace or effort","Repeat a simple route","Watch long-term trends"]},
+{id:"grip-strength-aging",title:"Grip Strength and Aging: What This Simple Test Can—and Cannot—Tell You",category:"strength longevity",audience:"all 50+",deck:"Grip strength is often used as a marker of function, but it is not a complete fitness score.",focus:"grip strength, functional fitness, pulling strength, carries, testing limits, and whole-body capacity",starter:["Practice loaded carries","Include pulling exercises","Train forearms indirectly","Retest under similar conditions","Track daily-life function too"]},
+{id:"sarcopenia-guide",title:"Sarcopenia: The Muscle-Loss Conversation Adults Over 60 Need to Know",category:"strength longevity trending",audience:"all 60+",deck:"Age-related muscle loss is not just about appearance. Strength, function, and resistance training matter.",focus:"sarcopenia, muscle strength, physical function, resistance training, gait, and independence",starter:["Strength train consistently","Include leg work","Practice sit-to-stand","Keep walking","Track function over time"]},
+{id:"zone2-after-40",title:"Zone 2 Cardio After 40: Useful Tool or Overhyped Fitness Buzzword?",category:"cardio trending",audience:"all 40+",deck:"Zone 2 can be useful, but you do not need perfect heart-rate math to build aerobic fitness.",focus:"easy aerobic training, heart-rate zones, talk test, endurance, recovery, and practical pacing",starter:["Use the talk test","Choose a repeatable pace","Accumulate easy minutes","Avoid turning every session hard","Add intensity separately"]},
+{id:"best-workout-time-after-50",title:"Morning or Evening Workouts After 50: What Matters More Than the Clock",category:"recovery consistency",audience:"all 50+",deck:"The best training time is usually the one you can repeat without wrecking sleep, meals, or recovery.",focus:"training timing, consistency, sleep, performance, schedule fit, and recovery",starter:["Pick a repeatable time","Protect sleep","Eat enough around training","Warm up longer when stiff","Track energy patterns"]},
+{id:"wearables-after-60",title:"Fitness Trackers After 60: Which Numbers Are Actually Worth Watching?",category:"technology walking trending",audience:"all 60+",deck:"Steps can motivate. Recovery scores can confuse. Use wearables as feedback—not as a boss.",focus:"wearables, step counts, activity minutes, heart rate, recovery scores, trends, and behavior change",starter:["Track one or two metrics","Use weekly trends","Ignore single-day noise","Pair data with how you feel","Let the device support the habit"]}
+);
+
+window.LiveFitSources.creatine=[
+  {name:'PubMed — Creatine + resistance training in older adults: 2026 systematic review and meta-analysis',url:'https://pubmed.ncbi.nlm.nih.gov/42712402/'},
+  {name:'PubMed — Creatine + exercise training in older adults: 2025 systematic review and meta-analysis',url:'https://pubmed.ncbi.nlm.nih.gov/41062952/'}
+];
+window.LiveFitSources.glp1=[
+  {name:'PubMed — Lean mass changes with incretin therapy vs lifestyle intervention: 2026 meta-analysis',url:'https://pubmed.ncbi.nlm.nih.gov/41877354/'},
+  {name:'PubMed — Optimizing weight loss in the GLP-1 era: resistance training and lean-mass preservation',url:'https://pubmed.ncbi.nlm.nih.gov/42356514/'}
+];
+window.LiveFitSources.weightedVest=[
+  {name:'PubMed — Weighted vest interventions in older adults: 2026 review',url:'https://pubmed.ncbi.nlm.nih.gov/41960379/'}
+];
+window.LiveFitSources.sarcopenia=[
+  {name:'PubMed — Resistance exercise for sarcopenia in older adults: 2026 systematic review and meta-analysis',url:'https://pubmed.ncbi.nlm.nih.gov/42304276/'},
+  {name:'PubMed — Resistance training in sarcopenic older adults: 2025 meta-analysis',url:'https://pubmed.ncbi.nlm.nih.gov/39191151/'}
+];
+window.LiveFitSources.wearables=[
+  {name:'PubMed — Wearable technologies for physical activity in older adults: 2026 systematic review',url:'https://pubmed.ncbi.nlm.nih.gov/42442508/'},
+  {name:'PubMed — Activity trackers in community-dwelling older adults: systematic review and meta-analysis',url:'https://pubmed.ncbi.nlm.nih.gov/40179387/'}
+];
+
+const _LiveFitSourcesForArticle=window.LiveFitSourcesForArticle;
+window.LiveFitSourcesForArticle=function(a){
+  let list=_LiveFitSourcesForArticle(a);
+  if(a.id==='creatine-after-60') list=[...window.LiveFitSources.creatine,...list];
+  if(a.id==='glp1-muscle-preservation') list=[...window.LiveFitSources.glp1,...list];
+  if(a.id==='weighted-vest-after-60') list=[...window.LiveFitSources.weightedVest,...list];
+  if(a.id==='sarcopenia-guide'||a.id==='grip-strength-aging'||a.id==='power-training-after-50') list=[...window.LiveFitSources.sarcopenia,...list];
+  if(a.id==='wearables-after-60') list=[...window.LiveFitSources.wearables,...list];
+  const seen=new Set(); return list.filter(x=>!seen.has(x.url)&&seen.add(x.url));
+};
