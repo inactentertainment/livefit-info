@@ -21,7 +21,7 @@
     ['Videos',homeAnchor('videos'),'<rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="m10 9 5 3-5 3Z"></path>'],
     ['Articles',prefix+'articles.html','<path d="M5 4h14v16H5z"></path><path d="M8 8h8M8 12h8M8 16h5"></path>'],
     ['About',prefix+'about.html','<circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7h.01"></path>'],
-    ['Contact',prefix+'contact.html','<path d="M4 6h16v12H4z"></path><path d="m4 7 8 6 8-6"></path>']
+    ['Contact Us',prefix+'contact.html','<path d="M4 6h16v12H4z"></path><path d="m4 7 8 6 8-6"></path>']
   ];
   const navMarkup=navItems.map(([label,href,svg])=>'<a href="'+href+'" data-label="'+label+'" aria-label="'+label+'"><svg class="nav-svg" viewBox="0 0 24 24">'+svg+'</svg></a>').join('');
   const mobileMarkup=navItems.map(([label,href])=>'<a href="'+href+'">'+(label==='Tools'?'Free Tools':label)+'</a>').join('');
@@ -204,7 +204,7 @@
     footer.innerHTML=
       '<div class="footer-brand"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></div>'+
       '<div class="footer-links">'+
-      '<a href="'+prefix+'privacy.html">Privacy</a>'+
+      '<a href="'+prefix+'about.html">About</a>'+\n      '<a href="'+prefix+'privacy.html">Privacy</a>'+
       '<a href="'+prefix+'terms.html">Terms</a>'+
       '<a href="'+prefix+'disclaimer.html">Disclaimer</a>'+
       '<a href="'+prefix+'affiliate.html">Affiliate Disclosure</a>'+
