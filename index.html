@@ -136,7 +136,7 @@
           <li>Visual body-profile selection</li>
           <li>Goal + activity assessment</li>
           <li>Workout and nutrition direction</li>
-          <li>$7 personalized roadmap — one-time, no subscription</li>
+          <li>Personalized roadmap assembled from your results</li>
         </ul>
         <div class="hero-actions">
           <a class="btn btn-primary shimmer page-link" href="plan.html">Start My Assessment</a>
@@ -227,7 +227,7 @@
     </div>
     <div class="footer-links">
       <a href="#tools">Tools</a><a href="plan.html" class="page-link">My Plan</a><a href="#videos">Videos</a><a href="articles.html">Articles</a>
-      <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="disclaimer.html">Disclaimer</a><a href="affiliate.html">Affiliate Disclosure</a><a href="refund.html">Refund Policy</a><a href="contact.html">Contact</a>
+      <a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="disclaimer.html">Disclaimer</a><a href="affiliate.html">Affiliate Disclosure</a><a href="refund.html">Refund Policy</a><a href="contact.html">Contact</a>
     </div>
     <button class="data-reset-button" type="button">Reset My LiveFit Data</button>
     <p class="umbrella">LiveFit.info is a project of InAct Entertainment LLC.</p>
@@ -235,11 +235,11 @@
 
   <div class="music-panel" id="musicPanel" hidden>
     <div class="music-head">
-      <div class="ie-music-mark"><div class="ie-music-logo">IE</div><div><strong>IE Music</strong><small>by InAct Entertainment</small></div></div>
+      <div class="ie-music-mark"><div class="ie-music-logo"><img src="assets/ie-logo.svg" alt="InAct Entertainment logo"></div><div><strong>ie Music</strong><small>by InAct Entertainment</small></div></div>
       <button class="music-close" id="musicClose" aria-label="Close music player">×</button>
     </div>
     <div class="music-body">
-      <div class="music-now"><span>CHOOSE YOUR WORKOUT SOUND</span><strong id="musicNow">Select a mode below</strong><small id="musicStatus">Player ready for LiveFit / IE Music tracks.</small></div>
+      <div class="music-now"><span>CHOOSE YOUR WORKOUT SOUND</span><strong id="musicNow">Select your vibe</strong><small id="musicStatus">Choose the sound that fits your workout or recovery.</small><p class="music-ai-note"><b>Latest:</b> AI workout-driven songs by ie, plus approved live audio and recovery sounds.</p></div>
       <div class="music-genres">
         <button class="music-mode" data-mode="Hip-Hop" data-note="High-energy beats for lifting and hard sessions."><b>Hip-Hop</b><small>Lift / intensity</small></button>
         <button class="music-mode" data-mode="Club / House" data-note="Driving club and house energy for cardio and circuits."><b>Club / House</b><small>Cardio / circuits</small></button>
@@ -253,7 +253,7 @@
         <label><small>Volume</small><input class="music-volume" id="musicVolume" type="range" min="0" max="100" value="70"></label>
       </div>
       <audio id="ieAudio" preload="none"></audio>
-      <div class="music-foot">Live streams, original IE Music tracks, workout audio, podcasts, and guided recovery can plug into this player as sources are approved.</div>
+      <div class="music-foot">Original ie Music, AI workout-driven tracks, live audio, podcasts, and guided recovery can plug into this player as sources are approved.</div>
     </div>
   </div>
 
@@ -262,7 +262,7 @@
       <button class="modal-close" id="closePlan" aria-label="Close">×</button>
       <p class="eyebrow">LIVEFIT PERSONAL ROADMAP</p>
       <h2>Want a plan built around you?</h2>
-      <p>Answer a short visual assessment and start building your personalized LiveFit roadmap. The full personalized roadmap is $7 one-time with no subscription.</p>
+      <p>Answer a short visual assessment and start building your personalized LiveFit roadmap. See your personalized preview first, then decide whether you want to unlock the complete printable roadmap.</p>
       <div class="modal-actions">
         <a class="btn btn-primary shimmer page-link" href="plan.html">Start My Plan</a>
         <button class="btn btn-secondary" id="modalTools">Use Free Tools Instead</button>
@@ -270,7 +270,14 @@
     </div>
   </div>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js"></script>\n  <script src="js/articles.js"></script>
   <script src="js/livefit-enhancements.js"></script>
+  <script>
+    document.querySelectorAll('.article-preview-grid .article-card').forEach(card=>{
+      const id=new URL(card.href,location.href).searchParams.get('id');
+      const article=window.LiveFitArticleById?.(id);
+      if(article&&!card.querySelector('.article-visual')) card.insertAdjacentHTML('afterbegin',window.LiveFitArticleVisual(article));
+    });
+  </script>
 </body>
 </html>
