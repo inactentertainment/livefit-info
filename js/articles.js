@@ -100,3 +100,70 @@ window.LiveFitArticleVisual = function(article, reader=false){
   }
   return '<div class="article-visual'+(reader?' reader-visual':'')+'" aria-hidden="true"><svg viewBox="0 0 152 96">'+body+'</svg></div>';
 };
+
+window.LiveFitSources = {
+  activity:[
+    {name:'CDC — Older Adult Activity: An Overview',url:'https://www.cdc.gov/physical-activity-basics/guidelines/older-adults.html'},
+    {name:'CDC — What Counts as Physical Activity for Older Adults',url:'https://www.cdc.gov/physical-activity-basics/adding-older-adults/what-counts.html'},
+    {name:'National Institute on Aging — Three Types of Exercise Can Improve Your Health and Physical Ability',url:'https://www.nia.nih.gov/health/exercise-and-physical-activity/three-types-exercise-can-improve-your-health-and-physical'},
+    {name:'U.S. HHS — Physical Activity Guidelines for Americans, 2nd edition',url:'https://odphp.health.gov/sites/default/files/2019-09/Physical_Activity_Guidelines_2nd_edition.pdf'}
+  ],
+  nutrition:[
+    {name:'National Institute on Aging — Healthy Eating As You Age: Know Your Food Groups',url:'https://www.nia.nih.gov/health/healthy-eating-nutrition-and-diet/healthy-eating-you-age-know-your-food-groups'},
+    {name:'National Institute on Aging — Healthy Meal Planning: Tips for Older Adults',url:'https://www.nia.nih.gov/health/healthy-eating-nutrition-and-diet/healthy-meal-planning-tips-older-adults'}
+  ],
+  bone:[
+    {name:'NIAMS — Exercise for Your Bone Health',url:'https://www.niams.nih.gov/health-topics/exercise-your-bone-health'},
+    {name:'PubMed — Resistance training for postmenopausal women: systematic review and meta-analysis',url:'https://pubmed.ncbi.nlm.nih.gov/36283059/'},
+    {name:'PubMed — Resistance training and bone mineral density in postmenopausal women: systematic review and meta-analysis',url:'https://pubmed.ncbi.nlm.nih.gov/40420105/'}
+  ]
+};
+
+window.LiveFitSourcesForArticle=function(a){
+  let list=[...window.LiveFitSources.activity];
+  const cat=(a.category||'').toLowerCase();
+  const id=a.id||'';
+  if(cat.includes('nutrition')||id.includes('protein')||id.includes('waist')) list=[...list,...window.LiveFitSources.nutrition];
+  if(cat.includes('women')||id.includes('bone')||id.includes('menopause')) list=[...list,...window.LiveFitSources.bone];
+  const seen=new Set();
+  return list.filter(x=>!seen.has(x.url)&&seen.add(x.url));
+};
+
+const _LiveFitBuildArticle=window.LiveFitBuildArticle;
+window.LiveFitBuildArticle=function(a){
+  let html=_LiveFitBuildArticle(a);
+  const starter=a.starter.map((x,i)=>'<label><input type="checkbox" data-action="'+i+'"> '+x+'</label>').join('');
+  html += '<section class="article-interactive"><h2>Build your next 7 days</h2>'+
+    '<p>Turn the article into a small action plan. Choose what you will actually do, set an effort target, and save one sentence that will remind you what matters this week.</p>'+
+    '<div class="interactive-plan-grid"><div><strong>Pick your actions</strong><div class="article-action-picks">'+starter+'</div></div>'+
+    '<div><label><strong>My effort target</strong><input class="article-range" data-plan="effort" type="range" min="1" max="10" value="6"><span class="range-readout">6 / 10</span></label>'+
+    '<label><strong>Days this week</strong><select data-plan="days"><option>2 days</option><option selected>3 days</option><option>4 days</option><option>5 days</option><option>6+ days</option></select></label></div></div>'+
+    '<label class="article-note-label"><strong>My one-sentence commitment</strong><textarea data-plan="note" rows="3" placeholder="Example: I will walk after lunch on Monday, Wednesday, and Friday."></textarea></label>'+
+    '<button class="btn btn-primary article-save-plan" type="button">Save My 7-Day Action</button><span class="article-plan-status" role="status"></span></section>';
+
+  const sources=window.LiveFitSourcesForArticle(a);
+  html += '<section class="article-sources"><h2>References & sources</h2><p>LiveFit uses authoritative public-health guidance and research literature as a foundation for general fitness education. Sources open in a new tab so you can stay on your LiveFit article.</p><ol>'+
+    sources.map(s=>'<li><a href="'+s.url+'" target="_blank" rel="noopener noreferrer">'+s.name+'</a></li>').join('')+
+    '</ol></section>';
+  return html;
+};
+
+window.LiveFitWireArticlePlan=function(a,root){
+  const key='livefit-article-action-'+a.id;
+  let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')}catch{}
+  const checks=[...root.querySelectorAll('[data-action]')];
+  checks.forEach((x,i)=>x.checked=(saved.actions||[]).includes(i));
+  const effort=root.querySelector('[data-plan="effort"]');
+  const readout=root.querySelector('.range-readout');
+  const days=root.querySelector('[data-plan="days"]');
+  const note=root.querySelector('[data-plan="note"]');
+  if(effort){effort.value=saved.effort||6;readout.textContent=effort.value+' / 10';effort.addEventListener('input',()=>readout.textContent=effort.value+' / 10')}
+  if(days&&saved.days)days.value=saved.days;
+  if(note&&saved.note)note.value=saved.note;
+  root.querySelector('.article-save-plan')?.addEventListener('click',()=>{
+    const data={actions:checks.map((x,i)=>x.checked?i:null).filter(x=>x!==null),effort:Number(effort?.value||6),days:days?.value||'3 days',note:note?.value||'',savedAt:new Date().toISOString()};
+    localStorage.setItem(key,JSON.stringify(data));
+    const status=root.querySelector('.article-plan-status');
+    if(status)status.textContent='✓ Saved on this device.';
+  });
+};
