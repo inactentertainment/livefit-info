@@ -23,7 +23,7 @@
   <main class="article-reader">
     <a class="assessment-back page-link" href="articles.html">← All LiveFit articles</a>
     <article>
-      <header class="reader-hero">
+      <header class="reader-hero">\n        <div id="readerVisual"></div>
         <p class="eyebrow" id="articleKicker">LIVEFIT ARTICLE</p>
         <h1 id="articleTitle"></h1>
         <p id="articleDeck"></p>
@@ -47,7 +47,7 @@
     document.title=article.title+' | LiveFit.info';
     document.getElementById('articleKicker').textContent=(article.category+' • '+article.audience).toUpperCase();
     document.getElementById('articleTitle').textContent=article.title;
-    document.getElementById('articleDeck').textContent=article.deck;
+    document.getElementById('articleDeck').textContent=article.deck;\n    document.getElementById('readerVisual').innerHTML=window.LiveFitArticleVisual(article,true);
     const content=document.getElementById('articleContent');
     content.innerHTML=window.LiveFitBuildArticle(article);
     const words=(content.innerText.match(/\S+/g)||[]).length;
