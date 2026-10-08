@@ -9,15 +9,9 @@
   const volume=document.getElementById('musicVolume');
   const modes=[...document.querySelectorAll('.music-mode')];
 
-  if(toggle&&panel){
-    toggle.addEventListener('click',e=>{
-      e.stopPropagation();
-      panel.hidden=!panel.hidden;
-    });
-  }
+  // main.js owns the music toggle so we do not register a second toggle handler here.
   close?.addEventListener('click',()=>{panel.hidden=true});
   panel?.addEventListener('click',e=>e.stopPropagation());
-  document.addEventListener('click',()=>{if(panel&&!panel.hidden) panel.hidden=true});
 
   modes.forEach(btn=>btn.addEventListener('click',()=>{
     modes.forEach(x=>x.classList.remove('active'));
