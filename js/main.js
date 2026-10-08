@@ -1,5 +1,62 @@
 (() => {
   const root=document.documentElement;
+  const prefix=location.pathname.includes('/tools/')?'../':'';
+  const enhancementHref=prefix+'css/livefit-enhancements.css';
+  if(![...document.styleSheets].some(s=>s.href&&s.href.includes('livefit-enhancements.css'))&&!document.querySelector('link[href$="livefit-enhancements.css"]')){
+    const enhancement=document.createElement('link');
+    enhancement.rel='stylesheet';
+    enhancement.href=enhancementHref;
+    document.head.appendChild(enhancement);
+  }
+
+  // Keep one familiar navigation system on every LiveFit page.
+  const onHome=/\/(?:index\.html)?$/.test(location.pathname);
+  const homeAnchor=id=>onHome?'#'+id:prefix+'index.html#'+id;
+  const navItems=[
+    ['My Plan',homeAnchor('plan'),'<circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2"></circle>'],
+    ['Tools',homeAnchor('tools'),'<path d="M12 4v16M4 12h16"></path>'],
+    ['Workouts',homeAnchor('workouts'),'<path d="M4 15l5-5 4 4 7-8"></path><path d="M15 6h5v5"></path>'],
+    ['Nutrition',homeAnchor('nutrition'),'<path d="M12 20c5-3 7-7 6-12-5-1-9 1-12 6 1 3 3 5 6 6Z"></path><path d="M8 16c3-3 5-5 8-7"></path>'],
+    ['Gear',homeAnchor('gear'),'<path d="M6 9v6M18 9v6M3 10v4M21 10v4M6 12h12"></path>'],
+    ['Videos',homeAnchor('videos'),'<rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="m10 9 5 3-5 3Z"></path>'],
+    ['Articles',prefix+'articles.html','<path d="M5 4h14v16H5z"></path><path d="M8 8h8M8 12h8M8 16h5"></path>'],
+    ['About',prefix+'about.html','<circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7h.01"></path>'],
+    ['Contact',prefix+'contact.html','<path d="M4 6h16v12H4z"></path><path d="m4 7 8 6 8-6"></path>']
+  ];
+  const navMarkup=navItems.map(([label,href,svg])=>'<a href="'+href+'" data-label="'+label+'" aria-label="'+label+'"><svg class="nav-svg" viewBox="0 0 24 24">'+svg+'</svg></a>').join('');
+  const mobileMarkup=navItems.map(([label,href])=>'<a href="'+href+'">'+(label==='Tools'?'Free Tools':label)+'</a>').join('');
+  const header=document.querySelector('.site-header');
+  if(header){
+    let desktop=header.querySelector('.desktop-nav');
+    if(!desktop){
+      desktop=document.createElement('nav');
+      desktop.className='desktop-nav';
+      desktop.setAttribute('aria-label','Main navigation');
+      const menuExisting=header.querySelector('.menu-button');
+      if(menuExisting) header.insertBefore(desktop,menuExisting); else header.appendChild(desktop);
+    }
+    desktop.innerHTML=navMarkup;
+    let menu=header.querySelector('.menu-button');
+    if(!menu){
+      menu=document.createElement('button');
+      menu.className='menu-button';
+      menu.id='menuButton';
+      menu.setAttribute('aria-label','Open navigation');
+      menu.setAttribute('aria-expanded','false');
+      menu.innerHTML='<span></span><span></span><span></span>';
+      header.appendChild(menu);
+    }
+    let mobile=document.getElementById('mobileNav');
+    if(!mobile){
+      mobile=document.createElement('nav');
+      mobile.className='mobile-nav';
+      mobile.id='mobileNav';
+      mobile.setAttribute('aria-label','Mobile navigation');
+      header.insertAdjacentElement('afterend',mobile);
+    }
+    mobile.innerHTML=mobileMarkup;
+  }
+
   if(!document.querySelector('link[rel="icon"]')){
     const icon=document.createElement('link');
     icon.rel='icon';
