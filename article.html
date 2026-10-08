@@ -51,6 +51,7 @@
     document.getElementById('readerVisual').innerHTML=window.LiveFitArticleVisual(article,true);
     const content=document.getElementById('articleContent');
     content.innerHTML=window.LiveFitBuildArticle(article);
+    window.LiveFitWireArticlePlan?.(article,content);
     const words=(content.innerText.match(/\S+/g)||[]).length;
     document.getElementById('articleMeta').textContent=words.toLocaleString()+' words • interactive checklist • general wellness education';
     const key='livefit-saved-articles';
@@ -70,5 +71,6 @@
     addEventListener('scroll',update,{passive:true});update();
   })();
   </script>
+  <script src="js/livefit-enhancements.js"></script>
 </body>
 </html>
