@@ -37,3 +37,22 @@
 @media(max-width:480px){
   .body-sprite{max-width:180px}
 }
+
+
+/* Female sheet headroom refinement: slightly scale the sheet down vertically and nudge each row lower.
+   This preserves the four-column crop while revealing the tops of the heads. */
+.body-sprite.female{
+  background-size:400% 194%!important;
+}
+.body-sprite.female.slim,
+.body-sprite.female.average,
+.body-sprite.female.fit,
+.body-sprite.female.soft-build{
+  background-position-y:4%!important;
+}
+.body-sprite.female.muscular,
+.body-sprite.female.stocky,
+.body-sprite.female.heavy,
+.body-sprite.female.very-heavy{
+  background-position-y:96%!important;
+}
