@@ -81,3 +81,22 @@ window.LiveFitBuildArticle = function(a){
  html+='<div class="article-caution"><strong>LiveFit note:</strong> This article provides general fitness and wellness education. It is not a diagnosis or individualized medical treatment plan.</div>';
  return html;
 };
+
+window.LiveFitArticleVisual = function(article, reader=false){
+  const cat=((article&&article.category)||'').toLowerCase();
+  let body='';
+  if(cat.includes('cardio')||article.id==='walking-after-50'){
+    body='<path d="M74 22v25"></path><path class="walk-leg-a" d="M74 47 54 76"></path><path class="walk-leg-b" d="M74 47 94 76"></path><path d="M58 36h32"></path><circle class="pulse-ring" cx="74" cy="14" r="8"></circle>';
+  }else if(cat.includes('nutrition')){
+    body='<path class="plate" d="M45 54c0-18 13-31 31-31s31 13 31 31-13 31-31 31-31-13-31-31Z"></path><path d="M76 23v62M45 54h62"></path><path d="M22 30v48M17 30v22c0 7 10 7 10 0V30"></path><path d="M127 29v49"></path>';
+  }else if(cat.includes('mobility')||cat.includes('balance')){
+    body='<path class="balance" d="M76 17v31m0 0-23 29m23-29 23 29M55 37h42"></path><path d="M34 82h84"></path><path class="pulse-ring" d="M48 87h56"></path>';
+  }else if(cat.includes('recovery')){
+    body='<circle class="breath" cx="76" cy="51" r="29"></circle><path d="M62 50c8-9 20-9 28 0M64 61c7 6 17 6 24 0"></path><path class="pulse-ring" d="M76 12v8M76 82v8M37 51h8M107 51h8"></path>';
+  }else if(cat.includes('gear')||cat.includes('home')){
+    body='<path d="M29 59h94"></path><path d="M38 48v22M48 43v32M104 43v32M114 48v22"></path><path class="lift" d="M58 37h36v27H58z"></path>';
+  }else{
+    body='<path d="M32 49v18M42 42v32M110 42v32M120 49v18"></path><path class="lift" d="M42 58h68"></path><path d="M63 35v20M89 35v20"></path><path class="pulse-ring" d="M57 31h38"></path>';
+  }
+  return '<div class="article-visual'+(reader?' reader-visual':'')+'" aria-hidden="true"><svg viewBox="0 0 152 96">'+body+'</svg></div>';
+};
