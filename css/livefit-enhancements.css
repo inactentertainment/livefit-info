@@ -389,3 +389,8 @@
   .roadmap-modal-benefits{grid-template-columns:1fr!important}
   .roadmap-modal-copy h2{font-size:28px!important}
 }
+
+
+/* Marquee speed correction — visibly fast continuous divider */
+.motivation-track{animation-duration:18s!important}
+@media(max-width:620px){.motivation-track{animation-duration:15s!important}}
