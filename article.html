@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="LiveFit long-form fitness guide.">
+  <title>LiveFit Article | LiveFit.info</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/livefit-enhancements.css">
+</head>
+<body>
+  <div class="reader-progress" id="readerProgress"></div>
+  <header class="site-header">
+    <a class="brand page-link" href="index.html"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></a>
+    <div class="personal-controls"><button class="round-control" id="themeToggle" aria-label="Switch light and dark mode">◐</button></div>
+    <nav class="desktop-nav" aria-label="Article navigation">
+      <a href="articles.html" data-label="Articles" aria-label="Articles"><svg class="nav-svg" viewBox="0 0 24 24"><path d="M5 4h14v16H5z"></path><path d="M8 8h8M8 12h8M8 16h5"></path></svg></a>
+      <a href="plan.html" data-label="My Plan" aria-label="My Plan"><svg class="nav-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2"></circle></svg></a>
+    </nav>
+  </header>
+
+  <main class="article-reader">
+    <a class="assessment-back page-link" href="articles.html">← All LiveFit articles</a>
+    <article>
+      <header class="reader-hero">
+        <p class="eyebrow" id="articleKicker">LIVEFIT ARTICLE</p>
+        <h1 id="articleTitle"></h1>
+        <p id="articleDeck"></p>
+        <div class="reader-tools">
+          <button id="saveArticle">☆ Save guide</button>
+          <button id="printArticle">Print / Save PDF</button>
+          <button id="topArticle">↑ Top</button>
+        </div>
+        <p class="microcopy" id="articleMeta"></p>
+      </header>
+      <div class="article-content" id="articleContent"></div>
+    </article>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/articles.js"></script>
+  <script>
+  (() => {
+    const params=new URLSearchParams(location.search);
+    const article=window.LiveFitArticleById(params.get('id'));
+    document.title=article.title+' | LiveFit.info';
+    document.getElementById('articleKicker').textContent=(article.category+' • '+article.audience).toUpperCase();
+    document.getElementById('articleTitle').textContent=article.title;
+    document.getElementById('articleDeck').textContent=article.deck;
+    const content=document.getElementById('articleContent');
+    content.innerHTML=window.LiveFitBuildArticle(article);
+    const words=(content.innerText.match(/\S+/g)||[]).length;
+    document.getElementById('articleMeta').textContent=words.toLocaleString()+' words • interactive checklist • general wellness education';
+    const key='livefit-saved-articles';
+    const saved=()=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch{return []}};
+    const saveBtn=document.getElementById('saveArticle');
+    const sync=()=>{const on=saved().includes(article.id);saveBtn.textContent=on?'★ Saved':'☆ Save guide'};
+    saveBtn.addEventListener('click',()=>{let s=saved();s=s.includes(article.id)?s.filter(x=>x!==article.id):[...s,article.id];localStorage.setItem(key,JSON.stringify(s));sync()});
+    sync();
+    document.getElementById('printArticle').addEventListener('click',()=>window.print());
+    document.getElementById('topArticle').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    const checkKey='livefit-article-checks-'+article.id;
+    const checks=[...content.querySelectorAll('.article-checklist input')];
+    let checkState=[];try{checkState=JSON.parse(localStorage.getItem(checkKey)||'[]')}catch{}
+    checks.forEach((c,i)=>{c.checked=!!checkState[i];c.addEventListener('change',()=>localStorage.setItem(checkKey,JSON.stringify(checks.map(x=>x.checked))))});
+    const progress=document.getElementById('readerProgress');
+    const update=()=>{const d=document.documentElement;const max=d.scrollHeight-innerHeight;progress.style.width=(max>0?scrollY/max*100:0)+'%'};
+    addEventListener('scroll',update,{passive:true});update();
+  })();
+  </script>
+</body>
+</html>
