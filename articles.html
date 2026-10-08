@@ -51,7 +51,7 @@
       const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
       grid.innerHTML=window.LiveFitArticles.map((a,i)=>`
         <a class="article-card reveal is-visible" href="article.html?id=${encodeURIComponent(a.id)}" data-category="${esc(a.category)}" data-audience="${esc(a.audience)}">
-          <span class="article-tag">${esc(a.category)} • ${esc(a.audience)}</span>
+          ${window.LiveFitArticleVisual(a)}\n          <span class="article-tag">${esc(a.category)} • ${esc(a.audience)}</span>
           <h3>${esc(a.title)}</h3>
           <p>${esc(a.deck)}</p>
           <span class="article-meta">Guide ${String(i+1).padStart(2,'0')} • interactive reading tools</span>
