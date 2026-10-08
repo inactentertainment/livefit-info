@@ -204,7 +204,8 @@
     footer.innerHTML=
       '<div class="footer-brand"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></div>'+
       '<div class="footer-links">'+
-      '<a href="'+prefix+'about.html">About</a>'+\n      '<a href="'+prefix+'privacy.html">Privacy</a>'+
+      '<a href="'+prefix+'about.html">About</a>'+
+      '<a href="'+prefix+'privacy.html">Privacy</a>'+
       '<a href="'+prefix+'terms.html">Terms</a>'+
       '<a href="'+prefix+'disclaimer.html">Disclaimer</a>'+
       '<a href="'+prefix+'affiliate.html">Affiliate Disclosure</a>'+
