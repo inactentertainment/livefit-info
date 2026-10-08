@@ -47,7 +47,8 @@
     document.title=article.title+' | LiveFit.info';
     document.getElementById('articleKicker').textContent=(article.category+' • '+article.audience).toUpperCase();
     document.getElementById('articleTitle').textContent=article.title;
-    document.getElementById('articleDeck').textContent=article.deck;\n    document.getElementById('readerVisual').innerHTML=window.LiveFitArticleVisual(article,true);
+    document.getElementById('articleDeck').textContent=article.deck;
+    document.getElementById('readerVisual').innerHTML=window.LiveFitArticleVisual(article,true);
     const content=document.getElementById('articleContent');
     content.innerHTML=window.LiveFitBuildArticle(article);
     const words=(content.innerText.match(/\S+/g)||[]).length;
