@@ -1,41 +1,187 @@
 (() => {
   const panel=document.getElementById('musicPanel');
-  const toggle=document.getElementById('musicToggle');
   const close=document.getElementById('musicClose');
   const now=document.getElementById('musicNow');
   const status=document.getElementById('musicStatus');
-  const play=document.getElementById('musicPlay');
-  const audio=document.getElementById('ieAudio');
-  const volume=document.getElementById('musicVolume');
   const modes=[...document.querySelectorAll('.music-mode')];
+  const list=document.getElementById('musicTrackList');
+  const shell=document.getElementById('musicVideoShell');
+  const title=document.getElementById('musicTrackTitle');
+  const artist=document.getElementById('musicTrackArtist');
+  const play=document.getElementById('musicPlay');
+  const prev=document.getElementById('musicPrev');
+  const next=document.getElementById('musicNext');
+  const progress=document.getElementById('musicProgress');
+  const elapsed=document.getElementById('musicElapsed');
+  const duration=document.getElementById('musicDuration');
+  const volume=document.getElementById('musicVolume');
+  const viewButtons=[...document.querySelectorAll('[data-player-view]')];
 
-  // main.js owns the music toggle so we do not register a second toggle handler here.
+  const tracks={
+    'Hip-Hop':[
+      {title:'If I Ruled the World',artist:'Nas',videoId:'vvmjZkFcCh0'},
+      {title:'Juicy',artist:'The Notorious B.I.G.',videoId:'_JZom_gVfuw'},
+      {title:'California Love',artist:'2Pac feat. Dr. Dre',videoId:'iiWoF5tvLG4'}
+    ],
+    'Club / House':[
+      {title:'Gonna Make You Sweat',artist:'C+C Music Factory',videoId:'LaTGrV58wec'},
+      {title:'Rhythm Is a Dancer',artist:'SNAP!',videoId:'DMiREvBzGY0'},
+      {title:'What Is Love',artist:'Haddaway',videoId:'HEXWRTEbj1I'}
+    ],
+    'Run / Cardio':[
+      {title:'Pump Up the Jam',artist:'Technotronic',videoId:'y_-SP55sRig'},
+      {title:'Finally',artist:'CeCe Peniston',videoId:'xk8mm1Qmt-Y'},
+      {title:'Show Me Love',artist:'Robin S',videoId:'Ps2Jc28tQrw'}
+    ],
+    'Unwind':[],
+    'Meditation':[],
+    'Chimes':[]
+  };
+
+  let currentMode='';
+  let currentIndex=0;
+  let player=null;
+  let playerReady=false;
+  let ytLoading=false;
+  let ytCallbacks=[];
+
+  const fmt=s=>{
+    if(!Number.isFinite(s)||s<0)return '0:00';
+    const m=Math.floor(s/60),sec=Math.floor(s%60);
+    return m+':'+String(sec).padStart(2,'0');
+  };
+
+  const ensureYT=cb=>{
+    if(window.YT&&window.YT.Player){cb();return}
+    ytCallbacks.push(cb);
+    if(ytLoading)return;
+    ytLoading=true;
+    const old=window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady=()=>{
+      try{old?.()}catch{}
+      ytCallbacks.splice(0).forEach(fn=>fn());
+    };
+    const s=document.createElement('script');
+    s.src='https://www.youtube.com/iframe_api';
+    s.async=true;
+    document.head.appendChild(s);
+  };
+
+  const currentTrack=()=>tracks[currentMode]?.[currentIndex]||null;
+
+  const setMeta=t=>{
+    if(!t){title.textContent='Choose a track';artist.textContent='Original ie Music recovery tracks coming next.';return}
+    title.textContent=t.title;
+    artist.textContent=t.artist+' • embedded video source';
+  };
+
+  const createOrCue=t=>{
+    if(!t)return;
+    ensureYT(()=>{
+      if(player&&playerReady){
+        player.cueVideoById(t.videoId);
+        player.setVolume(Number(volume?.value||70));
+        return;
+      }
+      if(player&&!playerReady)return;
+      player=new YT.Player('musicVideo',{
+        width:'100%',height:'100%',videoId:t.videoId,
+        playerVars:{playsinline:1,rel:0,controls:0,modestbranding:1,origin:location.origin},
+        events:{
+          onReady:e=>{
+            playerReady=true;
+            e.target.setVolume(Number(volume?.value||70));
+            e.target.cueVideoById(currentTrack()?.videoId||t.videoId);
+          },
+          onStateChange:e=>{
+            if(e.data===YT.PlayerState.PLAYING) play.textContent='Ⅱ';
+            if(e.data===YT.PlayerState.PAUSED||e.data===YT.PlayerState.CUED) play.textContent='▶';
+            if(e.data===YT.PlayerState.ENDED) go(1,true);
+          }
+        }
+      });
+    });
+  };
+
+  const renderTracks=()=>{
+    const set=tracks[currentMode]||[];
+    if(!set.length){
+      list.innerHTML='<div class="music-empty"><b>ie Music recovery collection</b><span>Three original '+currentMode.toLowerCase()+' selections will be added here next.</span></div>';
+      setMeta(null);
+      if(status)status.textContent='This recovery channel is ready for original ie Music.';
+      return;
+    }
+    list.innerHTML=set.map((t,i)=>
+      '<button type="button" class="music-track '+(i===currentIndex?'active':'')+'" data-track="'+i+'">'+
+      '<span class="track-no">'+String(i+1).padStart(2,'0')+'</span><span><b>'+t.title+'</b><small>'+t.artist+'</small></span><i>▶</i></button>'
+    ).join('');
+    list.querySelectorAll('.music-track').forEach(btn=>btn.addEventListener('click',()=>{
+      currentIndex=Number(btn.dataset.track)||0;
+      renderTracks();
+      const t=currentTrack();setMeta(t);createOrCue(t);
+      if(status)status.textContent='Ready. Press play or open the video view.';
+    }));
+    const t=currentTrack();setMeta(t);createOrCue(t);
+  };
+
+  const selectMode=mode=>{
+    currentMode=mode;currentIndex=0;
+    modes.forEach(x=>x.classList.toggle('active',x.dataset.mode===mode));
+    if(now)now.textContent=mode;
+    renderTracks();
+  };
+
+  const go=(delta,autoplay=false)=>{
+    const set=tracks[currentMode]||[];
+    if(!set.length)return;
+    currentIndex=(currentIndex+delta+set.length)%set.length;
+    renderTracks();
+    const t=currentTrack();setMeta(t);
+    ensureYT(()=>{
+      if(player&&playerReady){
+        autoplay?player.loadVideoById(t.videoId):player.cueVideoById(t.videoId);
+        player.setVolume(Number(volume?.value||70));
+      }
+    });
+  };
+
   close?.addEventListener('click',()=>{panel.hidden=true});
   panel?.addEventListener('click',e=>e.stopPropagation());
 
-  modes.forEach(btn=>btn.addEventListener('click',()=>{
-    modes.forEach(x=>x.classList.remove('active'));
-    btn.classList.add('active');
-    if(now) now.textContent=btn.dataset.mode;
-    if(status) status.textContent=btn.dataset.note;
-    if(play){ play.textContent='▶'; play.dataset.ready='true'; }
-    if(audio){ audio.pause(); audio.removeAttribute('src'); audio.load(); }
-  }));
+  modes.forEach(btn=>btn.addEventListener('click',()=>selectMode(btn.dataset.mode)));
 
   play?.addEventListener('click',()=>{
-    const selected=document.querySelector('.music-mode.active');
-    if(!selected){
-      if(status) status.textContent='Choose a workout sound first.';
-      return;
-    }
-    if(!audio?.src){
-      if(status) status.textContent='This mode is ready. Add an approved IE Music track or live stream to activate playback.';
-      return;
-    }
-    if(audio.paused){audio.play();play.textContent='Ⅱ'}else{audio.pause();play.textContent='▶'}
+    const t=currentTrack();
+    if(!t){status.textContent='Choose Hip-Hop, Club / House, or Run / Cardio for the current music library.';return}
+    ensureYT(()=>{
+      if(!player||!playerReady){createOrCue(t);return}
+      const state=player.getPlayerState();
+      if(state===YT.PlayerState.PLAYING)player.pauseVideo();
+      else player.playVideo();
+    });
   });
 
-  volume?.addEventListener('input',()=>{ if(audio) audio.volume=Number(volume.value)/100; });
+  prev?.addEventListener('click',()=>go(-1,false));
+  next?.addEventListener('click',()=>go(1,false));
+  volume?.addEventListener('input',()=>{if(player&&playerReady)player.setVolume(Number(volume.value))});
+  progress?.addEventListener('input',()=>{
+    if(!player||!playerReady)return;
+    const d=player.getDuration()||0;
+    if(d)player.seekTo(d*(Number(progress.value)/1000),true);
+  });
+
+  viewButtons.forEach(btn=>btn.addEventListener('click',()=>{
+    viewButtons.forEach(x=>x.classList.toggle('active',x===btn));
+    shell?.classList.toggle('audio-focus',btn.dataset.playerView==='listen');
+  }));
+
+  setInterval(()=>{
+    if(!player||!playerReady)return;
+    const d=player.getDuration()||0,c=player.getCurrentTime()||0;
+    if(progress&&!progress.matches(':active'))progress.value=d?Math.round(c/d*1000):0;
+    if(elapsed)elapsed.textContent=fmt(c);
+    if(duration)duration.textContent=fmt(d);
+  },500);
 
   document.querySelectorAll('.article-filter').forEach(btn=>btn.addEventListener('click',()=>{
     document.querySelectorAll('.article-filter').forEach(x=>x.classList.remove('active'));
