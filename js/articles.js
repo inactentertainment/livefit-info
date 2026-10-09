@@ -211,3 +211,80 @@ window.LiveFitSourcesForArticle=function(a){
   if(a.id==='wearables-after-60') list=[...window.LiveFitSources.wearables,...list];
   const seen=new Set(); return list.filter(x=>!seen.has(x.url)&&seen.add(x.url));
 };
+
+
+/* Article learning upgrade: move action plan into the reading flow + two checks for understanding. */
+(() => {
+  const previousBuild=window.LiveFitBuildArticle;
+  const previousWire=window.LiveFitWireArticlePlan;
+
+  const quiz=(a,n)=>{
+    const isFirst=n===1;
+    const prompt=isFirst
+      ? 'Which approach best matches this guide on '+a.title+'?'
+      : 'If your recovery is going well, what is the smartest way to progress?';
+    const choices=isFirst
+      ? [
+          ['Choose a repeatable plan that fits your current ability, then build gradually.',true],
+          ['Make every workout as hard as possible so progress happens faster.',false],
+          ['Change exercises every session so your body never adapts.',false]
+        ]
+      : [
+          ['Change one variable at a time and watch how your body responds.',true],
+          ['Add weight, sets, days, and intensity all at once.',false],
+          ['Ignore soreness and fatigue as long as the plan looks good on paper.',false]
+        ];
+    return '<section class="article-quiz" data-quiz="'+n+'">'+
+      '<span class="eyebrow">CHECK FOR UNDERSTANDING</span>'+
+      '<h2>'+prompt+'</h2>'+
+      '<div class="quiz-options">'+choices.map((x,i)=>'<button type="button" data-correct="'+(x[1]?'true':'false')+'"><b>'+String.fromCharCode(65+i)+'.</b> '+x[0]+'</button>').join('')+'</div>'+
+      '<p class="quiz-feedback" role="status">Choose one answer.</p>'+
+    '</section>';
+  };
+
+  window.LiveFitBuildArticle=function(a){
+    const holder=document.createElement('div');
+    holder.innerHTML=previousBuild(a);
+
+    const action=holder.querySelector('.article-interactive');
+    const sources=holder.querySelector('.article-sources');
+    const regular=[...holder.querySelectorAll(':scope > section')].filter(s=>s!==action&&s!==sources);
+
+    if(regular[2]) regular[2].insertAdjacentHTML('afterend',quiz(a,1));
+    if(action && regular[5]){
+      regular[5].insertAdjacentElement('afterend',action);
+      action.insertAdjacentHTML('beforeend',
+        '<div class="roadmap-inline-cta"><span>WANT THIS BUILT AROUND YOUR NUMBERS?</span><strong>Turn your saved LiveFit results into one personalized roadmap.</strong><a class="btn btn-primary shimmer" href="plan.html">Build My Personal Roadmap →</a></div>');
+    }
+    const refreshed=[...holder.querySelectorAll(':scope > section')].filter(s=>!s.classList.contains('article-sources'));
+    const target=[...holder.querySelectorAll(':scope > section')].filter(s=>!s.classList.contains('article-interactive')&&!s.classList.contains('article-sources')&&!s.classList.contains('article-quiz'))[8];
+    if(target) target.insertAdjacentHTML('afterend',quiz(a,2));
+
+    return holder.innerHTML;
+  };
+
+  window.LiveFitWireArticlePlan=function(a,root){
+    previousWire?.(a,root);
+    root.querySelectorAll('.article-quiz').forEach(q=>{
+      const key='livefit-quiz-'+a.id+'-'+q.dataset.quiz;
+      const feedback=q.querySelector('.quiz-feedback');
+      const buttons=[...q.querySelectorAll('.quiz-options button')];
+      const saved=localStorage.getItem(key);
+      const show=(btn)=>{
+        const correct=btn.dataset.correct==='true';
+        buttons.forEach(b=>{b.disabled=true;b.classList.toggle('correct',b.dataset.correct==='true');});
+        btn.classList.add(correct?'chosen-correct':'chosen-wrong');
+        feedback.textContent=correct
+          ? '✓ Correct. The goal is a plan you can repeat and progress.'
+          : 'Not quite. Look for the option that favors gradual, repeatable progress.';
+        if(correct) localStorage.setItem(key,'correct');
+      };
+      if(saved==='correct'){
+        const good=buttons.find(b=>b.dataset.correct==='true');
+        if(good) show(good);
+      } else {
+        buttons.forEach(btn=>btn.addEventListener('click',()=>show(btn),{once:true}));
+      }
+    });
+  };
+})();
