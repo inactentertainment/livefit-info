@@ -31,3 +31,19 @@
 
 @media(max-width:820px){.body-sprite{max-width:210px}}
 @media(max-width:480px){.body-sprite{max-width:180px}}
+
+
+/* Fine crop pass for the approved female sheet.
+   Zooms each cell just enough to hide neighboring cards while preserving full heads/feet. */
+.body-sprite.female{
+  background-size:404% 220%!important;
+}
+.body-sprite.female.slim{background-position:0% 1%!important}
+.body-sprite.female.average{background-position:33.22% 1%!important}
+.body-sprite.female.fit{background-position:66.45% 1%!important}
+.body-sprite.female.soft-build{background-position:100% 1%!important}
+.body-sprite.female.muscular{background-position:0% 85.5%!important}
+.body-sprite.female.stocky{background-position:33.22% 85.5%!important}
+.body-sprite.female.heavy{background-position:66.45% 85.5%!important}
+.body-sprite.female.very-heavy{background-position:100% 85.5%!important}
+.body-sprite.female.large{background-position:66.45% 85.5%!important}
