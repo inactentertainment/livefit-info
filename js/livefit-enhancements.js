@@ -197,3 +197,20 @@
   stop.addEventListener('click',()=>{speechSynthesis.cancel();pause.textContent='Ⅱ Pause';play.textContent='▶ Play';status.textContent='Stopped.'});
   window.addEventListener('beforeunload',()=>speechSynthesis.cancel());
 })();
+
+
+/* Article archive rail: all LiveFit guides stay visible in the natural page scroll. */
+(() => {
+  const side=document.querySelector('.article-side-panel');
+  if(!side || !window.LiveFitArticles || side.querySelector('.article-archive-card')) return;
+  const current=new URLSearchParams(location.search).get('id');
+  const archive=document.createElement('div');
+  archive.className='article-side-card article-archive-card';
+  archive.innerHTML='<span class="eyebrow">ARTICLE ARCHIVE</span>'+
+    '<div class="article-archive-list">'+
+    window.LiveFitArticles.map((a,i)=>
+      '<a class="'+(a.id===current?'active':'')+'" href="article.html?id='+encodeURIComponent(a.id)+'">'+
+      '<span>'+String(i+1).padStart(2,'0')+'</span><b>'+a.title+'</b></a>').join('')+
+    '</div>';
+  side.appendChild(archive);
+})();
