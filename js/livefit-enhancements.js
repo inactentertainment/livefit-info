@@ -106,3 +106,94 @@
     });
   }
 })();
+
+(() => {
+  const articleContent=document.getElementById('articleContent');
+  if(!articleContent || document.querySelector('.listen-launch')) return;
+
+  const launch=document.createElement('button');
+  launch.className='listen-launch';
+  launch.type='button';
+  launch.innerHTML='<span>▶</span> Listen';
+  document.body.appendChild(launch);
+
+  const drawer=document.createElement('aside');
+  drawer.className='listen-drawer';
+  drawer.setAttribute('aria-label','Listen to this article');
+  drawer.innerHTML=
+    '<div class="listen-head"><div><span class="eyebrow">LISTEN TO THIS ARTICLE</span><h3>Read it to me</h3></div><button type="button" aria-label="Close listener">×</button></div>'+
+    '<div class="listen-controls">'+
+      '<label>Voice<select id="listenVoice"></select></label>'+
+      '<label>Speed<select id="listenRate"><option value=".8">Relaxed • 0.8×</option><option value="1" selected>Normal • 1×</option><option value="1.15">Brisk • 1.15×</option><option value="1.3">Fast • 1.3×</option><option value="1.5">Very fast • 1.5×</option></select></label>'+
+      '<label>What to read<select id="listenScope"><option value="full">Full article</option><option value="section">Current section</option><option value="summary">Title + introduction</option></select></label>'+
+      '<div class="listen-buttons"><button type="button" class="primary" id="listenPlay">▶ Play</button><button type="button" id="listenPause">Ⅱ Pause</button><button type="button" id="listenStop">■ Stop</button></div>'+
+      '<p class="listen-status" id="listenStatus">Uses the voices available on your device or browser. You can keep reading while it plays.</p>'+
+    '</div>';
+  document.body.appendChild(drawer);
+
+  const close=drawer.querySelector('.listen-head button');
+  const voiceSelect=drawer.querySelector('#listenVoice');
+  const rateSelect=drawer.querySelector('#listenRate');
+  const scopeSelect=drawer.querySelector('#listenScope');
+  const play=drawer.querySelector('#listenPlay');
+  const pause=drawer.querySelector('#listenPause');
+  const stop=drawer.querySelector('#listenStop');
+  const status=drawer.querySelector('#listenStatus');
+  let active=null;
+
+  const voices=()=>speechSynthesis.getVoices().filter(v=>v.lang && v.lang.toLowerCase().startsWith('en'));
+  const loadVoices=()=>{
+    if(!voiceSelect) return;
+    const list=voices();
+    voiceSelect.innerHTML=list.length?list.map((v,i)=>'<option value="'+i+'">'+v.name+' • '+v.lang+'</option>').join(''):'<option value="">Default device voice</option>';
+  };
+  loadVoices();
+  speechSynthesis.addEventListener?.('voiceschanged',loadVoices);
+
+  const cleanText=el=>{
+    const clone=el.cloneNode(true);
+    clone.querySelectorAll('button,input,select,textarea,script,style,.article-sources,.ad-art-marker,.article-checklist,.article-interactive').forEach(n=>n.remove());
+    return clone.innerText.replace(/\s+/g,' ').trim();
+  };
+  const currentSectionText=()=>{
+    const sections=[...articleContent.querySelectorAll('section')];
+    if(!sections.length) return cleanText(articleContent);
+    const y=window.scrollY+window.innerHeight*.3;
+    let chosen=sections[0];
+    for(const s of sections){ if(s.getBoundingClientRect().top+window.scrollY<=y) chosen=s; }
+    return cleanText(chosen);
+  };
+  const getText=()=>{
+    if(scopeSelect.value==='section') return currentSectionText();
+    if(scopeSelect.value==='summary'){
+      const title=document.getElementById('articleTitle')?.innerText||'';
+      const deck=document.getElementById('articleDeck')?.innerText||'';
+      const first=articleContent.querySelector('section');
+      return [title,deck,first?cleanText(first):''].join('. ');
+    }
+    return cleanText(articleContent);
+  };
+  const start=()=>{
+    speechSynthesis.cancel();
+    const text=getText();
+    if(!text){status.textContent='Nothing to read yet.';return}
+    active=new SpeechSynthesisUtterance(text);
+    active.rate=Number(rateSelect.value)||1;
+    const list=voices();
+    if(list.length && voiceSelect.value!=='') active.voice=list[Number(voiceSelect.value)]||list[0];
+    active.onstart=()=>{status.textContent='Reading now. You can scroll and follow along.';play.textContent='▶ Restart'};
+    active.onend=()=>{status.textContent='Finished reading this selection.';play.textContent='▶ Play'};
+    active.onerror=()=>{status.textContent='The browser voice stopped. Try another voice or press Play again.'};
+    speechSynthesis.speak(active);
+  };
+
+  launch.addEventListener('click',()=>drawer.classList.add('open'));
+  close.addEventListener('click',()=>drawer.classList.remove('open'));
+  play.addEventListener('click',start);
+  pause.addEventListener('click',()=>{
+    if(speechSynthesis.speaking && !speechSynthesis.paused){speechSynthesis.pause();pause.textContent='▶ Resume';status.textContent='Paused.'}
+    else if(speechSynthesis.paused){speechSynthesis.resume();pause.textContent='Ⅱ Pause';status.textContent='Reading resumed.'}
+  });
+  stop.addEventListener('click',()=>{speechSynthesis.cancel();pause.textContent='Ⅱ Pause';play.textContent='▶ Play';status.textContent='Stopped.'});
+  window.addEventListener('beforeunload',()=>speechSynthesis.cancel());
+})();
