@@ -11,6 +11,7 @@
   const play=document.getElementById('musicPlay');
   const prev=document.getElementById('musicPrev');
   const next=document.getElementById('musicNext');
+  const stop=document.getElementById('musicStop');
   const progress=document.getElementById('musicProgress');
   const elapsed=document.getElementById('musicElapsed');
   const duration=document.getElementById('musicDuration');
@@ -163,6 +164,7 @@
 
   prev?.addEventListener('click',()=>go(-1,false));
   next?.addEventListener('click',()=>go(1,false));
+  stop?.addEventListener('click',()=>{if(player&&playerReady){player.stopVideo();play.textContent='▶';if(progress)progress.value=0;if(elapsed)elapsed.textContent='0:00';}});
   volume?.addEventListener('input',()=>{if(player&&playerReady)player.setVolume(Number(volume.value))});
   progress?.addEventListener('input',()=>{
     if(!player||!playerReady)return;
