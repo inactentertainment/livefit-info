@@ -232,25 +232,59 @@
 
   <div class="music-panel" id="musicPanel" hidden>
     <div class="music-head">
-      <div class="ie-music-mark"><div class="ie-music-logo"><img src="assets/ie-logo.svg" alt="InAct Entertainment logo"></div><div><strong>ie Music</strong><small>by InAct Entertainment</small></div></div>
+      <div class="ie-music-mark">
+        <div class="ie-music-logo"><img src="assets/ie-logo.png" alt="InAct Entertainment ie logo"></div>
+        <div><strong>Music</strong><small>by InAct Entertainment</small></div>
+      </div>
       <button class="music-close" id="musicClose" aria-label="Close music player">×</button>
     </div>
     <div class="music-body">
-      <div class="music-now"><span>CHOOSE YOUR WORKOUT SOUND</span><strong id="musicNow">Select your vibe</strong><small id="musicStatus">Choose the sound that fits your workout or recovery.</small><p class="music-ai-note"><b>Latest:</b> AI workout-driven songs by ie, plus approved live audio and recovery sounds.</p></div>
+      <div class="music-now">
+        <span>CHOOSE YOUR WORKOUT SOUND</span>
+        <strong id="musicNow">Select your vibe</strong>
+        <small id="musicStatus">Pick a genre, then choose a track.</small>
+        <p class="music-ai-note"><b>ie Music:</b> original AI-assisted workout tracks will be added alongside approved video sources.</p>
+      </div>
+
       <div class="music-genres">
-        <button class="music-mode" data-mode="Hip-Hop" data-note="High-energy beats for lifting and hard sessions."><b>Hip-Hop</b><small>Lift / intensity</small></button>
-        <button class="music-mode" data-mode="Club / House" data-note="Driving club and house energy for cardio and circuits."><b>Club / House</b><small>Cardio / circuits</small></button>
-        <button class="music-mode" data-mode="Run / Cardio" data-note="Steady, high-tempo workout mix for walking, running, and intervals."><b>Run / Cardio</b><small>Tempo / endurance</small></button>
-        <button class="music-mode" data-mode="Unwind" data-note="Lower-intensity music for cooldowns and stretching."><b>Unwind</b><small>Cooldown / stretch</small></button>
-        <button class="music-mode" data-mode="Meditation" data-note="Calm guided-audio space for breathing and recovery."><b>Meditation</b><small>Breathing / reset</small></button>
-        <button class="music-mode" data-mode="Chimes" data-note="Ambient chimes and soundscapes for quiet recovery."><b>Chimes</b><small>Ambient / calm</small></button>
+        <button class="music-mode" data-mode="Hip-Hop"><b>Hip-Hop</b><small>Lift / intensity</small></button>
+        <button class="music-mode" data-mode="Club / House"><b>Club / House</b><small>Cardio / circuits</small></button>
+        <button class="music-mode" data-mode="Run / Cardio"><b>Run / Cardio</b><small>Tempo / endurance</small></button>
+        <button class="music-mode" data-mode="Unwind"><b>Unwind</b><small>Cooldown / stretch</small></button>
+        <button class="music-mode" data-mode="Meditation"><b>Meditation</b><small>Breathing / reset</small></button>
+        <button class="music-mode" data-mode="Chimes"><b>Chimes</b><small>Ambient / calm</small></button>
       </div>
-      <div class="music-controls">
-        <button class="music-play" id="musicPlay" aria-label="Play or pause selected music">▶</button>
-        <label><small>Volume</small><input class="music-volume" id="musicVolume" type="range" min="0" max="100" value="70"></label>
+
+      <div class="music-track-list" id="musicTrackList" aria-live="polite"></div>
+
+      <div class="music-view-toggle" role="group" aria-label="Music player view">
+        <button type="button" class="active" data-player-view="listen">Listen</button>
+        <button type="button" data-player-view="video">Watch Video</button>
       </div>
-      <audio id="ieAudio" preload="none"></audio>
-      <div class="music-foot">Original ie Music, AI workout-driven tracks, live audio, podcasts, and guided recovery can plug into this player as sources are approved.</div>
+
+      <div class="music-video-shell audio-focus" id="musicVideoShell">
+        <div id="musicVideo"></div>
+      </div>
+
+      <div class="music-player-meta">
+        <strong id="musicTrackTitle">Choose a track</strong>
+        <small id="musicTrackArtist">Official YouTube sources where available</small>
+      </div>
+
+      <div class="music-transport">
+        <button type="button" id="musicPrev" aria-label="Previous track">◀◀</button>
+        <button type="button" class="music-main-play" id="musicPlay" aria-label="Play or pause">▶</button>
+        <button type="button" id="musicNext" aria-label="Next track">▶▶</button>
+      </div>
+
+      <div class="music-progress-wrap">
+        <input id="musicProgress" class="music-progress" type="range" min="0" max="1000" value="0" aria-label="Track progress">
+        <div><span id="musicElapsed">0:00</span><span id="musicDuration">0:00</span></div>
+      </div>
+
+      <label class="music-volume-label"><small>Volume</small><input class="music-volume" id="musicVolume" type="range" min="0" max="100" value="70"></label>
+
+      <div class="music-foot">Workout tracks use embedded video sources so playback stays on LiveFit. Recovery categories are ready for original ie Music and approved audio sources.</div>
     </div>
   </div>
 
