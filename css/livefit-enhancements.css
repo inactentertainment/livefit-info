@@ -524,7 +524,7 @@
 .music-video-shell iframe{width:100%!important;height:100%!important}
 .music-player-meta{margin:10px 0}.music-player-meta strong,.music-player-meta small{display:block}
 .music-player-meta strong{font-size:15px}.music-player-meta small{font-size:10px;margin-top:3px}
-.music-transport{display:grid;grid-template-columns:48px 58px 48px;justify-content:center;gap:10px;margin:10px 0}
+.music-transport{display:grid;grid-template-columns:48px 58px 48px 48px;justify-content:center;gap:8px;margin:10px 0}
 .music-transport button{
   height:46px;border-radius:50%;border:1px solid var(--line);background:#0b0b0b;color:#fff;cursor:pointer
 }
