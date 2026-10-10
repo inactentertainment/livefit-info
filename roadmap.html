@@ -148,10 +148,10 @@
           <label class="checkout-email">Email for your roadmap
             <input id="roadmapEmail" type="email" placeholder="you@example.com">
           </label>
-          <label class="checkout-check"><input id="roadmapConsent" type="checkbox"><span>I understand this is a $7 one-time LiveFit Personalized Roadmap purchase and the current checkout is in Stripe test mode. No real charge will be made during testing.</span></label>
+          <label class="checkout-check"><input id="roadmapConsent" type="checkbox"><span>I understand this is a $7 one-time LiveFit Personalized Roadmap purchase with no subscription or recurring LiveFit charge.</span></label>
 
           <button class="btn btn-primary shimmer checkout-demo-btn" id="demoCheckout" disabled>Continue to Secure Checkout</button>
-          <p class="checkout-status" id="checkoutStatus">Stripe test checkout is connected. Use Stripe test mode only during QA.</p>
+          <p class="checkout-status" id="checkoutStatus">Live Stripe checkout is connected. Your payment will be processed securely by Stripe.</p>
           <a class="btn btn-secondary roadmap-test-link page-link" href="roadmap-report.html">Open Generated Roadmap (unlock required)</a>
         </section>
 
@@ -163,8 +163,8 @@
             <div class="mini-roadmap-lines"><i></i><i></i><i></i><i></i><i></i></div>
           </div>
           <div class="roadmap-side-card trust-card">
-            <strong>Before payment goes live</strong>
-            <p>This build lets us test the offer, wording, flow, price presentation, and what information is included. Stripe/PayPal and automatic PDF delivery come next.</p>
+            <strong>Secure checkout</strong>
+            <p>You will leave LiveFit briefly to complete your $7 one-time payment through Stripe, then return to LiveFit to open your personalized roadmap.</p>
           </div>
         </aside>
       </div>
@@ -246,16 +246,16 @@
     function validate(){
       const ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)&&consent.checked;
       button.disabled=!ok;
-      button.textContent=ok?'Continue to Stripe Test Checkout':'Continue to Secure Checkout';
+      button.textContent=ok?'Continue to Secure Stripe Checkout':'Continue to Secure Checkout';
     }
     email.addEventListener('input',validate);
     consent.addEventListener('change',validate);
     button.addEventListener('click',()=>{
-      localStorage.setItem('livefit-roadmap-checkout',JSON.stringify({email:email.value,price:7,selectedAt:new Date().toISOString(),mode:'stripe-test'}));
-      document.getElementById('checkoutStatus').textContent='Opening Stripe test checkout…';
+      localStorage.setItem('livefit-roadmap-checkout',JSON.stringify({email:email.value,price:7,selectedAt:new Date().toISOString(),mode:'stripe-live'}));
+      document.getElementById('checkoutStatus').textContent='Opening secure Stripe checkout…';
       button.textContent='Opening Stripe…';
       button.disabled=true;
-      window.location.href='https://buy.stripe.com/test_28E8wQ3cz7250l9fPXe3e03';
+      window.location.href='https://buy.stripe.com/9B6aEYcQycpZ7pX3On7Re08';
     });
   })();
   </script>
