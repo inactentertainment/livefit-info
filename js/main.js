@@ -14,8 +14,8 @@
   const homeAnchor=id=>onHome?'#'+id:prefix+'index.html#'+id;
   const navItems=[
     ['My Plan',homeAnchor('plan'),'<circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2"></circle>'],
-    ['Tools',homeAnchor('tools'),'<path d="M12 4v16M4 12h16"></path>'],
-    ['Workouts',homeAnchor('workouts'),'<path d="M4 15l5-5 4 4 7-8"></path><path d="M15 6h5v5"></path>'],
+    ['Tools',prefix+'tools.html','<path d="M12 4v16M4 12h16"></path>'],
+    ['Workouts',prefix+'workouts.html','<path d="M4 15l5-5 4 4 7-8"></path><path d="M15 6h5v5"></path>'],
     ['Nutrition',homeAnchor('nutrition'),'<path d="M12 20c5-3 7-7 6-12-5-1-9 1-12 6 1 3 3 5 6 6Z"></path><path d="M8 16c3-3 5-5 8-7"></path>'],
     ['Gear',homeAnchor('gear'),'<path d="M6 9v6M18 9v6M3 10v4M21 10v4M6 12h12"></path>'],
     ['Videos',homeAnchor('videos'),'<rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="m10 9 5 3-5 3Z"></path>'],
@@ -55,7 +55,56 @@
       header.insertAdjacentElement('afterend',mobile);
     }
     mobile.innerHTML=mobileMarkup;
+
+    // Keep the same theme + music controls on every normal LiveFit page.
+    let controls=header.querySelector('.personal-controls');
+    if(!controls){
+      controls=document.createElement('div');
+      controls.className='personal-controls';
+      header.insertBefore(controls,desktop);
+    }
+    if(!controls.querySelector('#themeToggle')){
+      controls.insertAdjacentHTML('afterbegin','<button class="round-control" id="themeToggle" aria-label="Switch light and dark mode" title="Light / dark mode">◐</button>');
+    }
+    if(!controls.querySelector('#musicToggle')){
+      controls.insertAdjacentHTML('beforeend','<button class="round-control music-control" id="musicToggle" aria-label="Open ie Music player" title="Music"><span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>');
+    }
   }
+
+  const ensureMusicPanel=()=>{
+    if(document.getElementById('musicPanel')||document.body.classList.contains('report-page')) return;
+    const logo=prefix+'assets/ie-logo-real.webp';
+    const panel=document.createElement('div');
+    panel.className='music-panel';
+    panel.id='musicPanel';
+    panel.hidden=true;
+    panel.innerHTML=
+      '<div class="music-head">'+
+        '<div class="ie-music-mark"><div class="ie-music-logo"><img src="'+logo+'" alt="InAct Entertainment ie logo"></div><div><strong>Music</strong><small>by InAct Entertainment</small></div></div>'+
+        '<button class="music-close" id="musicClose" aria-label="Close music player">×</button>'+
+      '</div>'+
+      '<div class="music-body">'+
+        '<div class="music-now"><span>CHOOSE YOUR WORKOUT SOUND</span><strong id="musicNow">Select your vibe</strong><small id="musicStatus">Pick a genre, then choose a track.</small><p class="music-ai-note"><b>ie Music:</b> original AI-assisted workout tracks will be added alongside approved video sources.</p></div>'+
+        '<div class="music-genres">'+
+          '<button class="music-mode" data-mode="Hip-Hop"><b>Hip-Hop</b><small>Lift / intensity</small></button>'+
+          '<button class="music-mode" data-mode="Club / House"><b>Club / House</b><small>Cardio / circuits</small></button>'+
+          '<button class="music-mode" data-mode="Run / Cardio"><b>Run / Cardio</b><small>Tempo / endurance</small></button>'+
+          '<button class="music-mode" data-mode="Unwind"><b>Unwind</b><small>Cooldown / stretch</small></button>'+
+          '<button class="music-mode" data-mode="Meditation"><b>Meditation</b><small>Breathing / reset</small></button>'+
+          '<button class="music-mode" data-mode="Chimes"><b>Chimes</b><small>Ambient / calm</small></button>'+
+        '</div>'+
+        '<div class="music-track-list" id="musicTrackList" aria-live="polite"></div>'+
+        '<div class="music-view-toggle" role="group" aria-label="Music player view"><button type="button" class="active" data-player-view="listen">Listen</button><button type="button" data-player-view="video">Watch Video</button></div>'+
+        '<div class="music-video-shell audio-focus" id="musicVideoShell"><div id="musicVideo"></div></div>'+
+        '<div class="music-player-meta"><strong id="musicTrackTitle">Choose a track</strong><small id="musicTrackArtist">Official YouTube sources where available</small></div>'+
+        '<div class="music-transport"><button type="button" id="musicPrev" aria-label="Previous track">◀◀</button><button type="button" class="music-main-play" id="musicPlay" aria-label="Play or pause">▶</button><button type="button" id="musicStop" aria-label="Stop track">■</button><button type="button" id="musicNext" aria-label="Next track">▶▶</button></div>'+
+        '<div class="music-progress-wrap"><input id="musicProgress" class="music-progress" type="range" min="0" max="1000" value="0" aria-label="Track progress"><div><span id="musicElapsed">0:00</span><span id="musicDuration">0:00</span></div></div>'+
+        '<label class="music-volume-label"><small>Volume</small><input class="music-volume" id="musicVolume" type="range" min="0" max="100" value="70"></label>'+
+        '<div class="music-foot">Workout tracks use embedded video sources so playback stays on LiveFit. Recovery categories are ready for original ie Music and approved audio sources.</div>'+
+      '</div>';
+    document.body.appendChild(panel);
+  };
+  ensureMusicPanel();
 
   if(!document.querySelector('link[rel="icon"]')){
     const icon=document.createElement('link');
@@ -196,26 +245,58 @@
     reveals.forEach(el=>observer.observe(el));
   }else reveals.forEach(el=>el.classList.add('is-visible'));
 
-  // Add a compact legal/data footer to tool and funnel pages that do not already have a footer.
-  if(!document.querySelector('footer')&&!document.body.classList.contains('report-page')){
-    const prefix=location.pathname.includes('/tools/')?'../':'';
-    const footer=document.createElement('footer');
-    footer.className='compact-legal-footer';
+  // One footer structure everywhere so navigation never changes between page types.
+  if(!document.body.classList.contains('report-page')){
+    let footer=document.querySelector('footer');
+    if(!footer){ footer=document.createElement('footer'); document.body.appendChild(footer); }
+    footer.className='site-footer unified-footer';
     footer.innerHTML=
-      '<div class="footer-brand"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></div>'+
+      '<div class="footer-brand"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span><p>Tools. Workouts. Gear. Better everyday fitness.</p></div>'+
       '<div class="footer-links">'+
-      '<a href="'+prefix+'about.html">About</a>'+
-      '<a href="'+prefix+'privacy.html">Privacy</a>'+
-      '<a href="'+prefix+'terms.html">Terms</a>'+
-      '<a href="'+prefix+'disclaimer.html">Disclaimer</a>'+
-      '<a href="'+prefix+'affiliate.html">Affiliate Disclosure</a>'+
-      '<a href="'+prefix+'refund.html">Refund Policy</a>'+
-      '<a href="'+prefix+'contact.html">Contact</a>'+
+        '<a href="'+prefix+'tools.html">Tools</a>'+
+        '<a href="'+prefix+'workouts.html">Workouts</a>'+
+        '<a href="'+prefix+'plan.html">My Plan</a>'+
+        '<a href="'+prefix+'articles.html">Articles</a>'+
+        '<a href="'+prefix+'about.html">About</a>'+
+        '<a href="'+prefix+'contact.html">Contact</a>'+
+        '<a href="'+prefix+'privacy.html">Privacy</a>'+
+        '<a href="'+prefix+'terms.html">Terms</a>'+
+        '<a href="'+prefix+'disclaimer.html">Disclaimer</a>'+
+        '<a href="'+prefix+'affiliate.html">Affiliate Disclosure</a>'+
+        '<a href="'+prefix+'refund.html">Refund Policy</a>'+
       '</div>'+
       '<button class="data-reset-button" type="button">Reset My LiveFit Data</button>'+
       '<p class="umbrella">LiveFit.info is a project of InAct Entertainment LLC.</p>';
-    document.body.appendChild(footer);
   }
+
+  // Add the five core tool jump cards at the bottom of every tool page.
+  if(location.pathname.includes('/tools/')&&!document.querySelector('.tool-jump-bar')){
+    const toolMain=document.querySelector('main');
+    if(toolMain){
+      const jump=document.createElement('section');
+      jump.className='tool-jump-bar';
+      jump.innerHTML=
+        '<div class="tool-jump-head"><p class="eyebrow">KEEP MOVING THROUGH LIVEFIT</p><h2>All five core tools are one tap away.</h2></div>'+
+        '<div class="tool-jump-grid">'+
+          '<a href="calorie.html"><span>01</span><b>Calorie & TDEE</b><small>Energy needs</small></a>'+
+          '<a href="protein.html"><span>02</span><b>Protein Target</b><small>Daily range</small></a>'+
+          '<a href="walking.html"><span>03</span><b>Walking & Steps</b><small>Distance + pace</small></a>'+
+          '<a href="workout.html"><span>04</span><b>Workout Generator</b><small>Build a session</small></a>'+
+          '<a href="equipment.html"><span>05</span><b>Equipment Matcher</b><small>Gear + space</small></a>'+
+        '</div>'+
+        '<a class="tool-jump-all" href="../tools.html">View the full tools library →</a>';
+      toolMain.appendChild(jump);
+    }
+  }
+
+  // Load the shared enhancement script on pages that do not already include it.
+  window.addEventListener('DOMContentLoaded',()=>{
+    if(!document.querySelector('script[src$="livefit-enhancements.js"]')){
+      const script=document.createElement('script');
+      script.src=prefix+'js/livefit-enhancements.js';
+      document.body.appendChild(script);
+    }
+  });
 
   document.querySelectorAll('.data-reset-button').forEach(btn=>btn.addEventListener('click',()=>{
     if(confirm('Reset your saved LiveFit assessment, tool results, and roadmap preview data on this device?')){
