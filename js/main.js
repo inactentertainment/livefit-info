@@ -135,6 +135,11 @@
       localStorage.setItem('livefit-roadmap-access',JSON.stringify(access));
       return access;
     },
+    grantPaidAccess(email,source='stripe-live'){
+      const access={status:'paid',email:email||'',source,grantedAt:new Date().toISOString(),version:1};
+      localStorage.setItem('livefit-roadmap-access',JSON.stringify(access));
+      return access;
+    },
     hasRoadmapAccess(){
       const a=this.access();
       return a.status==='qa-preview'||a.status==='paid';
