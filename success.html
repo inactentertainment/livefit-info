@@ -1,15 +1,39 @@
-<!doctype html><html lang="en" data-theme="dark"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
-<title>Roadmap Access | LiveFit.info</title><link rel="stylesheet" href="css/style.css"></head>
-<body class="assessment-page"><header class="site-header"><a class="brand page-link" href="index.html"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></a></header>
-<main class="purchase-success-shell"><div class="success-check">✓</div><p class="eyebrow">STRIPE TEST CHECKOUT COMPLETE</p><h1>Your roadmap preview is unlocked.</h1><p>This is the pre-launch Stripe test flow. Test-mode payments do not create a real charge. Live launch will replace this test permission with verified payment access.</p>
-<div class="hero-actions" style="justify-content:center"><a class="btn btn-primary shimmer page-link" href="roadmap-report.html">Open My Roadmap</a><a class="btn btn-secondary page-link" href="roadmap.html">Back to Funnel</a></div>
-<p class="microcopy">Secure live paid access will replace this test-preview permission when LiveFit switches from Stripe test mode to live payment verification.</p></main><script src="js/main.js"></script>
-<script>
-  const params=new URLSearchParams(location.search);
-  if(params.get('stripe_test')==='1'){
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Payment Complete | LiveFit.info</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="assessment-page">
+  <header class="site-header">
+    <a class="brand page-link" href="index.html"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></a>
+  </header>
+
+  <main class="purchase-success-shell">
+    <div class="success-check">✓</div>
+    <p class="eyebrow">PAYMENT COMPLETE</p>
+    <h1>Your LiveFit roadmap is ready.</h1>
+    <p>Your $7 one-time LiveFit Personalized Roadmap purchase is complete. There is no LiveFit subscription or recurring charge.</p>
+
+    <div class="hero-actions" style="justify-content:center">
+      <a class="btn btn-primary shimmer page-link" href="roadmap-report.html">Open My Roadmap</a>
+      <a class="btn btn-secondary page-link" href="roadmap.html">Back to My Roadmap</a>
+    </div>
+
+    <p class="microcopy">Keep this browser open until you have saved or printed your roadmap. LiveFit currently stores your roadmap data on this device.</p>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+    const params=new URLSearchParams(location.search);
     const checkout=window.LiveFit.safeJSON('livefit-roadmap-checkout',{});
-    window.LiveFit.grantQAPreview(checkout.email||'');
-  }
-  if(!window.LiveFit.hasRoadmapAccess()) location.replace('roadmap.html');
-</script></body></html>
+    if(params.get('paid')==='1'){
+      window.LiveFit.grantPaidAccess(checkout.email||'','stripe-live-return');
+    }
+    if(!window.LiveFit.hasRoadmapAccess()) location.replace('roadmap.html');
+  </script>
+</body>
+</html>
