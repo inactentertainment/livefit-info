@@ -288,3 +288,91 @@ window.LiveFitSourcesForArticle=function(a){
     });
   };
 })();
+
+/* LiveFit article expansion: 50-guide library */
+window.LiveFitArticles.push(
+{id:"exercise-sleep-after-60",title:"Exercise and Sleep After 60: Can Moving More Help You Sleep Better?",category:"recovery sleep trending",audience:"all 60+",deck:"Newer reviews keep pointing toward exercise as a useful part of better sleep for older adults.",focus:"sleep quality, aerobic activity, resistance training, timing, recovery, and realistic expectations",starter:["Keep a regular wake time","Add easy aerobic movement","Strength train consistently","Avoid turning late sessions into all-out efforts","Track sleep trends for several weeks"]},
+{id:"perimenopause-fitness",title:"Fitness During Perimenopause: What to Keep, What to Change, and What to Ignore",category:"women strength recovery trending",audience:"women 40+",deck:"Perimenopause can change symptoms and recovery, but it does not require abandoning strength or cardio.",focus:"perimenopause, strength training, aerobic exercise, recovery, symptoms, and sustainable routines",starter:["Keep two strength days","Protect sleep when possible","Use symptom-aware intensity","Keep easy cardio in the week","Track patterns instead of guessing"]},
+{id:"menopause-recovery-strength",title:"Menopause, Recovery, and Strength: Building a Week That Still Works",category:"women strength recovery",audience:"women 50+",deck:"Use training structure, recovery, and nutrition to keep strength work sustainable through and after menopause.",focus:"menopause, resistance training, recovery, protein, sleep, and progressive loading",starter:["Use repeatable full-body sessions","Leave reps in reserve","Distribute protein across meals","Protect recovery days","Progress one variable at a time"]},
+{id:"sit-to-stand-after-60",title:"The Sit-to-Stand Test After 60: A Simple Window Into Everyday Strength",category:"strength function longevity",audience:"all 60+",deck:"Getting up from a chair is a daily-life skill and a useful way to notice changes in leg strength and control.",focus:"sit-to-stand, leg strength, function, chair height, balance, and progress tracking",starter:["Use a stable chair","Practice controlled stands","Reduce hand assistance gradually","Track quality before speed","Pair with walking"]},
+{id:"walking-speed-after-60",title:"Walking Speed After 60: Why Pace Can Matter as Much as Step Count",category:"walking cardio function",audience:"all 60+",deck:"Steps tell you how much you moved. Pace can tell you something different about capacity and confidence.",focus:"walking speed, gait, endurance, leg strength, interval walking, and function",starter:["Measure a repeatable route","Add short brisk segments","Strengthen legs","Practice balance","Retest under similar conditions"]},
+{id:"bands-vs-dumbbells-after-50",title:"Resistance Bands vs. Dumbbells After 50: Which Should You Use?",category:"strength gear home",audience:"all 50+",deck:"Both can build useful strength. The better choice depends on load, control, space, joints, and progression.",focus:"resistance bands, dumbbells, progressive overload, joint comfort, home training, and equipment choice",starter:["Choose one main tool","Train major movement patterns","Track resistance or load","Add difficulty gradually","Use the tool you will actually repeat"]},
+{id:"warmup-after-50",title:"The Warm-Up After 50: What You Actually Need Before Strength or Cardio",category:"mobility strength",audience:"all 50+",deck:"A useful warm-up raises temperature, rehearses the movements, and gets you ready without exhausting you.",focus:"warm-ups, mobility, rehearsal sets, temperature, joint comfort, and training readiness",starter:["Start with easy movement","Rehearse the main patterns","Use lighter practice sets","Increase range gradually","Save hard work for the workout"]},
+{id:"deload-after-40",title:"Deload Weeks After 40: When Doing Less Can Help You Keep Progressing",category:"recovery strength",audience:"all 40+",deck:"Planned easier weeks can make sense when training stress keeps climbing and recovery is slipping.",focus:"deloads, training fatigue, volume, intensity, recovery, and long-term consistency",starter:["Watch performance trends","Reduce volume before quitting","Keep some movement","Protect sleep","Resume gradually"]},
+{id:"stretching-vs-mobility",title:"Stretching vs. Mobility After 50: What Is the Difference?",category:"mobility",audience:"all 50+",deck:"Stretching can change how a position feels. Mobility asks whether you can control useful range.",focus:"stretching, mobility, controlled range, strength through range, and daily movement",starter:["Pick one stiff area","Use controlled repetitions","Strengthen the range you gain","Avoid forcing painful positions","Retest a useful movement"]},
+{id:"floor-transfer-after-60",title:"Getting Up From the Floor After 60: A Skill Worth Practicing",category:"function mobility longevity",audience:"all 60+",deck:"Floor transfers combine mobility, leg strength, balance, coordination, and confidence.",focus:"floor transfers, leg strength, balance, kneeling, support options, and safe practice",starter:["Practice near stable support","Break the transfer into steps","Strengthen sit-to-stand","Use half-kneeling if appropriate","Progress slowly"]},
+{id:"hiking-after-50",title:"Hiking After 50: Build the Legs, Lungs, and Balance Before the Trail",category:"cardio strength outdoor",audience:"all 50+",deck:"Hiking asks for more than walking—especially when hills, uneven ground, and longer durations show up.",focus:"hiking preparation, hills, walking volume, leg strength, balance, footwear, and pacing",starter:["Build weekly walking volume","Practice hills","Train step-ups","Carry a light pack gradually","Test footwear before long outings"]},
+{id:"stairs-after-50",title:"Stairs After 50: Train for the Everyday Test You Cannot Avoid",category:"strength cardio function",audience:"all 50+",deck:"Stairs reveal the combined demands of leg strength, balance, and aerobic capacity.",focus:"stairs, step-ups, leg strength, cardiovascular fitness, pacing, and daily function",starter:["Practice step-ups","Strengthen squats","Add brisk walking","Use the railing when needed","Track how stairs feel over time"]},
+{id:"protein-per-meal-after-60",title:"Protein Per Meal After 60: Why Distribution Matters",category:"nutrition strength",audience:"all 60+",deck:"Daily protein matters, but spreading useful amounts across meals can make the target easier to reach.",focus:"protein distribution, meals, resistance training, appetite, food quality, and practical planning",starter:["Add protein to breakfast","Center lunch around protein","Plan dinner before hunger spikes","Use an easy protein snack","Track the daily total too"]},
+{id:"hydration-after-60",title:"Hydration After 60: A Practical Guide for Walking, Workouts, and Hot Days",category:"nutrition recovery",audience:"all 60+",deck:"Thirst cues and fluid needs can become harder to judge. Build a simple routine around activity and climate.",focus:"hydration, exercise, heat, thirst, medications, and practical fluid habits",starter:["Start the day hydrated","Carry water on longer walks","Drink around workouts","Watch heat exposure","Follow clinician fluid restrictions"]},
+{id:"strength-frequency-after-50",title:"How Many Strength Days Do You Need After 50?",category:"strength planning",audience:"all 50+",deck:"More days are not automatically better. Use frequency to distribute useful work you can recover from.",focus:"strength frequency, full-body training, recovery, weekly volume, and consistency",starter:["Start with two full-body days","Add a third only if recovery is good","Keep major movement patterns","Track soreness and performance","Protect rest days"]},
+{id:"exercise-snacks-after-40",title:"Exercise Snacks After 40: Can 5–10 Minutes at a Time Add Up?",category:"consistency cardio strength trending",audience:"all 40+",deck:"Short movement bouts can make exercise easier to fit into a busy day and can support a larger weekly routine.",focus:"short exercise bouts, walking, strength, habit building, schedule fit, and total weekly activity",starter:["Use a 5-minute walk","Do one strength circuit","Take movement breaks","Stack sessions around routines","Count the weekly total"]},
+{id:"break-up-sitting-after-40",title:"Sitting All Day After 40: How to Build Movement Back Into a Desk-Bound Life",category:"walking consistency",audience:"all 40+",deck:"A workout helps, but long inactive blocks can still dominate the day. Build movement into the spaces between tasks.",focus:"sedentary time, movement breaks, walking, posture, strength, and workday habits",starter:["Stand each hour","Walk during one call","Use stairs when practical","Keep a short mobility reset","Schedule a real workout too"]},
+{id:"return-to-running-after-50",title:"Returning to Running After 50: A Walk-Run Plan That Respects the Comeback",category:"cardio running",audience:"all 50+",deck:"Running can be reintroduced gradually when walking capacity, leg strength, and recovery support it.",focus:"walk-run progression, tissue tolerance, aerobic base, strength, footwear, and recovery",starter:["Build comfortable walking first","Use short run intervals","Keep easy days easy","Strengthen calves and hips","Increase one variable at a time"]},
+{id:"heart-rate-training-after-50",title:"Heart-Rate Training After 50: Useful Guide or Number Trap?",category:"cardio technology",audience:"all 50+",deck:"Heart rate can guide intensity, but medications, devices, and individual variation can change what the numbers mean.",focus:"heart rate, talk test, wearable estimates, medications, aerobic intensity, and perceived effort",starter:["Use the talk test too","Learn your easy pace","Compare trends, not one reading","Check medication effects with your clinician","Keep hard work limited"]},
+{id:"weekend-warrior-after-40",title:"Weekend Warrior Fitness After 40: How to Train Hard Without Paying for It Monday",category:"consistency recovery cardio",audience:"all 40+",deck:"If most of your activity happens on weekends, prepare the body during the week instead of going from zero to maximum.",focus:"weekend activity, recovery, strength, warm-ups, gradual exposure, and weekday movement",starter:["Move during the week","Strength train at least twice","Warm up before hard weekend activity","Build volume gradually","Plan Monday recovery"]}
+);
+
+window.LiveFitSources.sleep=[
+  {name:'PubMed — Exercise interventions and subjective sleep quality in older adults: 2025 systematic review and meta-analysis',url:'https://pubmed.ncbi.nlm.nih.gov/41114024/'},
+  {name:'PubMed — Aerobic exercise and sleep quality in older adults with sleep problems: 2026 systematic review and meta-analysis',url:'https://pubmed.ncbi.nlm.nih.gov/41815256/'}
+];
+window.LiveFitSources.perimenopause=[
+  {name:'PubMed — Lifestyle interventions during perimenopause: 2025 systematic review of randomized trials',url:'https://pubmed.ncbi.nlm.nih.gov/40992413/'}
+];
+window.LiveFitSources.function=[
+  {name:'PubMed — Resistance training effects on gait and functional performance in older adults: 2026 systematic review',url:'https://pubmed.ncbi.nlm.nih.gov/41811623/'},
+  {name:'PubMed — Sit-to-stand activity to improve mobility in older people: scoping review',url:'https://pubmed.ncbi.nlm.nih.gov/32500976/'}
+];
+
+const _LiveFitSourcesForArticle50=window.LiveFitSourcesForArticle;
+window.LiveFitSourcesForArticle=function(a){
+  let list=_LiveFitSourcesForArticle50(a);
+  const cat=(a.category||'').toLowerCase();
+  const id=a.id||'';
+  if(cat.includes('sleep')||id.includes('sleep')) list=[...window.LiveFitSources.sleep,...list];
+  if(id.includes('perimenopause')||id.includes('menopause')) list=[...window.LiveFitSources.perimenopause,...list];
+  if(cat.includes('function')||id.includes('sit-to-stand')||id.includes('walking-speed')||id.includes('floor-transfer')||id.includes('stairs')) list=[...window.LiveFitSources.function,...list];
+  const seen=new Set(); return list.filter(x=>!seen.has(x.url)&&seen.add(x.url));
+};
+
+/* Every article gets an embedded related movement video and a simple visual learning diagram. */
+window.LiveFitArticleVideo=function(a){
+  const cat=(a.category||'').toLowerCase();
+  if(cat.includes('balance')||cat.includes('mobility')||cat.includes('function')) return {id:'57eeOuZydWM',title:'Related balance and functional movement video'};
+  if(cat.includes('band')||cat.includes('gear')||cat.includes('strength')) return {id:'uPBnsCdKXc4',title:'Related resistance-training video'};
+  if(cat.includes('walking')||cat.includes('cardio')||cat.includes('running')) return {id:'biEZs5KnHwo',title:'Related low-impact cardio and movement video'};
+  if(cat.includes('beginner')||a.audience.includes('70+')) return {id:'nFSqub-TGgo',title:'Related beginner-friendly movement video'};
+  return {id:'KG4eybHxjUc',title:'Related LiveFit movement challenge'};
+};
+
+window.LiveFitArticleDiagram=function(a){
+  const cat=(a.category||'').toLowerCase();
+  const labels=cat.includes('recovery')||cat.includes('sleep')
+    ? ['TRAIN','EAT','RECOVER','REPEAT']
+    : cat.includes('cardio')||cat.includes('walking')
+      ? ['EASY','BUILD','BRISK','RECOVER']
+      : cat.includes('nutrition')
+        ? ['PLAN','PROTEIN','PRODUCE','REPEAT']
+        : ['LEARN','TRAIN','RECOVER','PROGRESS'];
+  return '<section class="article-data-visual"><span class="eyebrow">VISUAL GUIDE</span><h2>The LiveFit progression loop</h2>'+
+    '<div class="progression-diagram">'+labels.map((x,i)=>'<div><span>'+String(i+1).padStart(2,'0')+'</span><b>'+x+'</b><i style="--bar:'+((i+1)*22+10)+'%"></i></div>').join('')+'</div>'+
+    '<p>Use the diagram as a simple reminder: useful progress comes from repeating manageable work, not from winning one isolated session.</p></section>';
+};
+
+const _LiveFitBuildArticleVideo=window.LiveFitBuildArticle;
+window.LiveFitBuildArticle=function(a){
+  const holder=document.createElement('div');
+  holder.innerHTML=_LiveFitBuildArticleVideo(a);
+  const sections=[...holder.querySelectorAll(':scope > section')];
+  const insertAfter=sections.find(s=>s.classList.contains('article-quiz'))||sections[3];
+  if(insertAfter) insertAfter.insertAdjacentHTML('afterend',window.LiveFitArticleDiagram(a));
+  const later=[...holder.querySelectorAll(':scope > section')].filter(s=>!s.classList.contains('article-sources'));
+  const video=window.LiveFitArticleVideo(a);
+  const target=later[Math.min(7,later.length-1)];
+  if(target&&video) target.insertAdjacentHTML('afterend',
+    '<section class="article-related-video"><span class="eyebrow">WATCH + LEARN</span><h2>'+video.title+'</h2>'+
+    '<div class="video-frame"><iframe src="https://www.youtube.com/embed/'+video.id+'?rel=0&modestbranding=1" title="'+video.title+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>'+
+    '<p class="microcopy">This is a related educational movement example. Adapt the workout to your ability and medical guidance.</p></section>');
+  return holder.innerHTML;
+};
