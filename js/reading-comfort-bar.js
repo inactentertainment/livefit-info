@@ -90,7 +90,10 @@
   panel.setAttribute('aria-label','Reading tools');
   document.body.appendChild(panel);
 
+  let activeTool='';
   const closePanel=()=>{
+    if(activeTool==='break'&&typeof stopBreak==='function')stopBreak(false);
+    activeTool='';
     panel.classList.remove('open');
     panel.innerHTML='';
     bar.querySelectorAll('[data-reader-tool]').forEach(b=>b.setAttribute('aria-expanded','false'));
@@ -100,6 +103,7 @@
     closePanel();
     if(same)return false;
     button.setAttribute('aria-expanded','true');
+    activeTool=button.dataset.readerTool||'';
     panel.innerHTML='<div class="reader-tool-panel-head"><div><p class="eyebrow">'+eyebrow+'</p><h3>'+title+'</h3></div><button type="button" class="reader-tool-close" aria-label="Close">×</button></div>'+body;
     panel.classList.add('open');
     panel.querySelector('.reader-tool-close')?.addEventListener('click',closePanel);
@@ -397,7 +401,13 @@
       quiet.checked=root.classList.contains('reader-quiet');
       quiet.addEventListener('change',()=>{
         root.classList.toggle('reader-quiet',quiet.checked);
-        if(quiet.checked){stopReading();stopBreak(false)}
+        if(quiet.checked){
+          stopReading();stopBreak(false);
+          document.querySelectorAll('audio,video').forEach(media=>{try{media.pause()}catch{}});
+          document.querySelectorAll('iframe[src*="youtube.com"],iframe[src*="youtu.be"]').forEach(frame=>{
+            try{frame.contentWindow?.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}),'*')}catch{}
+          });
+        }
         savePrefs();
       });
     }
