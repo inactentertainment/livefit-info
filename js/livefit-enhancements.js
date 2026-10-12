@@ -257,7 +257,7 @@
 
 (() => {
   const articleContent=document.getElementById('articleContent');
-  if(!articleContent || document.querySelector('.listen-launch')) return;
+  if(!articleContent || document.getElementById('livefitReadingBar') || document.querySelector('.listen-launch')) return;
 
   const launch=document.createElement('button');
   launch.className='listen-launch';
