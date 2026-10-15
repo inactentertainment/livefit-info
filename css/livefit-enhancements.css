@@ -658,3 +658,12 @@ html[data-theme="light"] .article-reader:before{background:rgba(214,58,11,.10)}
 html[data-theme="light"] .article-reader:after{background:rgba(80,70,60,.05)}
 
 @media(prefers-reduced-motion:reduce){.contact-orbit:before,.contact-orbit:after{animation:none!important}}
+
+/* Compact two-line roadmap headline; preserve the current image and CTA. */
+#planModal .roadmap-modal-copy{container-type:inline-size;width:100%}
+#planModal .roadmap-modal-copy h2.roadmap-compact-title{font-size:clamp(18px,2.6vw,34px)!important;font-size:clamp(18px,6.8cqi,34px)!important;line-height:1.13!important;margin:4px auto 8px!important;max-width:none}
+#planModal .roadmap-compact-title>span{display:block}
+#planModal .roadmap-modal-copy>p{line-height:1.45}
+#planModal .roadmap-modal-benefits{margin:10px 0!important;gap:6px!important}
+#planModal .roadmap-modal-benefits span{padding:6px 9px!important}
+#planModal .roadmap-sales-modal{gap:8px!important}
