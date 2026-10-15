@@ -36,7 +36,7 @@
           <h1 id="previewTitle">Your plan is taking shape.</h1>
           <p id="previewLead">LiveFit combines your assessment and tool results into one practical starter roadmap.</p>
           <div class="roadmap-completeness">
-            <div class="completeness-head"><span>Your roadmap details</span><strong id="completeText">0 / 5</strong></div>
+            <div class="completeness-head"><span>Your roadmap details</span><strong id="completeText">0 / 6</strong></div>
             <div class="completeness-meter"><span id="completeMeter"></span></div>
           </div>
         </div>
@@ -186,6 +186,8 @@
   <script>
   (() => {
     const state=window.LiveFit?.safePlan?.()||{};
+    const openedWith=JSON.stringify(state);
+    window.addEventListener('pageshow',event=>{if(event.persisted&&JSON.stringify(window.LiveFit.safePlan())!==openedWith)location.reload();});
     const labels={
       weight:'Lose Weight',muscle:'Build Muscle',fitness:'Improve Fitness',mobility:'Move Better',energy:'More Energy',tone:'Tone & Shape',
       slim:'Slim',average:'Average',fit:'Fit','soft-build':'Soft Build',muscular:'Muscular',stocky:'Stocky',heavy:'Heavy','very-heavy':'Very Heavy',large:'Heavy',

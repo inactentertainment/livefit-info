@@ -3,6 +3,14 @@ on:
   push:
     paths:
       - 'app-assets/**'
+      - 'js/**'
+      - 'css/**'
+      - 'roadmap*.html'
+      - 'success.html'
+      - 'tools/**'
+      - 'index.html'
+      - 'privacy.html'
+      - 'assets/roadmap-cover.jpg'
       - '.github/scripts/refine_experience.py'
       - '.github/scripts/enable_app.py'
       - '.github/scripts/app-config.json'
