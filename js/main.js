@@ -129,6 +129,20 @@
     },
     safePlan(){ return this.safeJSON('livefit-plan',{}); },
     savePlan(value){ localStorage.setItem('livefit-plan',JSON.stringify(value||{})); },
+    roadmapModules(state=this.safePlan()){
+      const positive=v=>Number.isFinite(Number(v))&&Number(v)>0;
+      const assessment=['sex','profile','goal','activity','location','equipment','time','nutrition','barrier'].every(k=>typeof state[k]==='string'&&state[k].length>0);
+      const workout=state.workoutPlan;
+      return [
+        {key:'assessment',name:'Starting assessment',done:assessment,url:'plan.html'},
+        {key:'calories',name:'Calorie & TDEE',done:positive(state.calorieEstimate?.maintenance)&&positive(state.calorieEstimate?.bmr),url:'tools/calorie.html'},
+        {key:'protein',name:'Protein target',done:positive(state.proteinEstimate?.low)&&positive(state.proteinEstimate?.high),url:'tools/protein.html'},
+        {key:'walking',name:'Walking target',done:positive(state.walkingEstimate?.targetSteps),url:'tools/walking.html'},
+        {key:'workout',name:'Workout plan',done:!!workout&&((workout.mode==='week'&&Array.isArray(workout.days)&&workout.days.length>0)||(workout.mode==='today'&&Array.isArray(workout.exercises)&&workout.exercises.length>0)),url:'tools/workout.html'},
+        {key:'equipment',name:'Equipment preferences',done:!!state.equipmentMatcher?.settings&&!!state.equipmentMatcher?.packages,url:'tools/equipment.html'}
+      ];
+    },
+    roadmapReady(state=this.safePlan()){return this.roadmapModules(state).every(m=>m.done);},
     access(){ return this.safeJSON('livefit-roadmap-access',{}); },
     grantQAPreview(email){
       const access={status:'qa-preview',email:email||'',grantedAt:new Date().toISOString(),version:1};

@@ -11,7 +11,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="LiveFit">
-<script defer src="app-assets/install.js"></script>
+<script defer src="app-assets/install.js?v=20261015-refine5"></script>
 </head>
 <body class="assessment-page">
   <header class="site-header">
@@ -32,7 +32,7 @@
     <p class="microcopy">Keep this browser open until you have saved or printed your roadmap. LiveFit currently stores your roadmap data on this device.</p>
   </main>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20261015-plan5"></script>
   <script>
     const params=new URLSearchParams(location.search);
     const checkout=window.LiveFit.safeJSON('livefit-roadmap-checkout',{});
@@ -40,6 +40,15 @@
       window.LiveFit.grantPaidAccess(checkout.email||'','stripe-live-return');
     }
     if(!window.LiveFit.hasRoadmapAccess()) location.replace('roadmap.html');
+    if(!window.LiveFit.roadmapReady()){
+      const snapshot=checkout.plan;
+      if(snapshot&&window.LiveFit.roadmapReady(snapshot))window.LiveFit.savePlan(snapshot);
+      else{
+        document.querySelector('main h1').textContent='Your purchase is saved. Finish your roadmap details.';
+        document.querySelector('main>p:not(.eyebrow):not(.microcopy)').textContent='Complete the missing assessment and free tool results to finish your personal roadmap. You do not need to pay again in this browser.';
+        const link=document.querySelector('a[href="roadmap-report.html"]');link.href='roadmap.html';link.textContent='Finish My Roadmap';
+      }
+    }
   </script>
 </body>
 </html>

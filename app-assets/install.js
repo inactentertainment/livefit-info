@@ -65,7 +65,7 @@
   }
   window.siteInstallApp=install;
   window.__siteExperienceConfig=brand;
-  const experience=document.createElement("script");experience.src=new URL("site-experience.js?v=20261015-quiet",document.currentScript.src).href;document.head.append(experience);
+  const experience=document.createElement("script");experience.src=new URL("site-experience.js?v=20261015-refine5",document.currentScript.src).href;document.head.append(experience);
   function init() {
     const desktopHost = document.querySelector(brand.desktop);
     const desktop = makeButton('Install App','site-app-desktop');
@@ -80,6 +80,8 @@
     document.querySelectorAll('.site-app-footer').forEach(n=>n.remove());
     const footer=document.querySelector('footer');
     if(footer){const host=footer.querySelector('.footer-word-links,.footer-links,.footer-nav,.legal-links,nav')||footer;const link=document.createElement('button');link.type='button';link.className='site-app-footer-text';link.textContent='Install App';link.addEventListener('click',install);host.append(link);controls.push(link);}
+    const header=document.querySelector('.site-header');
+    if(header){header.append(desktop);desktop.classList.add('livefit-install-end');}
     sync();
   }
   // Keep older install buttons on the same prompt, without duplicate prompts.

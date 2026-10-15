@@ -12,13 +12,13 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="LiveFit">
-<script defer src="app-assets/install.js"></script>
+<script defer src="app-assets/install.js?v=20261015-refine5"></script>
 </head>
 <body class="report-page">
   <header class="report-toolbar">
     <a class="brand page-link" href="roadmap.html"><span class="brand-live">LIVE FIT</span><span class="brand-info">.info</span></a>
     <div class="report-toolbar-actions">
-      <a class="btn btn-secondary" href="roadmap.html">← Back to Funnel</a>
+      <a class="btn btn-secondary" href="roadmap.html">← Back to My Roadmap</a>
       <button class="btn btn-primary shimmer" id="printRoadmap">Print / Save as PDF</button>
     </div>
   </header>
@@ -172,13 +172,19 @@
     </section>
   </main>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20261015-plan5"></script>
   <script>
-    if(!window.LiveFit.hasRoadmapAccess()){
+    if(!window.LiveFit.hasRoadmapAccess()||!window.LiveFit.roadmapReady()){
       document.getElementById('roadmapReport').setAttribute('aria-hidden','true');
+      document.getElementById('roadmapReport').hidden=true;
+      document.getElementById('printRoadmap').disabled=true;
       const lock=document.createElement('div');
       lock.className='qa-lock';
-      lock.innerHTML='<div class="qa-lock-card"><p class="eyebrow">ROADMAP LOCKED</p><h1>Complete the checkout review first.</h1><p>Payment is not live yet. During QA, the funnel grants a temporary local preview permission so we can test the same locked flow safely.</p><a class="btn btn-primary" href="roadmap.html">Go to Roadmap Funnel</a></div>';
+      lock.innerHTML='<div class="qa-lock-card"><p class="eyebrow">ROADMAP LOCKED</p><h1>Your roadmap is not unlocked yet.</h1><p>Complete your assessment and free tools, review your results, then unlock your personal roadmap. If you have already purchased, return using the same browser and device.</p><a class="btn btn-primary" href="roadmap.html">Review My Roadmap</a></div>';
+      if(window.LiveFit.hasRoadmapAccess()){
+        lock.querySelector('h1').textContent='Finish your roadmap details.';
+        lock.querySelector('.qa-lock-card>p:not(.eyebrow)').textContent='Your purchase is already unlocked in this browser. Complete your assessment and the missing free tools, then return here to save your PDF. You do not need to pay again.';
+      }
       document.body.appendChild(lock);
     }
   </script>

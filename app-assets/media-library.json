@@ -1,1 +1,395 @@
-{"music": [{"title": "If I Ruled the World", "artist": "Nas", "videoId": "vvmjZkFcCh0", "genre": "Hip-Hop"}, {"title": "Juicy", "artist": "The Notorious B.I.G.", "videoId": "_JZom_gVfuw", "genre": "Hip-Hop"}, {"title": "California Love", "artist": "2Pac feat. Dr. Dre", "videoId": "iiWoF5tvLG4", "genre": "Hip-Hop"}, {"title": "Gonna Make You Sweat", "artist": "C+C Music Factory", "videoId": "LaTGrV58wec", "genre": "Club / House"}, {"title": "Rhythm Is a Dancer", "artist": "SNAP!", "videoId": "DMiREvBzGY0", "genre": "Club / House"}, {"title": "What Is Love", "artist": "Haddaway", "videoId": "HEXWRTEbj1I", "genre": "Club / House"}, {"title": "Pump Up the Jam", "artist": "Technotronic", "videoId": "y_-SP55sRig", "genre": "Run / Cardio"}, {"title": "Finally", "artist": "CeCe Peniston", "videoId": "xk8mm1Qmt-Y", "genre": "Run / Cardio"}, {"title": "Show Me Love", "artist": "Robin S", "videoId": "Ps2Jc28tQrw", "genre": "Run / Cardio"}], "motivation": [{"artist": "Motiversity", "title": "The Power of Gratitude & Perspective", "videoId": "syuCEfkup28", "genre": "Motivation", "category": "Motivation", "theme": "Morning encouragement, focus, and personal growth.", "alternates": []}, {"artist": "Motiversity", "title": "Best of 2025 · Speakers compilation", "videoId": "SkQ-eoBo1Q4", "genre": "Motivation", "category": "Motivation", "theme": "Morning encouragement, focus, and personal growth.", "alternates": []}, {"artist": "Les Brown · MotivationHub", "title": "It’s Time to Get Over It", "videoId": "ffXKVfUcQE8", "genre": "Motivation", "category": "Motivation", "theme": "Morning encouragement, focus, and personal growth.", "alternates": []}, {"artist": "Les Brown", "title": "Commit Yourself", "videoId": "gVo-vFan3X8", "genre": "Motivation", "category": "Motivation", "theme": "Morning encouragement, focus, and personal growth.", "alternates": []}, {"artist": "Eric Thomas", "title": "You Owe You", "videoId": "7Oxz060iedY", "genre": "Motivation", "category": "Motivation", "theme": "Morning encouragement, focus, and personal growth.", "alternates": []}, {"artist": "Motiversity", "title": "Morning Motivation · Start Your Day Right", "videoId": "GXftq9TnhaA", "genre": "Motivation", "category": "Motivation", "theme": "Morning encouragement, focus, and personal growth.", "alternates": []}, {"artist": "Eric Thomas", "title": "You Owe It to Yourself · Compilation", "videoId": "iqJpJLOyaoY", "genre": "Motivation", "category": "Motivation", "theme": "Morning encouragement, focus, and personal growth.", "alternates": []}, {"artist": "Motiversity", "title": "The Best Morning Motivation", "videoId": "dDdiPA8PFhc", "genre": "Motivation", "category": "Motivation", "theme": "Morning encouragement, focus, and personal growth.", "alternates": []}, {"artist": "Motiversity", "title": "Believe in Yourself · Morning Motivation", "videoId": "4Bnfmgm3jZg", "genre": "Motivation", "category": "Motivation", "theme": "Morning encouragement, focus, and personal growth.", "alternates": []}, {"artist": "Les Brown", "title": "Change Your Life · Morning Motivation", "videoId": "ZTHy7KhudkM", "genre": "Motivation", "category": "Motivation", "theme": "Morning encouragement, focus, and personal growth.", "alternates": []}, {"artist": "Tony Robbins", "title": "Focus on Yourself · Morning Motivation", "videoId": "IRmMDkbEySA", "genre": "Motivation", "category": "Motivation", "theme": "Morning encouragement, focus, and personal growth.", "alternates": []}, {"artist": "Eric Thomas", "title": "You Owe It to You", "videoId": "jPpRo3RKcn0", "genre": "Motivation", "category": "Motivation", "theme": "Morning encouragement, focus, and personal growth.", "alternates": []}], "movies": [{"title": "Daughters of the Dust", "artist": "Julie Dash", "videoId": "zdMxR2M_ddM", "genre": "History & Biography"}, {"title": "Moonlight", "artist": "Barry Jenkins", "videoId": "9NJj12tJzqc", "genre": "Drama & Family"}, {"title": "Malcolm X", "artist": "Spike Lee", "videoId": "jNMWdwvZjsw", "genre": "History & Biography"}, {"title": "Do the Right Thing", "artist": "Spike Lee", "videoId": "5Ny631yQ-DM", "genre": "Drama & Family"}, {"title": "Black Panther", "artist": "Ryan Coogler", "videoId": "xjDjIWPwcPU", "genre": "Sci-Fi & Fantasy"}, {"title": "Hidden Figures", "artist": "Theodore Melfi", "videoId": "5wfrDhgUMGI", "genre": "Drama & Family"}, {"title": "Love & Basketball", "artist": "Gina Prince-Bythewood", "videoId": "Ur83i6_BjbE", "genre": "Romance"}, {"title": "Selma", "artist": "Ava DuVernay", "videoId": "kPgs2zshD9Y", "genre": "History & Biography"}, {"title": "A Raisin in the Sun", "artist": "Daniel Petrie", "videoId": "g4nRjTRDo6E", "genre": "Drama & Family"}, {"title": "Killer of Sheep", "artist": "Charles Burnett", "videoId": "bORJQ8dF9tQ", "genre": "Drama & Family"}, {"title": "The Watermelon Woman", "artist": "Cheryl Dunye", "videoId": "mtU6Wo29VXI", "genre": "Drama & Family"}, {"title": "Crooklyn", "artist": "Spike Lee", "videoId": "HYVHCtw3DdQ", "genre": "History & Biography"}, {"title": "Eve's Bayou", "artist": "Kasi Lemmons", "videoId": "6mXU9qVFRpM", "genre": "Horror & Mystery"}, {"title": "If Beale Street Could Talk", "artist": "Barry Jenkins", "videoId": "tx2H_ulR84o", "genre": "Romance"}, {"title": "The Great Debaters", "artist": "Denzel Washington", "videoId": "ucSkqnGBBnU", "genre": "Drama & Family"}, {"title": "Queen of Katwe", "artist": "Mira Nair", "videoId": "YuXBik7EciQ", "genre": "Drama & Family"}, {"title": "Soul", "artist": "Pete Docter; co-directed by Kemp Powers", "videoId": "xOsLIiBStEs", "genre": "Animation"}, {"title": "Summer of Soul", "artist": "Ahmir Questlove Thompson", "videoId": "slFiJpAxZyQ", "genre": "Documentary"}, {"title": "The Last Black Man in San Francisco", "artist": "Joe Talbot", "videoId": "C0FnJDhY9-0", "genre": "Drama & Family"}, {"title": "Sounder", "artist": "Martin Ritt", "videoId": "N_arLbvbsFo", "genre": "History & Biography"}], "quiet": [{"genre": "Ambient", "artist": "Brian Eno", "title": "An Ending (Ascent)", "videoId": "OlaTeXX3uH8", "alternates": ["OnAS7efua64"], "theme": "Instrumental space for reflection and focused work.", "instrumental": true}, {"genre": "Classical", "artist": "Lang Lang · Beethoven", "title": "Für Elise", "videoId": "s71I_EWJk7I", "alternates": ["FW_KCau2iTI"], "theme": "A familiar piano piece for a quieter learning moment.", "instrumental": true}, {"genre": "Jazz", "artist": "Louis Armstrong", "title": "What a Wonderful World", "videoId": "rBrd_3VMC3c", "alternates": ["CaCSuzR4DwM"], "theme": "A familiar vocal standard about noticing the world around us."}, {"genre": "Lo-Fi", "artist": "Nujabes", "title": "Aruarian Dance", "videoId": "qYcoJpqCha4", "alternates": [], "theme": "Instrumental jazz-hop for a calm creative flow.", "instrumental": true}, {"genre": "Jazz", "artist": "John Coltrane", "title": "My Favorite Things", "videoId": "rqpriUFsMQQ", "alternates": ["ej6gfL4yF4E"], "theme": "An instrumental jazz exploration for listening, reflection, and creative work.", "instrumental": true}, {"genre": "Jazz", "artist": "Miles Davis", "title": "So What · Official live video", "videoId": "zqNTltOGh5c", "alternates": [], "theme": "Instrumental musical craft, conversation, and space to think.", "instrumental": true}, {"genre": "Jazz", "artist": "Miles Davis", "title": "Flamenco Sketches", "videoId": "nTwp1sgUJrM", "theme": "Space, patient listening, and reflective focus.", "alternates": [], "instrumental": true}, {"genre": "Jazz", "artist": "John Coltrane", "title": "Naima", "videoId": "bPAC6zt_1ZM", "theme": "A lyrical instrumental for calm concentration.", "alternates": [], "instrumental": true}]}
+{
+  "music": [
+    {
+      "genre": "Hip-Hop",
+      "artist": "Nas",
+      "title": "One Mic",
+      "videoId": "JCOURZ-yx4E",
+      "theme": "A focused voice, conviction, and storytelling.",
+      "alternates": []
+    },
+    {
+      "genre": "Afrobeats",
+      "artist": "2Baba",
+      "title": "African Queen",
+      "videoId": "_A0fWBHu9pM",
+      "alternates": [
+        "713jhG0us1k"
+      ],
+      "theme": "A warm Afropop classic celebrating connection."
+    },
+    {
+      "genre": "Ambient",
+      "artist": "Brian Eno",
+      "title": "An Ending (Ascent)",
+      "videoId": "OlaTeXX3uH8",
+      "alternates": [
+        "OnAS7efua64"
+      ],
+      "theme": "Instrumental space for reflection and focused work.",
+      "instrumental": true
+    },
+    {
+      "genre": "Blues",
+      "artist": "B.B. King",
+      "title": "The Thrill Is Gone",
+      "videoId": "SgXSomPE_FY",
+      "alternates": [
+        "kpC69qIe02E"
+      ],
+      "theme": "A classic live performance with expressive musical craft."
+    },
+    {
+      "genre": "Classical",
+      "artist": "Lang Lang · Beethoven",
+      "title": "Für Elise",
+      "videoId": "s71I_EWJk7I",
+      "alternates": [
+        "FW_KCau2iTI"
+      ],
+      "theme": "A familiar piano piece for a quieter learning moment.",
+      "instrumental": true
+    },
+    {
+      "genre": "Country",
+      "artist": "Dolly Parton",
+      "title": "9 to 5",
+      "videoId": "UbxUSsFXYo4",
+      "alternates": [],
+      "theme": "Work, ambition, and the everyday push to make something happen."
+    },
+    {
+      "genre": "EDM",
+      "artist": "Avicii",
+      "title": "Wake Me Up",
+      "videoId": "IcrbM1l_BoI",
+      "alternates": [
+        "5y_KJAg8bHI"
+      ],
+      "theme": "Discovery, growing, and finding your own direction."
+    },
+    {
+      "genre": "Experimental",
+      "artist": "Herbie Hancock",
+      "title": "Rockit",
+      "videoId": "GHhD4PD75zY",
+      "alternates": [],
+      "theme": "An instrumental crossover where technology meets musical invention.",
+      "instrumental": true
+    },
+    {
+      "genre": "Funk",
+      "artist": "Earth, Wind & Fire",
+      "title": "September",
+      "videoId": "Gs069dndIYk",
+      "alternates": [
+        "3cKtSlsYVEU"
+      ],
+      "theme": "Shared joy, movement, and a timeless groove."
+    },
+    {
+      "genre": "Gospel",
+      "artist": "Kirk Franklin",
+      "title": "I Smile",
+      "videoId": "Z8SPwT3nQZ8",
+      "alternates": [
+        "S174winqP2g"
+      ],
+      "theme": "Encouragement and finding a little light in a difficult day."
+    },
+    {
+      "genre": "House / Club",
+      "artist": "Daft Punk",
+      "title": "One More Time",
+      "videoId": "FGBhQbmPwH8",
+      "alternates": [
+        "fa5IWHDbftI"
+      ],
+      "theme": "A classic celebration of rhythm and the joy of creating."
+    },
+    {
+      "genre": "Jazz",
+      "artist": "Louis Armstrong",
+      "title": "What a Wonderful World",
+      "videoId": "rBrd_3VMC3c",
+      "alternates": [
+        "CaCSuzR4DwM"
+      ],
+      "theme": "A familiar vocal standard about noticing the world around us."
+    },
+    {
+      "genre": "Latin",
+      "artist": "Celia Cruz",
+      "title": "La Vida Es Un Carnaval",
+      "videoId": "x4oN50uhSII",
+      "alternates": [
+        "t8pjh1URlXs",
+        "7Ho86ggAVrY"
+      ],
+      "theme": "An uplifting salsa classic about living through life's difficult moments."
+    },
+    {
+      "genre": "Lo-Fi",
+      "artist": "Nujabes",
+      "title": "Aruarian Dance",
+      "videoId": "qYcoJpqCha4",
+      "alternates": [],
+      "theme": "Instrumental jazz-hop for a calm creative flow.",
+      "instrumental": true
+    },
+    {
+      "genre": "Pop",
+      "artist": "Whitney Houston",
+      "title": "I Wanna Dance with Somebody",
+      "videoId": "eH3giaIzONA",
+      "alternates": [],
+      "theme": "A recognizable pop favorite full of energy and connection."
+    },
+    {
+      "genre": "R&B",
+      "artist": "Bill Withers",
+      "title": "Lovely Day",
+      "videoId": "bEeaS6fuUoA",
+      "alternates": [
+        "QCgeitX5xg0"
+      ],
+      "theme": "A brighter mood for the next idea and the next useful step."
+    },
+    {
+      "genre": "Reggae",
+      "artist": "Bob Marley & The Wailers",
+      "title": "Three Little Birds",
+      "videoId": "HNBCVM4KbUM",
+      "alternates": [],
+      "theme": "A gentle reminder to breathe and keep moving."
+    },
+    {
+      "genre": "Rock",
+      "artist": "Journey",
+      "title": "Don't Stop Believin'",
+      "videoId": "1k8craCGpgs",
+      "alternates": [
+        "VcjzHMhBtf0",
+        "mM3Vmn4pdog"
+      ],
+      "theme": "A classic about keeping possibility in view."
+    },
+    {
+      "genre": "Soul",
+      "artist": "Simply Red",
+      "title": "Holding Back the Years",
+      "videoId": "yG07WSu7Q9w",
+      "alternates": [],
+      "theme": "Reflection, memory, and an unhurried soulful groove."
+    },
+    {
+      "genre": "Soundtracks",
+      "artist": "Vangelis",
+      "title": "Chariots of Fire",
+      "videoId": "8a-HfNE3EIo",
+      "alternates": [],
+      "theme": "An instrumental theme with a sense of purpose and forward motion.",
+      "instrumental": true
+    },
+    {
+      "genre": "Hip-Hop / R&B",
+      "artist": "Erykah Badu feat. Common",
+      "title": "Love of My Life (An Ode to Hip Hop)",
+      "videoId": "dNk3R23Twgw",
+      "theme": "A creative conversation between hip-hop and soul.",
+      "alternates": []
+    }
+  ],
+  "motivation": [
+    {
+      "videoId": "RloHwfa4ULI",
+      "title": "Win the Morning, Win the Day",
+      "artist": "Motiversity · Coach Pain"
+    },
+    {
+      "videoId": "qX9FSZJu448",
+      "title": "Never, Ever Give Up: Arthur's Transformation",
+      "artist": "DDP YOGA"
+    },
+    {
+      "videoId": "aOJsbdkoL94",
+      "title": "Jade's Transformation",
+      "artist": "DDP YOGA"
+    },
+    {
+      "videoId": "hXiGOHamI5Y",
+      "title": "6 Tips to Keep You Motivated for Exercise",
+      "artist": "Mayo Clinic"
+    }
+  ],
+  "movies": [
+    {
+      "videoId": "-pEkCbqN4uo",
+      "title": "The Weight of the Nation: Consequences",
+      "artist": "HBO Docs"
+    },
+    {
+      "videoId": "hLv0Vsegmoo",
+      "title": "The Weight of the Nation: Choices",
+      "artist": "HBO Docs"
+    },
+    {
+      "videoId": "oxLwLnvU6vA",
+      "title": "Weight Loss and Willpower",
+      "artist": "Mayo Clinic"
+    },
+    {
+      "videoId": "D5hwvIO8S8w",
+      "title": "Diet or Exercise: Which Helps Weight Loss?",
+      "artist": "Mayo Clinic"
+    },
+    {
+      "videoId": "hXiGOHamI5Y",
+      "title": "6 Tips to Keep You Motivated for Exercise",
+      "artist": "Mayo Clinic"
+    },
+    {
+      "videoId": "qX9FSZJu448",
+      "title": "Never, Ever Give Up: Arthur's Transformation",
+      "artist": "DDP YOGA"
+    },
+    {
+      "videoId": "aOJsbdkoL94",
+      "title": "Jade's Transformation",
+      "artist": "DDP YOGA"
+    }
+  ],
+  "quiet": [
+    {
+      "genre": "Ambient",
+      "artist": "Brian Eno",
+      "title": "An Ending (Ascent)",
+      "videoId": "OlaTeXX3uH8",
+      "alternates": [
+        "OnAS7efua64"
+      ],
+      "theme": "Instrumental space for reflection and focused work.",
+      "instrumental": true
+    },
+    {
+      "genre": "Classical",
+      "artist": "Lang Lang · Beethoven",
+      "title": "Für Elise",
+      "videoId": "s71I_EWJk7I",
+      "alternates": [
+        "FW_KCau2iTI"
+      ],
+      "theme": "A familiar piano piece for a quieter learning moment.",
+      "instrumental": true
+    },
+    {
+      "genre": "Jazz",
+      "artist": "Louis Armstrong",
+      "title": "What a Wonderful World",
+      "videoId": "rBrd_3VMC3c",
+      "alternates": [
+        "CaCSuzR4DwM"
+      ],
+      "theme": "A familiar vocal standard about noticing the world around us."
+    },
+    {
+      "genre": "Lo-Fi",
+      "artist": "Nujabes",
+      "title": "Aruarian Dance",
+      "videoId": "qYcoJpqCha4",
+      "alternates": [],
+      "theme": "Instrumental jazz-hop for a calm creative flow.",
+      "instrumental": true
+    },
+    {
+      "genre": "Jazz",
+      "artist": "John Coltrane",
+      "title": "My Favorite Things",
+      "videoId": "rqpriUFsMQQ",
+      "alternates": [
+        "ej6gfL4yF4E"
+      ],
+      "theme": "An instrumental jazz exploration for listening, reflection, and creative work.",
+      "instrumental": true
+    },
+    {
+      "genre": "Jazz",
+      "artist": "Miles Davis",
+      "title": "So What · Official live video",
+      "videoId": "zqNTltOGh5c",
+      "alternates": [],
+      "theme": "Instrumental musical craft, conversation, and space to think.",
+      "instrumental": true
+    },
+    {
+      "genre": "Jazz",
+      "artist": "Miles Davis",
+      "title": "Flamenco Sketches",
+      "videoId": "nTwp1sgUJrM",
+      "theme": "Space, patient listening, and reflective focus.",
+      "alternates": [],
+      "instrumental": true
+    },
+    {
+      "genre": "Jazz",
+      "artist": "John Coltrane",
+      "title": "Naima",
+      "videoId": "bPAC6zt_1ZM",
+      "theme": "A lyrical instrumental for calm concentration.",
+      "alternates": [],
+      "instrumental": true
+    }
+  ],
+  "movieGroups": [
+    {
+      "title": "Documentaries",
+      "items": [
+        {
+          "videoId": "-pEkCbqN4uo",
+          "title": "The Weight of the Nation: Consequences",
+          "artist": "HBO Docs"
+        },
+        {
+          "videoId": "hLv0Vsegmoo",
+          "title": "The Weight of the Nation: Choices",
+          "artist": "HBO Docs"
+        }
+      ]
+    },
+    {
+      "title": "Transformation Stories",
+      "items": [
+        {
+          "videoId": "qX9FSZJu448",
+          "title": "Never, Ever Give Up: Arthur's Transformation",
+          "artist": "DDP YOGA"
+        },
+        {
+          "videoId": "aOJsbdkoL94",
+          "title": "Jade's Transformation",
+          "artist": "DDP YOGA"
+        }
+      ]
+    },
+    {
+      "title": "Health Experts",
+      "items": [
+        {
+          "videoId": "oxLwLnvU6vA",
+          "title": "Weight Loss and Willpower",
+          "artist": "Mayo Clinic"
+        },
+        {
+          "videoId": "D5hwvIO8S8w",
+          "title": "Diet or Exercise: Which Helps Weight Loss?",
+          "artist": "Mayo Clinic"
+        },
+        {
+          "videoId": "hXiGOHamI5Y",
+          "title": "6 Tips to Keep You Motivated for Exercise",
+          "artist": "Mayo Clinic"
+        }
+      ]
+    }
+  ]
+}

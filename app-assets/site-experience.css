@@ -32,3 +32,23 @@ body footer button.site-app-footer-text.site-app-footer-text.site-app-footer-tex
 body footer button.site-app-footer-text.site-app-footer-text.site-app-footer-text.site-app-footer-text:is(:hover,:focus-visible){background:none!important;background-image:none!important;box-shadow:none!important;animation:none!important;transform:none!important;translate:none!important;text-decoration:none!important}
 body footer button.site-app-footer-text.site-app-footer-text.site-app-footer-text.site-app-footer-text::before,body footer button.site-app-footer-text.site-app-footer-text.site-app-footer-text.site-app-footer-text::after{content:none!important;display:none!important}
 body[data-site-app-installed] footer button.site-app-footer-text.site-app-footer-text.site-app-footer-text.site-app-footer-text{display:none!important}
+
+/* Familiar, unboxed three-line navigation trigger. */
+body .x-menu-toggle.x-menu-toggle{border:0!important;border-radius:0!important;background:none!important;background-image:none!important;box-shadow:none!important}
+body .x-menu-toggle.x-menu-toggle::before,body .x-menu-toggle.x-menu-toggle::after{content:none!important}
+body .x-menu-toggle.x-menu-toggle:is(:hover,:focus-visible){background:none!important;background-image:none!important;box-shadow:none!important}
+body .x-jukebox>.x-action{margin:10px 0 22px}
+body .x-jukebox .x-player-view>h3:first-child{margin-top:0;margin-bottom:20px}
+body .x-jukebox{width:min(590px,calc(100vw - 24px));padding:24px}
+.x-maker-credit{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px 0 2px;font:11px/1.5 Georgia,serif;text-align:left;opacity:.85}
+.x-maker-credit img{width:38px;height:38px;object-fit:contain}.x-maker-credit span{max-width:220px}
+
+body .site-header>.livefit-install-end{order:99;margin-left:10px!important}
+body button.site-app-button.site-app-button.site-app-button.site-app-button{min-height:30px!important;padding:6px 9px!important;font-size:10px!important;gap:5px!important}
+body .roadmap-product-image,body .roadmap-product-card img{object-fit:contain;image-rendering:auto;filter:none!important;width:100%;height:auto}
+body .roadmap-modal-visual{min-width:0}
+body .roadmap-product-card img{max-width:310px}
+body .x-jukebox .x-root-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+body .x-jukebox .x-root-grid .x-action{padding:10px 7px}
+body .x-jukebox .x-player-view:has(>h3) .x-root-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:800px){body button.site-app-button.site-app-button.site-app-button.site-app-button.site-app-mobile{min-height:38px!important;padding:8px 10px!important;font-size:11px!important}}
