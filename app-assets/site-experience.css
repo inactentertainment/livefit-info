@@ -84,3 +84,18 @@ body[data-site-slug="livefit-info"] dialog.x-jukebox .x-action:focus-visible{
 
 
 body[data-site-slug="livefit-info"] dialog.x-jukebox .lf-jukebox-wordmark{display:block;width:clamp(110px,26vw,170px)!important;height:auto!important;max-height:42px;object-fit:contain;flex:0 1 auto;min-width:0}
+
+
+/* LiveFit menu uses the original wordmark, clean white close X and distinct orange icons. */
+body[data-site-slug="livefit-info"] dialog.x-menu{padding:14px 15px 15px}
+body[data-site-slug="livefit-info"] dialog.x-menu .lf-menu-heading{display:grid;grid-template-columns:65px minmax(0,1fr) 30px;align-items:center;gap:6px;margin:0 0 8px}
+body[data-site-slug="livefit-info"] dialog.x-menu .lf-menu-heading img.lf-menu-brand{width:65px;height:auto;max-height:32px;object-fit:contain;flex:none}
+body[data-site-slug="livefit-info"] dialog.x-menu .lf-menu-heading h2{margin:0;font:400 19px Georgia,serif;color:#fff}
+body[data-site-slug="livefit-info"] dialog.x-menu .lf-menu-close{height:29px;width:29px;min-height:29px;min-width:29px;padding:0;border:0!important;border-radius:4px;background:transparent!important;background-image:none!important;box-shadow:none!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font:25px/1 Arial,sans-serif!important;animation:none!important}
+body[data-site-slug="livefit-info"] dialog.x-menu .lf-menu-close::after{display:none!important}
+body[data-site-slug="livefit-info"] dialog.x-menu .lf-menu-close:hover{background:#b63b1b!important}
+body[data-site-slug="livefit-info"] dialog.x-menu .x-menu-items{gap:2px}
+body[data-site-slug="livefit-info"] dialog.x-menu .x-menu-item{padding:6px 10px!important;min-height:34px!important;gap:9px!important;font:13px/1.35 Georgia,serif!important;color:#fff!important}
+body[data-site-slug="livefit-info"] dialog.x-menu .x-menu-item svg{stroke:#bf3d1b!important;stroke-width:1.9!important;width:18px;height:18px;flex:0 0 18px}
+body[data-site-slug="livefit-info"] dialog.x-menu .x-menu-item:hover,body[data-site-slug="livefit-info"] dialog.x-menu .x-menu-item:focus-visible{background:rgba(192,58,28,.18)!important;border-color:#bf3d1b!important}
+body[data-site-slug="livefit-info"] dialog.x-menu .x-menu-items .x-membership{background:transparent!important;color:#fff!important;border-color:transparent!important}
