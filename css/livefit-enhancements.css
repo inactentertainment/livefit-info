@@ -702,3 +702,31 @@ html[data-theme="light"] .article-reader:after{background:rgba(80,70,60,.05)}
  #planModal .lf-preview-exercise b{width:12px;height:12px;font-size:5px;padding-top:2px}
  #planModal .lf-preview-caption{font-size:8px}
 }
+
+/* LiveFit brand-color jukebox controls — distinct from Basketball Brilliance orange. */
+#musicPanel .music-mode,
+#musicPanel .music-track,
+#musicPanel .music-transport button,
+#musicPanel .music-view-toggle button{
+  background:#bb3d1d!important;
+  color:#fff!important;
+  border-color:#8f3019!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+}
+#musicPanel .music-mode b,#musicPanel .music-mode small,
+#musicPanel .music-track b,#musicPanel .music-track small,
+#musicPanel .music-track .track-no,
+#musicPanel .music-view-toggle button{
+  color:#fff!important;
+}
+#musicPanel .music-mode:hover,#musicPanel .music-mode.active,
+#musicPanel .music-track:hover,#musicPanel .music-track.active,
+#musicPanel .music-view-toggle button.active,
+#musicPanel .music-transport button:hover{
+  background:#d14b26!important;
+  border-color:#ef9c7e!important;
+}
+#musicPanel .music-transport button:focus-visible,
+#musicPanel .music-mode:focus-visible,#musicPanel .music-track:focus-visible{
+ outline:2px solid #fff;outline-offset:2px;
+}
