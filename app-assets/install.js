@@ -24,9 +24,12 @@
   function sync() {
     const hide = standalone();
     document.documentElement.toggleAttribute('data-site-app-installed', hide);
-    controls.forEach(control => control.hidden = hide);
+    // Only offer one-click native installation when the browser has supplied its real prompt.
+    // iOS does not support beforeinstallprompt, so keep its supported manual instructions.
+    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    controls.forEach(control => control.hidden = hide || (!pending && !ios));
   }
-  addEventListener('beforeinstallprompt', event => { event.preventDefault(); pending = event; });
+  addEventListener('beforeinstallprompt', event => { event.preventDefault(); pending = event; sync(); });
   addEventListener('appinstalled', () => { installed = true; pending = null; sync(); });
   matchMedia('(display-mode: standalone)').addEventListener('change', sync);
   function guide() {
@@ -50,9 +53,9 @@
   }
   async function install() {
     if (standalone()) return;
-    if (!pending) { guide(); return; }
+    if (!pending) { if (/iphone|ipad|ipod/i.test(navigator.userAgent)) guide(); return; }
     const event = pending; pending = null;
-    try { await event.prompt(); await event.userChoice; } catch (_) { guide(); }
+    try { await event.prompt(); await event.userChoice; } catch (_) { /* Native prompt unavailable: do not replace it with an instruction dropdown. */ } finally { sync(); }
   }
   function makeButton(label = 'Install App', kind = '') {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'site-app-button '+kind;
