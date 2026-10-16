@@ -10,13 +10,36 @@ function action(text,fn,cls=''){const b=el('button','x-action '+cls,text);b.type
 const icon='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>';
 function dialog(type,title){const d=el('dialog',type),head=el('div','x-dialog-heading'),img=el('img');img.src=asset('icon-192.png');img.alt='';const copy=el('div');copy.append(el('small','',cfg.name),el('h2','',title));const close=action('×',()=>d.close());close.setAttribute('aria-label','Close '+title);head.append(img,copy,close);d.append(head);d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}});document.body.append(d);return d;}
 function divider(index=0){const n=document.createElementNS('http://www.w3.org/2000/svg','svg');n.setAttribute('class','x-divider');n.setAttribute('viewBox','0 0 420 20');n.setAttribute('aria-hidden','true');const designs=['M0 10H100Q130 -5 160 10T220 10T280 10H420','M0 10H140C165 10 160 -6 180 4S170 25 200 10H420','M0 10Q70 2 140 10T280 10T420 10','M0 10H90L110 5L130 15L150 10H280Q300 0 320 10H420'];const start=65+index*11,bend=start+32;const unique='M0 10H'+start+'C'+bend+' 10 '+bend+' '+(1+index%4)+' '+(bend+18)+' '+(1+index%4)+'S'+(bend+7)+' '+(19-index%4)+' '+(bend+40)+' 10H420';n.innerHTML='<path d="M0 10H420" opacity=".3"/><path class="x-flow" d="'+unique+'"/>';n.querySelector('.x-flow').style.animationDuration=(10+index)+'s';n.style.setProperty('--x-divider-speed',(10+index)+'s');return n;}
+function lfMenuIcon(label){
+ const t=String(label).toLowerCase();let d;
+ if(/install|download/.test(t))d='<path d="M12 3v12m-5-5 5 5 5-5M5 18v3h14v-3"/>';
+ else if(/plan|roadmap/.test(t))d='<circle cx="12" cy="12" r="9"/><path d="m12 5 2.6 5.4L12 19l-2.6-8.6z"/>';
+ else if(/tools|calculator/.test(t))d='<path d="M21 7a5 5 0 0 1-7 5l-8 8-3-3 8-8a5 5 0 0 1 5-7l-3 4 4 4z"/>';
+ else if(/workout|fitness|exercise/.test(t))d='<path d="M3 9v6m4-9v12m10-12v12m4-9v6M7 12h10"/>';
+ else if(/nutrition|food|meal/.test(t))d='<path d="M8 3v8a3 3 0 0 0 6 0V3M11 3v18m6-9V5q4 3 4 8v8"/>';
+ else if(/gear|shop/.test(t))d='<rect x="4" y="8" width="16" height="13" rx="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>';
+ else if(/video|watch/.test(t))d='<rect x="2" y="5" width="20" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/>';
+ else if(/article|read|library/.test(t))d='<path d="M4 5h7a3 3 0 0 1 3 3v12H7a3 3 0 0 0-3 1zM20 5h-4a3 3 0 0 0-3 3v12h4a3 3 0 0 1 3 1z"/>';
+ else if(/about|team/.test(t))d='<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>';
+ else if(/contact|email/.test(t))d='<rect x="2" y="5" width="20" height="14" rx="2"/><path d="m3 7 9 7 9-7"/>';
+ else d='<circle cx="12" cy="12" r="8"/><path d="m9 12 2 2 4-4"/>';
+ return '<svg viewBox="0 0 24 24" aria-hidden="true">'+d+'</svg>';
+}
 function addMenu(){
  if(cfg.slug==='perennial-home-and-gardens')return;
  if(cfg.slug==='ie')return; // i.e. already uses the approved compact dropdown.
  const sources=all(cfg.navSources).filter(n=>!n.closest('.x-menu'));
  if(!sources.length)return;
  const host=$(cfg.header)||sources[0].parentElement;
- const menu=dialog('x-menu','Menu'),items=el('nav','x-menu-items');items.setAttribute('aria-label',cfg.name+' navigation');menu.append(items);menu.addEventListener('close',()=>{all('.x-menu-toggle').forEach(b=>b.setAttribute('aria-expanded','false'));});
+ const menu=dialog('x-menu','Menu'),items=el('nav','x-menu-items');
+ if(cfg.slug==='livefit-info'){
+  const heading=menu.querySelector('.x-dialog-heading');
+  const mark=heading?.querySelector('img');
+  if(mark){mark.src=new URL('../assets/livefit-brand-wordmark.svg',base).href;mark.alt='LiveFit.info';mark.className='lf-menu-brand';}
+  heading?.querySelector('small')?.remove();
+  heading?.classList.add('lf-menu-heading');
+  const close=heading?.querySelector('button');if(close){close.classList.add('lf-menu-close');close.textContent='×';}
+ }items.setAttribute('aria-label',cfg.name+' navigation');menu.append(items);menu.addEventListener('close',()=>{all('.x-menu-toggle').forEach(b=>b.setAttribute('aria-expanded','false'));});
  function refresh(){
   items.replaceChildren();const seen=new Set(),members=[];
   for(const source of sources)for(const n of source.querySelectorAll('a[href],button')){
@@ -24,13 +47,13 @@ function addMenu(){
    const label=n.getAttribute('data-label')||n.querySelector('.label,.nav-label,.wdw-sr-only')?.textContent||n.closest('.etp-nav-item')?.querySelector('.etp-tip')?.textContent||n.getAttribute('aria-label')||n.querySelector('span:last-child')?.textContent||n.textContent;
    const contextLabel=cfg.slug==='ie-casino-games'&&n.dataset.rule?(n.dataset.rule==='time'?'Time Travel Slots':'Casa 21')+' · House Rules':label;
    const text=String(contextLabel||'').replace(/\s+/g,' ').trim();if(!text||/^(close|close menu|close navigation)$/i.test(text)||text==='Install App'||seen.has(text))continue;seen.add(text);
-   const b=el(n.tagName==='A'?'a':'button','x-menu-item');if(n.tagName==='A')b.href=n.href;else{b.type='button';b.disabled=n.disabled;}b.innerHTML=icon;const span=el('span','',text);b.append(span);
+   const b=el(n.tagName==='A'?'a':'button','x-menu-item');if(n.tagName==='A')b.href=n.href;else{b.type='button';b.disabled=n.disabled;}b.innerHTML=cfg.slug==='livefit-info'?lfMenuIcon(text):icon;const span=el('span','',text);b.append(span);
    b.addEventListener('click',e=>{e.preventDefault();menu.close();n.click();});
    if(/membership|members only|join|subscribe/i.test(text)){b.classList.add('x-membership');members.push(b);}else items.append(b);
   }
   if(cfg.slug==='basketball-brilliance'&&!items.children.length){for(const role of ['coach','player','parent']){const b=el('button','x-menu-item',role[0].toUpperCase()+role.slice(1));b.type='button';b.onclick=()=>{menu.close();document.querySelector('.hs-'+role)?.click();};items.append(b);}}
   members.forEach(n=>items.append(n));
-  const install=el('button','x-menu-item','Install App');install.type='button';install.onclick=()=>{menu.close();window.siteInstallApp?.();};items.insertBefore(install,members[0]||null);
+  const install=el('button','x-menu-item');install.innerHTML=cfg.slug==='livefit-info'?lfMenuIcon('Install App')+'<span>Install App</span>':'Install App';install.type='button';install.onclick=()=>{menu.close();window.siteInstallApp?.();};items.insertBefore(install,members[0]||null);
  }
  all(cfg.preserve||'[data-no-preserve]').forEach(n=>{if(sources.some(s=>s.contains(n)))host.append(n);});
  sources.forEach(n=>{n.classList.add('x-hidden-nav');n.style.setProperty('display','none','important');new MutationObserver(refresh).observe(n,{childList:true,subtree:true});});refresh();
