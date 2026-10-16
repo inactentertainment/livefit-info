@@ -744,3 +744,15 @@ html[data-theme="light"] .article-reader:after{background:rgba(80,70,60,.05)}
  #planModal .lf-book-product-stage img{height:180px!important}
  #planModal .lf-preview-caption{font-size:8px}
 }
+
+
+/* Three-page product promo: keep the approved promotional artwork intact. */
+#planModal .lf-book-product-stage:before{content:none!important}
+#planModal .lf-popup-preview{min-height:260px!important;max-width:100%;margin:0 auto!important}
+#planModal .lf-book-product-stage{height:262px!important;overflow:visible!important}
+#planModal .lf-book-product-stage img{height:260px!important;width:auto!important;max-width:100%!important;object-fit:contain!important;filter:none!important;box-shadow:none!important;border:0!important;background:transparent!important}
+@media(max-width:600px){
+ #planModal .lf-popup-preview{min-height:215px!important}
+ #planModal .lf-book-product-stage{height:210px!important}
+ #planModal .lf-book-product-stage img{height:208px!important}
+}
