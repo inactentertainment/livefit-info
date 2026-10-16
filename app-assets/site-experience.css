@@ -81,3 +81,6 @@ body[data-site-slug="livefit-info"] dialog.x-jukebox .x-action:focus-visible{
  body[data-site-slug="livefit-info"] dialog.x-jukebox .lf-jukebox-name{font-size:12px}
  body[data-site-slug="livefit-info"] dialog.x-jukebox .x-dialog-heading h2{font-size:13px}
 }
+
+
+body[data-site-slug="livefit-info"] dialog.x-jukebox .lf-jukebox-wordmark{display:block;width:clamp(110px,26vw,170px)!important;height:auto!important;max-height:42px;object-fit:contain;flex:0 1 auto;min-width:0}
