@@ -65,7 +65,7 @@ async function genericPlayer(){
    if(heading){
      const icon=heading.querySelector('img');if(icon){icon.remove();}
      const title=heading.querySelector('h2');if(title)title.textContent='Jukebox';
-     const identity=heading.querySelector('div');if(identity){identity.querySelector('small')?.remove();identity.classList.add('lf-jukebox-title');identity.prepend(el('span','lf-jukebox-name','LIVE FIT.info'));}
+     const identity=heading.querySelector('div');if(identity){identity.querySelector('small')?.remove();identity.classList.add('lf-jukebox-title');const wordmark=el('img','lf-jukebox-wordmark');wordmark.src=new URL('../assets/livefit-brand-wordmark.svg',base).href;wordmark.alt='LiveFit.info';identity.prepend(wordmark);}
    }
  }
  const back=action('‹ Back',()=>goBack());back.hidden=true;const view=el('div','x-player-view');panel.append(back,view);
