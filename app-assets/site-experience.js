@@ -60,6 +60,14 @@ async function genericPlayer(){
  if(!cfg.generic)return;
  const catalog=await fetch(asset('media-library.json')).then(r=>{if(!r.ok)throw Error();return r.json();}).catch(()=>({music:[],motivation:[],movies:[],quiet:[],failed:true}));
  const panel=dialog('x-jukebox','Jukebox');panel.id='site-shared-jukebox';panel.insertBefore(divider(cfg.divider),panel.children[1]||null);
+ if(cfg.slug==='livefit-info'){
+   const heading=panel.querySelector('.x-dialog-heading');
+   if(heading){
+     const icon=heading.querySelector('img');if(icon){icon.src=new URL('../assets/livefit-logo.webp',base).href;icon.alt='LiveFit.info';}
+     const title=heading.querySelector('h2');if(title)title.textContent='Jukebox';
+     const identity=heading.querySelector('div');if(identity){identity.querySelector('small')?.remove();identity.classList.add('lf-jukebox-title');identity.prepend(el('span','lf-jukebox-name','LiveFit.info'));}
+   }
+ }
  const back=action('‹ Back',()=>goBack());back.hidden=true;const view=el('div','x-player-view');panel.append(back,view);
  const mini=el('div','x-mini');mini.hidden=true;document.body.append(mini);
  const key='ie-'+cfg.slug+'-jukebox-v1';let saved=[];try{const parsed=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(parsed))saved=parsed.filter(t=>t&&(/^[\w-]{11}$/.test(t.videoId||'')||/^[\w-]{10,100}$/.test(t.listId||'')));}catch{}
