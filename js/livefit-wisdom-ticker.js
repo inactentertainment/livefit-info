@@ -31,7 +31,7 @@ function syncRate(){
  const newWidth=set.getBoundingClientRect().width;
  if(newWidth>0){
    // Keep a steady, more readable but lively movement rate regardless of the total quote count.
-   ticker.style.setProperty('--lf-loop-duration',(newWidth/520).toFixed(2)+'s');
+   ticker.style.setProperty('--lf-loop-duration',(newWidth/950).toFixed(2)+'s');
  }
 }
 syncRate();
