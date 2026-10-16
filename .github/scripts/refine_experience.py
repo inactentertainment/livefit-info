@@ -65,7 +65,7 @@ print(slug+': site-specific refinements complete')
 # Keep installed and browser visits on this build's shared presentation assets.
 for page in root.rglob('*.html'):
  text=page.read_text()
- clean=re.sub(r'(src=["\'](?:\.\./)*app-assets/install\.js)(?:\?[^"\']*)?',r'\1?v=20261016-install-native',text)
+ clean=re.sub(r'(src=["\'](?:\.\./)*app-assets/install\.js)(?:\?[^"\']*)?',r'\1?v=20261016-jukebox-final',text)
  clean=re.sub(r'(src=["\'](?:\.\./)*js/main\.js)(?:\?[^"\']*)?',r'\1?v=20261015-plan5',clean)
  if clean!=text:page.write_text(clean)
 
