@@ -117,9 +117,9 @@
         });
         const data=await res.json();
         if(!res.ok || !(data.success===true || data.success==='true')) throw Error('Not accepted');
-        form.hidden=true;
+        form.replaceChildren();
         status.textContent='You are subscribed. Thank you!';
-        status.hidden=false;
+        form.append(status);
         sessionStorage.setItem('livefit-magazine-dismissed','1');
       }catch{
         status.textContent='Your signup could not be accepted. Please try again; your entries have been retained.';
