@@ -5,10 +5,10 @@
 (() => {
   'use strict';
   const settings = Object.freeze({
-    magazineEnabled: false,
+    magazineEnabled: true,
     publicationName: 'Live Fit Magazine',
     coverImageUrl: 'assets/livefit-magazine-winter-2026.svg',
-    verifiedSubmissionEndpoint: '',
+    verifiedSubmissionEndpoint: 'https://formsubmit.co/ajax/livefitinformation@gmail.com',
     recipientEmail: 'livefitinformation@gmail.com',
     magazineActiveMs: 120000,
     dismissalGapMs: 60000
