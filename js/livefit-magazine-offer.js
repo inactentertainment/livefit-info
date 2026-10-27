@@ -80,7 +80,7 @@
       <form><label for="lf-magazine-name">Name</label><input id="lf-magazine-name" name="name" type="text" autocomplete="name" maxlength="120" required>
       <label for="lf-magazine-email">Email</label><input id="lf-magazine-email" name="email" type="email" autocomplete="email" maxlength="254" required>
       <label class="lf-magazine-consent"><input name="consent" type="checkbox" required>
-      <span>Yes, I want seasonal Live Fit magazine emails and occasional Live Fit promotional emails. I can unsubscribe at any time.</span></label>
+      <span>Yes, email me seasonal Live Fit magazine issues. I can unsubscribe at any time.</span></label>\n      <label class="lf-magazine-consent"><input name="promotions" type="checkbox">\n      <span>Optional: I also agree to occasional Live Fit promotional emails.</span></label>
       <button type="submit">Sign Me Up</button>
       <p class="lf-magazine-status" role="status" aria-live="polite"></p></form></div>`;
     article.querySelector('h2').textContent = settings.publicationName;
@@ -109,8 +109,8 @@
             name:form.elements.name.value.trim(),
             email:form.elements.email.value.trim(),
             magazine_consent:true,
-            occasional_promotions_consent:true,
-            consent_text:'Yes, I want seasonal Live Fit magazine emails and occasional Live Fit promotional emails. I can unsubscribe at any time.',
+            occasional_promotions_consent:form.elements.promotions.checked,
+            consent_text:'Yes, email me seasonal Live Fit magazine issues. I can unsubscribe at any time.',
             consent_timestamp:new Date().toISOString(),
             _subject:'LiveFit Seasonal Magazine Signup'
           })
