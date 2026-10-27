@@ -1,6 +1,6 @@
-/* LiveFit Phase 3 — magazine signup and offer coordination.
- * Intentionally dormant until publication name, approved cover and tested
- * submission endpoint are supplied. No checkout/report/assessment modifications.
+/* Live Fit Magazine signup, secondary to the existing 9-second roadmap offer.
+ * Recipient must confirm the FormSubmit destination for delivery to start.
+ * Checkout/report/assessment logic is not changed by this module.
  */
 (() => {
   'use strict';
@@ -20,7 +20,7 @@
   const recordDismissal = () => sessionStorage.setItem(STORE, String(Date.now()));
   const isBlocking = () =>
     PLAN.classList.contains('open') ||
-    !!document.querySelector('.lf-gift-layer, .lf-magazine-overlay, [aria-modal="true"]:not(#planModal)');
+    !!document.querySelector('.lf-magazine-overlay, [aria-modal="true"]:not(#planModal)');
   const allowedBySpacing = () =>
     Date.now() - Number(sessionStorage.getItem(STORE) || 0) >= settings.dismissalGapMs;
 
@@ -76,7 +76,7 @@
       <img class="lf-magazine-cover" alt="Live Fit seasonal magazine cover" />
       <div><p style="color:#f1a56e;letter-spacing:.1em">SEASONAL WELLNESS READING</p>
       <h2 id="lf-magazine-heading"></h2>
-      <p>Get seasonal fitness, movement, and wellness inspiration by email.</p>
+      <p>Sign up for seasonal fitness, movement, and wellness updates. This does not enroll you in a paid plan.</p>
       <form><label for="lf-magazine-name">Name</label><input id="lf-magazine-name" name="name" type="text" autocomplete="name" maxlength="120" required>
       <label for="lf-magazine-email">Email</label><input id="lf-magazine-email" name="email" type="email" autocomplete="email" maxlength="254" required>
       <label class="lf-magazine-consent"><input name="consent" type="checkbox" required>
@@ -118,7 +118,7 @@
         const data=await res.json();
         if(!res.ok || !(data.success===true || data.success==='true')) throw Error('Not accepted');
         form.replaceChildren();
-        status.textContent='You are subscribed. Thank you!';
+        status.textContent='Thanks! Your request was accepted. Watch for a confirmation email if required.';
         form.append(status);
         sessionStorage.setItem('livefit-magazine-dismissed','1');
       }catch{
@@ -133,6 +133,6 @@
     const delta=Math.max(0,Math.min(1000,now-lastTick));
     lastTick=now;
     if(document.visibilityState==='visible' && now-lastActivity<30000 && !isBlocking()) activeMs+=delta;
-    if(activeMs>=settings.magazineActiveMs && !shown) show();
+    if(activeMs>=settings.magazineActiveMs && !shown && sessionStorage.getItem('livefit-plan-seen')==='1') show();
   },1000);
 })();
